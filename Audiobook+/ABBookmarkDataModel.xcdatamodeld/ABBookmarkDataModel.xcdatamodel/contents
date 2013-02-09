@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1487" systemVersion="12A269" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Book" representedClassName="Book" syncable="YES">
+        <attribute name="albumTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="bookmarks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Bookmarks" inverseName="fromBook" inverseEntity="Bookmarks" syncable="YES"/>
+    </entity>
+    <entity name="Bookmarks" representedClassName="Bookmarks" syncable="YES">
+        <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bookmarkTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="bookmarkTitle" optional="YES" attributeType="String" defaultValueString="Demo Title" syncable="YES"/>
+        <attribute name="bookmarkTrackTime" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="discNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="playbackDuration" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="trackNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="trackTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="fromBook" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="bookmarks" inverseEntity="Book" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Book" positionX="0" positionY="0" width="128" height="73"/>
+        <element name="Bookmarks" positionX="0" positionY="0" width="128" height="195"/>
+    </elements>
+</model>

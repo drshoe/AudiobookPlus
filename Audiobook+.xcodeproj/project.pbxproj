@@ -1,0 +1,412 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02720E9C15CAF10F00268E1A /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02720E9B15CAF10F00268E1A /* CoreDataTableViewController.m */; };
+		02720EA215CB0A9D00268E1A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02720EA115CB0A9D00268E1A /* CoreData.framework */; };
+		02720EAB15CB14CF00268E1A /* Bookmarks+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 02720EAA15CB14CF00268E1A /* Bookmarks+Create.m */; };
+		02720EAE15CB23E600268E1A /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 02720EAD15CB23E600268E1A /* Book.m */; };
+		02720EB415CB240300268E1A /* Book+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 02720EB315CB240300268E1A /* Book+Create.m */; };
+		02AC7C7515B702E5007B574D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AC7C7415B702E5007B574D /* UIKit.framework */; };
+		02AC7C7715B702E5007B574D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AC7C7615B702E5007B574D /* Foundation.framework */; };
+		02AC7C7915B702E5007B574D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AC7C7815B702E5007B574D /* CoreGraphics.framework */; };
+		02AC7C7F15B702E5007B574D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02AC7C7D15B702E5007B574D /* InfoPlist.strings */; };
+		02AC7C8115B702E5007B574D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AC7C8015B702E5007B574D /* main.m */; };
+		02AC7C8515B702E5007B574D /* ABAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AC7C8415B702E5007B574D /* ABAppDelegate.m */; };
+		02AC7C8815B702E5007B574D /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02AC7C8615B702E5007B574D /* MainStoryboard_iPhone.storyboard */; };
+		02AC7C8B15B702E5007B574D /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02AC7C8915B702E5007B574D /* MainStoryboard_iPad.storyboard */; };
+		02AC7C9615B7033D007B574D /* ABIpodAlbumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AC7C9515B7033D007B574D /* ABIpodAlbumTableViewController.m */; };
+		02AC7CA015B7341B007B574D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AC7C9F15B7341B007B574D /* MediaPlayer.framework */; };
+		02AC7CA315B744EF007B574D /* ABIpodTrackTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AC7CA215B744EF007B574D /* ABIpodTrackTableViewController.m */; };
+		02AC7CAA15B799FB007B574D /* ABAudioPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AC7CA915B799FB007B574D /* ABAudioPlayerViewController.m */; };
+		02AC7CAC15B85FE8007B574D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AC7CAB15B85FE8007B574D /* AVFoundation.framework */; };
+		02AC7CAE15B85FEF007B574D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AC7CAD15B85FEF007B574D /* AudioToolbox.framework */; };
+		02AC7CB115B9E4CE007B574D /* ABAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AC7CB015B9E4CE007B574D /* ABAudioPlayer.m */; };
+		02CEACAE15C7424E001BC80A /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02CEACAD15C7424E001BC80A /* CoreMedia.framework */; };
+		02CEACB215C78275001BC80A /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 02CEACB115C78275001BC80A /* OBSlider.m */; };
+		02CEACD615C84B8B001BC80A /* ABTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02CEACD515C84B8B001BC80A /* ABTimerViewController.m */; };
+		02E3774715C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02E3774515C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld */; };
+		02E3774B15C33A6F0019BB77 /* ABBookmarkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E3774A15C33A6F0019BB77 /* ABBookmarkTableViewController.m */; };
+		02F3D47A15CC5C0E00823552 /* Bookmarks.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F3D47915CC5C0E00823552 /* Bookmarks.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		02720E9A15CAF10F00268E1A /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
+		02720E9B15CAF10F00268E1A /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		02720EA115CB0A9D00268E1A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		02720EA915CB14CF00268E1A /* Bookmarks+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bookmarks+Create.h"; sourceTree = "<group>"; };
+		02720EAA15CB14CF00268E1A /* Bookmarks+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Bookmarks+Create.m"; sourceTree = "<group>"; };
+		02720EAC15CB23E600268E1A /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
+		02720EAD15CB23E600268E1A /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+		02720EB215CB240300268E1A /* Book+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Book+Create.h"; sourceTree = "<group>"; };
+		02720EB315CB240300268E1A /* Book+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Book+Create.m"; sourceTree = "<group>"; };
+		02AC7C7015B702E5007B574D /* Audiobook+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Audiobook+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		02AC7C7415B702E5007B574D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		02AC7C7615B702E5007B574D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		02AC7C7815B702E5007B574D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		02AC7C7C15B702E5007B574D /* Audiobook+-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Audiobook+-Info.plist"; sourceTree = "<group>"; };
+		02AC7C7E15B702E5007B574D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		02AC7C8015B702E5007B574D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		02AC7C8215B702E5007B574D /* Audiobook+-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Audiobook+-Prefix.pch"; sourceTree = "<group>"; };
+		02AC7C8315B702E5007B574D /* ABAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABAppDelegate.h; sourceTree = "<group>"; };
+		02AC7C8415B702E5007B574D /* ABAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ABAppDelegate.m; sourceTree = "<group>"; };
+		02AC7C8715B702E5007B574D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		02AC7C8A15B702E5007B574D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		02AC7C9415B7033D007B574D /* ABIpodAlbumTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABIpodAlbumTableViewController.h; sourceTree = "<group>"; };
+		02AC7C9515B7033D007B574D /* ABIpodAlbumTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABIpodAlbumTableViewController.m; sourceTree = "<group>"; };
+		02AC7C9F15B7341B007B574D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		02AC7CA115B744EF007B574D /* ABIpodTrackTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABIpodTrackTableViewController.h; sourceTree = "<group>"; };
+		02AC7CA215B744EF007B574D /* ABIpodTrackTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABIpodTrackTableViewController.m; sourceTree = "<group>"; };
+		02AC7CA815B799FB007B574D /* ABAudioPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABAudioPlayerViewController.h; sourceTree = "<group>"; };
+		02AC7CA915B799FB007B574D /* ABAudioPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABAudioPlayerViewController.m; sourceTree = "<group>"; };
+		02AC7CAB15B85FE8007B574D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		02AC7CAD15B85FEF007B574D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		02AC7CAF15B9E4CE007B574D /* ABAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABAudioPlayer.h; sourceTree = "<group>"; };
+		02AC7CB015B9E4CE007B574D /* ABAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABAudioPlayer.m; sourceTree = "<group>"; };
+		02CEACAD15C7424E001BC80A /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		02CEACB015C78275001BC80A /* OBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSlider.h; sourceTree = "<group>"; };
+		02CEACB115C78275001BC80A /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
+		02CEACD415C84B8A001BC80A /* ABTimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABTimerViewController.h; sourceTree = "<group>"; };
+		02CEACD515C84B8B001BC80A /* ABTimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABTimerViewController.m; sourceTree = "<group>"; };
+		02E3774615C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ABBookmarkDataModel.xcdatamodel; sourceTree = "<group>"; };
+		02E3774915C33A6F0019BB77 /* ABBookmarkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABBookmarkTableViewController.h; sourceTree = "<group>"; };
+		02E3774A15C33A6F0019BB77 /* ABBookmarkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABBookmarkTableViewController.m; sourceTree = "<group>"; };
+		02F3D47815CC5C0E00823552 /* Bookmarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmarks.h; sourceTree = "<group>"; };
+		02F3D47915CC5C0E00823552 /* Bookmarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmarks.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		02AC7C6D15B702E5007B574D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02720EA215CB0A9D00268E1A /* CoreData.framework in Frameworks */,
+				02CEACAE15C7424E001BC80A /* CoreMedia.framework in Frameworks */,
+				02AC7CAE15B85FEF007B574D /* AudioToolbox.framework in Frameworks */,
+				02AC7CAC15B85FE8007B574D /* AVFoundation.framework in Frameworks */,
+				02AC7CA015B7341B007B574D /* MediaPlayer.framework in Frameworks */,
+				02AC7C7515B702E5007B574D /* UIKit.framework in Frameworks */,
+				02AC7C7715B702E5007B574D /* Foundation.framework in Frameworks */,
+				02AC7C7915B702E5007B574D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0234020F15C3432A0094C77C /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				02E3774515C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld */,
+				02720EB215CB240300268E1A /* Book+Create.h */,
+				02720EB315CB240300268E1A /* Book+Create.m */,
+				02720EA915CB14CF00268E1A /* Bookmarks+Create.h */,
+				02720EAA15CB14CF00268E1A /* Bookmarks+Create.m */,
+				02F3D47815CC5C0E00823552 /* Bookmarks.h */,
+				02F3D47915CC5C0E00823552 /* Bookmarks.m */,
+				02720EAC15CB23E600268E1A /* Book.h */,
+				02720EAD15CB23E600268E1A /* Book.m */,
+			);
+			name = "Data Model";
+			sourceTree = "<group>";
+		};
+		02AC7C6515B702E5007B574D = {
+			isa = PBXGroup;
+			children = (
+				02AC7C7A15B702E5007B574D /* Audiobook+ */,
+				02AC7C7315B702E5007B574D /* Frameworks */,
+				02AC7C7115B702E5007B574D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		02AC7C7115B702E5007B574D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				02AC7C7015B702E5007B574D /* Audiobook+.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		02AC7C7315B702E5007B574D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				02720EA115CB0A9D00268E1A /* CoreData.framework */,
+				02CEACAD15C7424E001BC80A /* CoreMedia.framework */,
+				02AC7CAD15B85FEF007B574D /* AudioToolbox.framework */,
+				02AC7CAB15B85FE8007B574D /* AVFoundation.framework */,
+				02AC7C9F15B7341B007B574D /* MediaPlayer.framework */,
+				02AC7C7415B702E5007B574D /* UIKit.framework */,
+				02AC7C7615B702E5007B574D /* Foundation.framework */,
+				02AC7C7815B702E5007B574D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		02AC7C7A15B702E5007B574D /* Audiobook+ */ = {
+			isa = PBXGroup;
+			children = (
+				02AC7C8315B702E5007B574D /* ABAppDelegate.h */,
+				02AC7C8415B702E5007B574D /* ABAppDelegate.m */,
+				02AC7C9415B7033D007B574D /* ABIpodAlbumTableViewController.h */,
+				02AC7C9515B7033D007B574D /* ABIpodAlbumTableViewController.m */,
+				02AC7CA115B744EF007B574D /* ABIpodTrackTableViewController.h */,
+				02AC7CA215B744EF007B574D /* ABIpodTrackTableViewController.m */,
+				02AC7CA815B799FB007B574D /* ABAudioPlayerViewController.h */,
+				02AC7CA915B799FB007B574D /* ABAudioPlayerViewController.m */,
+				02CEACD415C84B8A001BC80A /* ABTimerViewController.h */,
+				02CEACD515C84B8B001BC80A /* ABTimerViewController.m */,
+				02E3774915C33A6F0019BB77 /* ABBookmarkTableViewController.h */,
+				02E3774A15C33A6F0019BB77 /* ABBookmarkTableViewController.m */,
+				02AC7CAF15B9E4CE007B574D /* ABAudioPlayer.h */,
+				02AC7CB015B9E4CE007B574D /* ABAudioPlayer.m */,
+				02AC7C8615B702E5007B574D /* MainStoryboard_iPhone.storyboard */,
+				02AC7C8915B702E5007B574D /* MainStoryboard_iPad.storyboard */,
+				0234020F15C3432A0094C77C /* Data Model */,
+				02AC7C7B15B702E5007B574D /* Supporting Files */,
+			);
+			path = "Audiobook+";
+			sourceTree = "<group>";
+		};
+		02AC7C7B15B702E5007B574D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				02CEACB015C78275001BC80A /* OBSlider.h */,
+				02CEACB115C78275001BC80A /* OBSlider.m */,
+				02720E9A15CAF10F00268E1A /* CoreDataTableViewController.h */,
+				02720E9B15CAF10F00268E1A /* CoreDataTableViewController.m */,
+				02AC7C7C15B702E5007B574D /* Audiobook+-Info.plist */,
+				02AC7C7D15B702E5007B574D /* InfoPlist.strings */,
+				02AC7C8015B702E5007B574D /* main.m */,
+				02AC7C8215B702E5007B574D /* Audiobook+-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		02AC7C6F15B702E5007B574D /* Audiobook+ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 02AC7C9115B702E5007B574D /* Build configuration list for PBXNativeTarget "Audiobook+" */;
+			buildPhases = (
+				02AC7C6C15B702E5007B574D /* Sources */,
+				02AC7C6D15B702E5007B574D /* Frameworks */,
+				02AC7C6E15B702E5007B574D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Audiobook+";
+			productName = "Audiobook+";
+			productReference = 02AC7C7015B702E5007B574D /* Audiobook+.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		02AC7C6715B702E5007B574D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AB;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 02AC7C6A15B702E5007B574D /* Build configuration list for PBXProject "Audiobook+" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 02AC7C6515B702E5007B574D;
+			productRefGroup = 02AC7C7115B702E5007B574D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				02AC7C6F15B702E5007B574D /* Audiobook+ */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		02AC7C6E15B702E5007B574D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02AC7C7F15B702E5007B574D /* InfoPlist.strings in Resources */,
+				02AC7C8815B702E5007B574D /* MainStoryboard_iPhone.storyboard in Resources */,
+				02AC7C8B15B702E5007B574D /* MainStoryboard_iPad.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		02AC7C6C15B702E5007B574D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02AC7C8115B702E5007B574D /* main.m in Sources */,
+				02AC7C8515B702E5007B574D /* ABAppDelegate.m in Sources */,
+				02AC7C9615B7033D007B574D /* ABIpodAlbumTableViewController.m in Sources */,
+				02AC7CA315B744EF007B574D /* ABIpodTrackTableViewController.m in Sources */,
+				02AC7CAA15B799FB007B574D /* ABAudioPlayerViewController.m in Sources */,
+				02AC7CB115B9E4CE007B574D /* ABAudioPlayer.m in Sources */,
+				02E3774715C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld in Sources */,
+				02E3774B15C33A6F0019BB77 /* ABBookmarkTableViewController.m in Sources */,
+				02CEACB215C78275001BC80A /* OBSlider.m in Sources */,
+				02CEACD615C84B8B001BC80A /* ABTimerViewController.m in Sources */,
+				02720E9C15CAF10F00268E1A /* CoreDataTableViewController.m in Sources */,
+				02720EAB15CB14CF00268E1A /* Bookmarks+Create.m in Sources */,
+				02720EAE15CB23E600268E1A /* Book.m in Sources */,
+				02720EB415CB240300268E1A /* Book+Create.m in Sources */,
+				02F3D47A15CC5C0E00823552 /* Bookmarks.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		02AC7C7D15B702E5007B574D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				02AC7C7E15B702E5007B574D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		02AC7C8615B702E5007B574D /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				02AC7C8715B702E5007B574D /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		02AC7C8915B702E5007B574D /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				02AC7C8A15B702E5007B574D /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		02AC7C8F15B702E5007B574D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		02AC7C9015B702E5007B574D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		02AC7C9215B702E5007B574D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Audiobook+/Audiobook+-Prefix.pch";
+				INFOPLIST_FILE = "Audiobook+/Audiobook+-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		02AC7C9315B702E5007B574D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Audiobook+/Audiobook+-Prefix.pch";
+				INFOPLIST_FILE = "Audiobook+/Audiobook+-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		02AC7C6A15B702E5007B574D /* Build configuration list for PBXProject "Audiobook+" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02AC7C8F15B702E5007B574D /* Debug */,
+				02AC7C9015B702E5007B574D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		02AC7C9115B702E5007B574D /* Build configuration list for PBXNativeTarget "Audiobook+" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02AC7C9215B702E5007B574D /* Debug */,
+				02AC7C9315B702E5007B574D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		02E3774515C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				02E3774615C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodel */,
+			);
+			currentVersion = 02E3774615C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodel */;
+			path = ABBookmarkDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 02AC7C6715B702E5007B574D /* Project object */;
+}
