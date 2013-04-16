@@ -1,0 +1,21 @@
+//
+//  Common.h
+//  Audiobook+
+//
+//  Created by Sheng Xu on 2013-04-15.
+//
+//
+
+#ifndef Audiobook__Common_h
+#define Audiobook__Common_h
+
+
+
+#endif
+typedef enum {
+    SidePanelButtonTypeNowPlaying,
+    SidePanelButtonTypeLibrary,
+    SidePanelButtonTypeBookmarks,
+    SidePanelButtonTypeStats,
+    SidePanelButtonTypeSettings,
+} SidePanelButtonType;

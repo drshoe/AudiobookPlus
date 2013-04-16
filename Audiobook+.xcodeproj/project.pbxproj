@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		021F938D171C9C8500C7583F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02CEACAD15C7424E001BC80A /* CoreMedia.framework */; };
+		021F9390171CA3D800C7583F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 021F938F171CA3D800C7583F /* Default-568h@2x.png */; };
+		021F9398171CA4F400C7583F /* JADebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021F9393171CA4F400C7583F /* JADebugViewController.m */; };
+		021F9399171CA4F400C7583F /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021F9395171CA4F400C7583F /* JASidePanelController.m */; };
+		021F939A171CA4F400C7583F /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 021F9397171CA4F400C7583F /* UIViewController+JASidePanel.m */; };
+		021F93A1171CA56500C7583F /* CenterPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021F939C171CA56400C7583F /* CenterPanelViewController.m */; };
+		021F93A2171CA56500C7583F /* CenterPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021F939D171CA56400C7583F /* CenterPanelViewController.xib */; };
+		021F93A3171CA56500C7583F /* SidePanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021F939F171CA56400C7583F /* SidePanelViewController.m */; };
+		021F93A4171CA56500C7583F /* SidePanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021F93A0171CA56400C7583F /* SidePanelViewController.xib */; };
+		021F93A8171CA61E00C7583F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 021F93A7171CA61E00C7583F /* QuartzCore.framework */; };
+		021F93AC171CF20400C7583F /* LibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021F93AA171CF20300C7583F /* LibraryViewController.m */; };
+		021F93AD171CF20400C7583F /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021F93AB171CF20400C7583F /* LibraryViewController.xib */; };
+		021F93B0171CF40800C7583F /* ABAudioPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021F93AF171CF40800C7583F /* ABAudioPlayerViewController.xib */; };
 		02720E9C15CAF10F00268E1A /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02720E9B15CAF10F00268E1A /* CoreDataTableViewController.m */; };
 		02720EA215CB0A9D00268E1A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02720EA115CB0A9D00268E1A /* CoreData.framework */; };
 		02720EAB15CB14CF00268E1A /* Bookmarks+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 02720EAA15CB14CF00268E1A /* Bookmarks+Create.m */; };
@@ -25,9 +38,7 @@
 		02AC7CA315B744EF007B574D /* ABIpodTrackTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AC7CA215B744EF007B574D /* ABIpodTrackTableViewController.m */; };
 		02AC7CAA15B799FB007B574D /* ABAudioPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AC7CA915B799FB007B574D /* ABAudioPlayerViewController.m */; };
 		02AC7CAC15B85FE8007B574D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AC7CAB15B85FE8007B574D /* AVFoundation.framework */; };
-		02AC7CAE15B85FEF007B574D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AC7CAD15B85FEF007B574D /* AudioToolbox.framework */; };
 		02AC7CB115B9E4CE007B574D /* ABAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AC7CB015B9E4CE007B574D /* ABAudioPlayer.m */; };
-		02CEACAE15C7424E001BC80A /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02CEACAD15C7424E001BC80A /* CoreMedia.framework */; };
 		02CEACB215C78275001BC80A /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 02CEACB115C78275001BC80A /* OBSlider.m */; };
 		02CEACD615C84B8B001BC80A /* ABTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02CEACD515C84B8B001BC80A /* ABTimerViewController.m */; };
 		02E3774715C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02E3774515C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld */; };
@@ -36,6 +47,25 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		021F938F171CA3D800C7583F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		021F9392171CA4F400C7583F /* JADebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JADebugViewController.h; path = JASidePanel/JADebugViewController.h; sourceTree = "<group>"; };
+		021F9393171CA4F400C7583F /* JADebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JADebugViewController.m; path = JASidePanel/JADebugViewController.m; sourceTree = "<group>"; };
+		021F9394171CA4F400C7583F /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JASidePanelController.h; path = JASidePanel/JASidePanelController.h; sourceTree = "<group>"; };
+		021F9395171CA4F400C7583F /* JASidePanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JASidePanelController.m; path = JASidePanel/JASidePanelController.m; sourceTree = "<group>"; };
+		021F9396171CA4F400C7583F /* UIViewController+JASidePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+JASidePanel.h"; path = "JASidePanel/UIViewController+JASidePanel.h"; sourceTree = "<group>"; };
+		021F9397171CA4F400C7583F /* UIViewController+JASidePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+JASidePanel.m"; path = "JASidePanel/UIViewController+JASidePanel.m"; sourceTree = "<group>"; };
+		021F939B171CA56400C7583F /* CenterPanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterPanelViewController.h; sourceTree = "<group>"; };
+		021F939C171CA56400C7583F /* CenterPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterPanelViewController.m; sourceTree = "<group>"; };
+		021F939D171CA56400C7583F /* CenterPanelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CenterPanelViewController.xib; sourceTree = "<group>"; };
+		021F939E171CA56400C7583F /* SidePanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidePanelViewController.h; sourceTree = "<group>"; };
+		021F939F171CA56400C7583F /* SidePanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidePanelViewController.m; sourceTree = "<group>"; };
+		021F93A0171CA56400C7583F /* SidePanelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidePanelViewController.xib; sourceTree = "<group>"; };
+		021F93A6171CA5CE00C7583F /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		021F93A7171CA61E00C7583F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		021F93A9171CF20300C7583F /* LibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryViewController.h; sourceTree = "<group>"; };
+		021F93AA171CF20300C7583F /* LibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryViewController.m; sourceTree = "<group>"; };
+		021F93AB171CF20400C7583F /* LibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
+		021F93AF171CF40800C7583F /* ABAudioPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ABAudioPlayerViewController.xib; sourceTree = "<group>"; };
 		02720E9A15CAF10F00268E1A /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		02720E9B15CAF10F00268E1A /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		02720EA115CB0A9D00268E1A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -85,9 +115,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				021F93A8171CA61E00C7583F /* QuartzCore.framework in Frameworks */,
+				021F938D171C9C8500C7583F /* CoreMedia.framework in Frameworks */,
 				02720EA215CB0A9D00268E1A /* CoreData.framework in Frameworks */,
-				02CEACAE15C7424E001BC80A /* CoreMedia.framework in Frameworks */,
-				02AC7CAE15B85FEF007B574D /* AudioToolbox.framework in Frameworks */,
 				02AC7CAC15B85FE8007B574D /* AVFoundation.framework in Frameworks */,
 				02AC7CA015B7341B007B574D /* MediaPlayer.framework in Frameworks */,
 				02AC7C7515B702E5007B574D /* UIKit.framework in Frameworks */,
@@ -99,9 +129,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		021F9391171CA4E100C7583F /* SidePanelController */ = {
+			isa = PBXGroup;
+			children = (
+				021F9392171CA4F400C7583F /* JADebugViewController.h */,
+				021F9393171CA4F400C7583F /* JADebugViewController.m */,
+				021F9394171CA4F400C7583F /* JASidePanelController.h */,
+				021F9395171CA4F400C7583F /* JASidePanelController.m */,
+				021F9396171CA4F400C7583F /* UIViewController+JASidePanel.h */,
+				021F9397171CA4F400C7583F /* UIViewController+JASidePanel.m */,
+			);
+			name = SidePanelController;
+			sourceTree = "<group>";
+		};
+		021F93A5171CA56D00C7583F /* Containers */ = {
+			isa = PBXGroup;
+			children = (
+				021F939B171CA56400C7583F /* CenterPanelViewController.h */,
+				021F939C171CA56400C7583F /* CenterPanelViewController.m */,
+				021F939D171CA56400C7583F /* CenterPanelViewController.xib */,
+				021F939E171CA56400C7583F /* SidePanelViewController.h */,
+				021F939F171CA56400C7583F /* SidePanelViewController.m */,
+				021F93A0171CA56400C7583F /* SidePanelViewController.xib */,
+			);
+			name = Containers;
+			sourceTree = "<group>";
+		};
+		021F93AE171CF21400C7583F /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				021F93A9171CF20300C7583F /* LibraryViewController.h */,
+				021F93AA171CF20300C7583F /* LibraryViewController.m */,
+				021F93AB171CF20400C7583F /* LibraryViewController.xib */,
+				02AC7C9415B7033D007B574D /* ABIpodAlbumTableViewController.h */,
+				02AC7C9515B7033D007B574D /* ABIpodAlbumTableViewController.m */,
+				02AC7CA115B744EF007B574D /* ABIpodTrackTableViewController.h */,
+				02AC7CA215B744EF007B574D /* ABIpodTrackTableViewController.m */,
+				02AC7CA815B799FB007B574D /* ABAudioPlayerViewController.h */,
+				02AC7CA915B799FB007B574D /* ABAudioPlayerViewController.m */,
+				021F93AF171CF40800C7583F /* ABAudioPlayerViewController.xib */,
+				02CEACD415C84B8A001BC80A /* ABTimerViewController.h */,
+				02CEACD515C84B8B001BC80A /* ABTimerViewController.m */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
 		0234020F15C3432A0094C77C /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
+				02720E9A15CAF10F00268E1A /* CoreDataTableViewController.h */,
+				02720E9B15CAF10F00268E1A /* CoreDataTableViewController.m */,
 				02E3774515C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld */,
 				02720EB215CB240300268E1A /* Book+Create.h */,
 				02720EB315CB240300268E1A /* Book+Create.m */,
@@ -118,6 +195,7 @@
 		02AC7C6515B702E5007B574D = {
 			isa = PBXGroup;
 			children = (
+				021F938F171CA3D800C7583F /* Default-568h@2x.png */,
 				02AC7C7A15B702E5007B574D /* Audiobook+ */,
 				02AC7C7315B702E5007B574D /* Frameworks */,
 				02AC7C7115B702E5007B574D /* Products */,
@@ -135,6 +213,7 @@
 		02AC7C7315B702E5007B574D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				021F93A7171CA61E00C7583F /* QuartzCore.framework */,
 				02720EA115CB0A9D00268E1A /* CoreData.framework */,
 				02CEACAD15C7424E001BC80A /* CoreMedia.framework */,
 				02AC7CAD15B85FEF007B574D /* AudioToolbox.framework */,
@@ -152,20 +231,15 @@
 			children = (
 				02AC7C8315B702E5007B574D /* ABAppDelegate.h */,
 				02AC7C8415B702E5007B574D /* ABAppDelegate.m */,
-				02AC7C9415B7033D007B574D /* ABIpodAlbumTableViewController.h */,
-				02AC7C9515B7033D007B574D /* ABIpodAlbumTableViewController.m */,
-				02AC7CA115B744EF007B574D /* ABIpodTrackTableViewController.h */,
-				02AC7CA215B744EF007B574D /* ABIpodTrackTableViewController.m */,
-				02AC7CA815B799FB007B574D /* ABAudioPlayerViewController.h */,
-				02AC7CA915B799FB007B574D /* ABAudioPlayerViewController.m */,
-				02CEACD415C84B8A001BC80A /* ABTimerViewController.h */,
-				02CEACD515C84B8B001BC80A /* ABTimerViewController.m */,
 				02E3774915C33A6F0019BB77 /* ABBookmarkTableViewController.h */,
 				02E3774A15C33A6F0019BB77 /* ABBookmarkTableViewController.m */,
 				02AC7CAF15B9E4CE007B574D /* ABAudioPlayer.h */,
 				02AC7CB015B9E4CE007B574D /* ABAudioPlayer.m */,
 				02AC7C8615B702E5007B574D /* MainStoryboard_iPhone.storyboard */,
 				02AC7C8915B702E5007B574D /* MainStoryboard_iPad.storyboard */,
+				021F93AE171CF21400C7583F /* Library */,
+				021F93A5171CA56D00C7583F /* Containers */,
+				021F9391171CA4E100C7583F /* SidePanelController */,
 				0234020F15C3432A0094C77C /* Data Model */,
 				02AC7C7B15B702E5007B574D /* Supporting Files */,
 			);
@@ -177,12 +251,11 @@
 			children = (
 				02CEACB015C78275001BC80A /* OBSlider.h */,
 				02CEACB115C78275001BC80A /* OBSlider.m */,
-				02720E9A15CAF10F00268E1A /* CoreDataTableViewController.h */,
-				02720E9B15CAF10F00268E1A /* CoreDataTableViewController.m */,
 				02AC7C7C15B702E5007B574D /* Audiobook+-Info.plist */,
 				02AC7C7D15B702E5007B574D /* InfoPlist.strings */,
 				02AC7C8015B702E5007B574D /* main.m */,
 				02AC7C8215B702E5007B574D /* Audiobook+-Prefix.pch */,
+				021F93A6171CA5CE00C7583F /* Common.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -197,6 +270,7 @@
 				02AC7C6C15B702E5007B574D /* Sources */,
 				02AC7C6D15B702E5007B574D /* Frameworks */,
 				02AC7C6E15B702E5007B574D /* Resources */,
+				50524F424C454D533F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -241,10 +315,31 @@
 				02AC7C7F15B702E5007B574D /* InfoPlist.strings in Resources */,
 				02AC7C8815B702E5007B574D /* MainStoryboard_iPhone.storyboard in Resources */,
 				02AC7C8B15B702E5007B574D /* MainStoryboard_iPad.storyboard in Resources */,
+				021F9390171CA3D800C7583F /* Default-568h@2x.png in Resources */,
+				021F93A2171CA56500C7583F /* CenterPanelViewController.xib in Resources */,
+				021F93A4171CA56500C7583F /* SidePanelViewController.xib in Resources */,
+				021F93AD171CF20400C7583F /* LibraryViewController.xib in Resources */,
+				021F93B0171CF40800C7583F /* ABAudioPlayerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		50524F424C454D533F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export CODESIGN_ALLOCATE=/Library/JailCoder/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ]; then\n/Library/JailCoder/Entitlements/Entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		02AC7C6C15B702E5007B574D /* Sources */ = {
@@ -266,6 +361,12 @@
 				02720EAE15CB23E600268E1A /* Book.m in Sources */,
 				02720EB415CB240300268E1A /* Book+Create.m in Sources */,
 				02F3D47A15CC5C0E00823552 /* Bookmarks.m in Sources */,
+				021F9398171CA4F400C7583F /* JADebugViewController.m in Sources */,
+				021F9399171CA4F400C7583F /* JASidePanelController.m in Sources */,
+				021F939A171CA4F400C7583F /* UIViewController+JASidePanel.m in Sources */,
+				021F93A1171CA56500C7583F /* CenterPanelViewController.m in Sources */,
+				021F93A3171CA56500C7583F /* SidePanelViewController.m in Sources */,
+				021F93AC171CF20400C7583F /* LibraryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,7 +406,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -331,7 +433,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -354,7 +457,7 @@
 				INFOPLIST_FILE = "Audiobook+/Audiobook+-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -367,7 +470,7 @@
 				INFOPLIST_FILE = "Audiobook+/Audiobook+-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -7,7 +7,9 @@
 //
 
 #import "ABAppDelegate.h"
-
+#import "JASidePanelController.h"
+#import "SidePanelViewController.h"
+#import "CenterPanelViewController.h"
 
 @implementation ABAppDelegate
 
@@ -18,6 +20,19 @@
 {
     // Override point for customization after application launch.
     // we must enable remote control event so that lock screen and ipod control would work with our app
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    JASidePanelController *panelController = [[JASidePanelController alloc] init];
+    panelController.shouldDelegateAutorotateToVisiblePanel = NO;
+    panelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:[[CenterPanelViewController alloc] init]];
+    panelController.leftPanel = [[SidePanelViewController alloc] init];
+    self.window.rootViewController = panelController;
+    [self.window makeKeyAndVisible];
+    
+    //[panelController release];
+    
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     [self becomeFirstResponder];
     return YES;
