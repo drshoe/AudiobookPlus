@@ -8,9 +8,9 @@
 
 #import "JADebugViewController.h"
 #import "SidePanelViewController.h"
-
+#import "LibraryViewController.h"
 @interface CenterPanelViewController : JADebugViewController <SidePanelViewControllerDelegate> {
     
 }
-
+@property (nonatomic, strong) UINavigationController *libraryViewController;
 @end

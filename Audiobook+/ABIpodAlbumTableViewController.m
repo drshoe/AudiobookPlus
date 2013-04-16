@@ -15,6 +15,7 @@
 
 @implementation ABIpodAlbumTableViewController
 @synthesize albums = _albums;
+@synthesize theTableView = _theTableView;
 
 - (NSArray *) albums {
     if (_albums==nil) {
@@ -25,9 +26,9 @@
     }
     return _albums;
 }
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -96,6 +97,9 @@
     if (indexPath.section != 0) {
         static NSString *CellIdentifier = @"IpodAlbumCell";
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
         // Configure the cell...
         // get the information about this particular album
         MPMediaItemCollection *album = [self.albums objectAtIndex:indexPath.row];
@@ -121,26 +125,12 @@
     else {
         static NSString *CellIdentifier = @"IpodLastPlayedCell";
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
         cell.textLabel.text = @"Now playing";
     }
     return cell;
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"ShowTracks"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        MPMediaItemCollection *album = [self.albums objectAtIndex:indexPath.row];
-        // set the tracks, we need to import the destinationviewcontroller's h file to make this happen
-        // it only works with message, not dot notation
-        // get the representative item for this album
-        MPMediaItem *representativeItem = [album representativeItem];
-        // get the name of the album
-        NSString *albumName = [representativeItem valueForProperty: MPMediaItemPropertyAlbumTitle];
-        [segue.destinationViewController setTracks:[album items]];
-        [segue.destinationViewController setAlbumTitle:albumName];
-        NSLog(@"the album title is %@",albumName);
-        NSLog(@"tracks have been set");
-    }
 }
 
 /*
@@ -193,6 +183,21 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    
+    MPMediaItemCollection *album = [self.albums objectAtIndex:indexPath.row];
+    // set the tracks, we need to import the destinationviewcontroller's h file to make this happen
+    // it only works with message, not dot notation
+    // get the representative item for this album
+    MPMediaItem *representativeItem = [album representativeItem];
+    // get the name of the album
+    NSString *albumName = [representativeItem valueForProperty: MPMediaItemPropertyAlbumTitle];
+    
+    ABIpodTrackTableViewController *trackTableViewController = [[ABIpodTrackTableViewController alloc] init];
+    [trackTableViewController setTracks:[album items]];
+    [trackTableViewController setAlbumTitle:albumName];
+    [self.navigationController pushViewController:trackTableViewController animated:YES];
+    NSLog(@"the album title is %@",albumName);
+    NSLog(@"tracks have been set");
 }
 
 @end

@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
-@interface ABIpodAlbumTableViewController : UITableViewController
-
+@interface ABIpodAlbumTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+    
+}
+@property (nonatomic, strong) IBOutlet UITableView *theTableView;
 @property (nonatomic, copy) NSArray *albums;
 @end

@@ -17,10 +17,11 @@
 @synthesize tracks = _tracks;
 @synthesize appDelegate = _appDelegate;
 @synthesize albumTitle = _albumTitle;
+@synthesize theTableView = _theTableView;
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -75,6 +76,9 @@
 {
     static NSString *CellIdentifier = @"IpodTrackCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
     // Configure the cell...
     // get the title of the track
@@ -93,46 +97,7 @@
     
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"ShowPlayer"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        NSNumber *currentTrackNumber = [NSNumber numberWithInteger:indexPath.row];
-        // set the currentList of tracks
-        // set the player to nil to release it so we do not have multiple instances of the same player
-        if (!self.appDelegate.audioPlayer) {
-            self.appDelegate.audioPlayer = [[ABAudioPlayer alloc] initWithItems:self.tracks withCurrentTrackNumber:currentTrackNumber];
-        }
-        else {
-            if ([self.appDelegate.audioPlayer.allMPMediaPlayerItems isEqual:self.tracks]) {
-            NSLog(@"album has not been changed, only change tracks");
-                // do nothing if this is the same album and same track
-                if ([self.appDelegate.audioPlayer.currentTrackNumber isEqualToNumber:currentTrackNumber]) {
-                    //do nothing
-                    NSLog(@"track is NOT changed");
-                }
-                // modify the queue with new track at the beginning of the queue
-                else {
-                    NSLog(@"track IS changed");
-                    [self.appDelegate.audioPlayer newTrackNumber:currentTrackNumber];
-                }
-            }
-            // if different album, we change the queue completely
-            else {
-                NSLog(@"the album has been changed");
-                [self.appDelegate.audioPlayer playNewAlbum:self.tracks withCurrentTrackNumber:currentTrackNumber];
-            }
-        }
-        /*
-        // we need to extract the subarray from the total tracks
-        NSArray *subTracks = [self.tracks subarrayWithRange:NSMakeRange(indexPath.row, self.tracks.count-indexPath.row)];
-        // put our new subarray into a collection
-        NSLog(@"the number of tracks in the queue will be %i", subTracks.count);
-        MPMediaItemCollection *trackCollection = [MPMediaItemCollection collectionWithItems:subTracks];
-        [segue.destinationViewController setTrackCollection:trackCollection];
-        NSLog(@"tracks have been set");
-        */
-    }
-}
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -183,6 +148,34 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    NSNumber *currentTrackNumber = [NSNumber numberWithInteger:indexPath.row];
+    // set the currentList of tracks
+    // set the player to nil to release it so we do not have multiple instances of the same player
+    if (!self.appDelegate.audioPlayer) {
+        self.appDelegate.audioPlayer = [[ABAudioPlayer alloc] initWithItems:self.tracks withCurrentTrackNumber:currentTrackNumber];
+    }
+    else {
+        if ([self.appDelegate.audioPlayer.allMPMediaPlayerItems isEqual:self.tracks]) {
+            NSLog(@"album has not been changed, only change tracks");
+            // do nothing if this is the same album and same track
+            if ([self.appDelegate.audioPlayer.currentTrackNumber isEqualToNumber:currentTrackNumber]) {
+                //do nothing
+                NSLog(@"track is NOT changed");
+            }
+            // modify the queue with new track at the beginning of the queue
+            else {
+                NSLog(@"track IS changed");
+                [self.appDelegate.audioPlayer newTrackNumber:currentTrackNumber];
+            }
+        }
+        // if different album, we change the queue completely
+        else {
+            NSLog(@"the album has been changed");
+            [self.appDelegate.audioPlayer playNewAlbum:self.tracks withCurrentTrackNumber:currentTrackNumber];
+        }
+    }
+    ABAudioPlayerViewController *audioPlayerViewController = [[ABAudioPlayerViewController alloc] init];
+    [self.navigationController pushViewController:audioPlayerViewController animated:YES];
 }
 
 @end

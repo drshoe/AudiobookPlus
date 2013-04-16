@@ -7,12 +7,24 @@
 //
 
 #import "CenterPanelViewController.h"
-
+#import "ABIpodAlbumTableViewController.h"
 @interface CenterPanelViewController ()
 
 @end
 
 @implementation CenterPanelViewController
+@synthesize libraryViewController = _libraryViewController;
+
+#pragma mark - lazy instatiation
+- (UINavigationController *) libraryViewController {
+    if (!_libraryViewController) {
+        _libraryViewController = [[UINavigationController alloc] init];
+        ABIpodAlbumTableViewController *albumTableViewController = [[ABIpodAlbumTableViewController alloc]init];
+        [_libraryViewController pushViewController:albumTableViewController animated:NO];
+    }
+    return _libraryViewController;
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +39,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self showViewControllerForType:SidePanelButtonTypeLibrary];
     
 }
 
@@ -41,10 +54,10 @@
 - (void)showViewControllerForType:(SidePanelButtonType)index {
     switch (index) {
         case SidePanelButtonTypeNowPlaying:
-            self displayContentController:<#(UIViewController *)#>
+            
             break;
         case SidePanelButtonTypeLibrary:
-            
+            [self displayContentController:self.libraryViewController];
             break;
         case SidePanelButtonTypeBookmarks:
             

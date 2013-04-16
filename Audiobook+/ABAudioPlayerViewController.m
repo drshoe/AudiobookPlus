@@ -10,6 +10,8 @@
 #import "Bookmarks.h"
 #import "Book.h"
 #import "Bookmarks+Create.h"
+#import "ABTimerViewController.h"
+#import "ABBookmarkTableViewController.h"
 
 @interface ABAudioPlayerViewController ()
 @end
@@ -145,6 +147,25 @@
 }
 
 - (IBAction)showBookmarks:(UIBarButtonItem *)sender {
+    NSDictionary *trackInfo = [self.appDelegate.audioPlayer getTrackInfo];
+    
+        NSLog(@"this segue is show bookmarks");
+        NSString *albumTitle = self.appDelegate.audioPlayer.albumTitle;
+    /*
+        if ([segue.destinationViewController respondsToSelector:@selector(setBookmarkDatabase:)]) {
+            [segue.destinationViewController performSelector:@selector(setBookmarkDatabase:) withObject:self.bookmarkDatabase];
+            NSLog(@"bookmark database is set");
+        }
+        if ([segue.destinationViewController respondsToSelector:@selector(setAlbumTitle:)]) {
+            [segue.destinationViewController performSelector:@selector(setAlbumTitle:) withObject:albumTitle];
+            NSLog (@"the current album title is set to %@", albumTitle);
+        }
+        if ([segue.destinationViewController respondsToSelector:@selector(setTrackInfo:)]) {
+            [segue.destinationViewController performSelector:@selector(setTrackInfo:) withObject:trackInfo];
+            NSLog (@"trackInfo is set");
+        }
+        
+*/
 }
 
 - (IBAction)playOrPause {
@@ -180,7 +201,9 @@
 }
 
 - (IBAction)sleepTimer {
-    
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    ABTimerViewController *timer = [[ABTimerViewController alloc] init];
+    [self presentModalViewController:timer animated:YES];
 }
 
 - (IBAction)fasterTimes {
@@ -313,5 +336,8 @@
 
     }
 }
+
+
+
 
 @end

@@ -10,8 +10,9 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "ABAppDelegate.h"
 
-@interface ABIpodTrackTableViewController : UITableViewController
+@interface ABIpodTrackTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic, strong) IBOutlet UITableView *theTableView;
 @property (nonatomic, copy) NSArray *tracks;
 @property (nonatomic, weak) ABAppDelegate *appDelegate;
 @property (nonatomic, copy) NSString *albumTitle;

@@ -20,6 +20,9 @@
 		021F93AC171CF20400C7583F /* LibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021F93AA171CF20300C7583F /* LibraryViewController.m */; };
 		021F93AD171CF20400C7583F /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021F93AB171CF20400C7583F /* LibraryViewController.xib */; };
 		021F93B0171CF40800C7583F /* ABAudioPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021F93AF171CF40800C7583F /* ABAudioPlayerViewController.xib */; };
+		021F93B2171DDBC400C7583F /* ABIpodAlbumTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021F93B1171DDBC300C7583F /* ABIpodAlbumTableViewController.xib */; };
+		021F93B4171DDDA600C7583F /* ABIpodTrackTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021F93B3171DDDA600C7583F /* ABIpodTrackTableViewController.xib */; };
+		021F93B6171DEFDB00C7583F /* ABTimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021F93B5171DEFDB00C7583F /* ABTimerViewController.xib */; };
 		02720E9C15CAF10F00268E1A /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02720E9B15CAF10F00268E1A /* CoreDataTableViewController.m */; };
 		02720EA215CB0A9D00268E1A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02720EA115CB0A9D00268E1A /* CoreData.framework */; };
 		02720EAB15CB14CF00268E1A /* Bookmarks+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 02720EAA15CB14CF00268E1A /* Bookmarks+Create.m */; };
@@ -66,6 +69,9 @@
 		021F93AA171CF20300C7583F /* LibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryViewController.m; sourceTree = "<group>"; };
 		021F93AB171CF20400C7583F /* LibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
 		021F93AF171CF40800C7583F /* ABAudioPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ABAudioPlayerViewController.xib; sourceTree = "<group>"; };
+		021F93B1171DDBC300C7583F /* ABIpodAlbumTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ABIpodAlbumTableViewController.xib; sourceTree = "<group>"; };
+		021F93B3171DDDA600C7583F /* ABIpodTrackTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ABIpodTrackTableViewController.xib; sourceTree = "<group>"; };
+		021F93B5171DEFDB00C7583F /* ABTimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ABTimerViewController.xib; sourceTree = "<group>"; };
 		02720E9A15CAF10F00268E1A /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		02720E9B15CAF10F00268E1A /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		02720EA115CB0A9D00268E1A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -163,13 +169,16 @@
 				021F93AB171CF20400C7583F /* LibraryViewController.xib */,
 				02AC7C9415B7033D007B574D /* ABIpodAlbumTableViewController.h */,
 				02AC7C9515B7033D007B574D /* ABIpodAlbumTableViewController.m */,
+				021F93B1171DDBC300C7583F /* ABIpodAlbumTableViewController.xib */,
 				02AC7CA115B744EF007B574D /* ABIpodTrackTableViewController.h */,
 				02AC7CA215B744EF007B574D /* ABIpodTrackTableViewController.m */,
+				021F93B3171DDDA600C7583F /* ABIpodTrackTableViewController.xib */,
 				02AC7CA815B799FB007B574D /* ABAudioPlayerViewController.h */,
 				02AC7CA915B799FB007B574D /* ABAudioPlayerViewController.m */,
 				021F93AF171CF40800C7583F /* ABAudioPlayerViewController.xib */,
 				02CEACD415C84B8A001BC80A /* ABTimerViewController.h */,
 				02CEACD515C84B8B001BC80A /* ABTimerViewController.m */,
+				021F93B5171DEFDB00C7583F /* ABTimerViewController.xib */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -320,6 +329,9 @@
 				021F93A4171CA56500C7583F /* SidePanelViewController.xib in Resources */,
 				021F93AD171CF20400C7583F /* LibraryViewController.xib in Resources */,
 				021F93B0171CF40800C7583F /* ABAudioPlayerViewController.xib in Resources */,
+				021F93B2171DDBC400C7583F /* ABIpodAlbumTableViewController.xib in Resources */,
+				021F93B4171DDDA600C7583F /* ABIpodTrackTableViewController.xib in Resources */,
+				021F93B6171DEFDB00C7583F /* ABTimerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
