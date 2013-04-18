@@ -174,7 +174,7 @@
             [self.appDelegate.audioPlayer playNewAlbum:self.tracks withCurrentTrackNumber:currentTrackNumber];
         }
     }
-    ABAudioPlayerViewController *audioPlayerViewController = [[ABAudioPlayerViewController alloc] init];
+    ABAudioPlayerViewController *audioPlayerViewController = [ABAudioPlayerViewController sharedController];
     [self.navigationController pushViewController:audioPlayerViewController animated:YES];
 }
 

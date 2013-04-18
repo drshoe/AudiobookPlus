@@ -12,15 +12,23 @@
 
 @end
 
-
+static ABBookmarkTableViewController *sharedController;
 @implementation ABBookmarkTableViewController
 //@synthesize book = _book;
 @synthesize albumTitle = _albumTitle;
 @synthesize bookmarkDatabase = _bookmarkDatabase;
 @synthesize appDelegate = _appDelegate;
-- (id)initWithStyle:(UITableViewStyle)style
+
++(ABBookmarkTableViewController *)sharedController {
+    if (!sharedController) {
+        sharedController = [[ABBookmarkTableViewController alloc] init];
+    }
+    return sharedController;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -142,7 +150,9 @@
     static NSString *CellIdentifier = @"Bookmarks Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     // Configure the cell...
     // Configure the cell...
     NSLog(@"show bookmarks");
@@ -209,7 +219,11 @@
     double newTime = bookmarkTrackTime * [self.appDelegate.audioPlayer.playbackDuration doubleValue];
     CMTime newCMTime = CMTimeMake(newTime*self.appDelegate.audioPlayer.currentTime.timescale, self.appDelegate.audioPlayer.currentTime.timescale);
     [self.appDelegate.audioPlayer seekToTime:newCMTime];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)back:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end

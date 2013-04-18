@@ -30,7 +30,8 @@
 
 @property (nonatomic, strong) UIManagedDocument *bookmarkDatabase;
 
-- (IBAction)showBookmarks:(UIBarButtonItem *)sender;
++ (ABAudioPlayerViewController *) sharedController;
+- (IBAction)showBookmarks:(UIButton *)sender;
 - (IBAction)playOrPause;
 - (IBAction)next;
 - (IBAction)previous;

@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface CoreDataTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface CoreDataTableViewController : UIViewController <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
-
+@property (strong, nonatomic) IBOutlet UITableView *theTableView;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 

@@ -19,4 +19,6 @@
 //@property (nonatomic, retain) Book *book;
 @property (nonatomic, strong) UIManagedDocument *bookmarkDatabase;
 @property (nonatomic, weak) ABAppDelegate *appDelegate;
+
++(ABBookmarkTableViewController *)sharedController;
 @end

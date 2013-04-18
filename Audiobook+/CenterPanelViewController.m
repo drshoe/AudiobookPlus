@@ -8,6 +8,7 @@
 
 #import "CenterPanelViewController.h"
 #import "ABIpodAlbumTableViewController.h"
+#import "ABAudioPlayerViewController.h"
 @interface CenterPanelViewController ()
 
 @end
@@ -54,7 +55,7 @@
 - (void)showViewControllerForType:(SidePanelButtonType)index {
     switch (index) {
         case SidePanelButtonTypeNowPlaying:
-            
+            [self displayContentController:[ABAudioPlayerViewController sharedController]];
             break;
         case SidePanelButtonTypeLibrary:
             [self displayContentController:self.libraryViewController];

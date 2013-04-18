@@ -8,7 +8,7 @@
 
 #import "JADebugViewController.h"
 #import "SidePanelViewController.h"
-#import "LibraryViewController.h"
+
 @interface CenterPanelViewController : JADebugViewController <SidePanelViewControllerDelegate> {
     
 }

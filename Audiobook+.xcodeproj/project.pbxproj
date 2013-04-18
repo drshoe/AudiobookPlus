@@ -17,12 +17,11 @@
 		021F93A3171CA56500C7583F /* SidePanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021F939F171CA56400C7583F /* SidePanelViewController.m */; };
 		021F93A4171CA56500C7583F /* SidePanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021F93A0171CA56400C7583F /* SidePanelViewController.xib */; };
 		021F93A8171CA61E00C7583F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 021F93A7171CA61E00C7583F /* QuartzCore.framework */; };
-		021F93AC171CF20400C7583F /* LibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021F93AA171CF20300C7583F /* LibraryViewController.m */; };
-		021F93AD171CF20400C7583F /* LibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021F93AB171CF20400C7583F /* LibraryViewController.xib */; };
 		021F93B0171CF40800C7583F /* ABAudioPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021F93AF171CF40800C7583F /* ABAudioPlayerViewController.xib */; };
 		021F93B2171DDBC400C7583F /* ABIpodAlbumTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021F93B1171DDBC300C7583F /* ABIpodAlbumTableViewController.xib */; };
 		021F93B4171DDDA600C7583F /* ABIpodTrackTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021F93B3171DDDA600C7583F /* ABIpodTrackTableViewController.xib */; };
 		021F93B6171DEFDB00C7583F /* ABTimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021F93B5171DEFDB00C7583F /* ABTimerViewController.xib */; };
+		021FCD33171F429500441D9D /* ABBookmarkTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021FCD32171F429500441D9D /* ABBookmarkTableViewController.xib */; };
 		02720E9C15CAF10F00268E1A /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02720E9B15CAF10F00268E1A /* CoreDataTableViewController.m */; };
 		02720EA215CB0A9D00268E1A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02720EA115CB0A9D00268E1A /* CoreData.framework */; };
 		02720EAB15CB14CF00268E1A /* Bookmarks+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 02720EAA15CB14CF00268E1A /* Bookmarks+Create.m */; };
@@ -34,8 +33,6 @@
 		02AC7C7F15B702E5007B574D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02AC7C7D15B702E5007B574D /* InfoPlist.strings */; };
 		02AC7C8115B702E5007B574D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AC7C8015B702E5007B574D /* main.m */; };
 		02AC7C8515B702E5007B574D /* ABAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AC7C8415B702E5007B574D /* ABAppDelegate.m */; };
-		02AC7C8815B702E5007B574D /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02AC7C8615B702E5007B574D /* MainStoryboard_iPhone.storyboard */; };
-		02AC7C8B15B702E5007B574D /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02AC7C8915B702E5007B574D /* MainStoryboard_iPad.storyboard */; };
 		02AC7C9615B7033D007B574D /* ABIpodAlbumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AC7C9515B7033D007B574D /* ABIpodAlbumTableViewController.m */; };
 		02AC7CA015B7341B007B574D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AC7C9F15B7341B007B574D /* MediaPlayer.framework */; };
 		02AC7CA315B744EF007B574D /* ABIpodTrackTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AC7CA215B744EF007B574D /* ABIpodTrackTableViewController.m */; };
@@ -65,13 +62,11 @@
 		021F93A0171CA56400C7583F /* SidePanelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SidePanelViewController.xib; sourceTree = "<group>"; };
 		021F93A6171CA5CE00C7583F /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		021F93A7171CA61E00C7583F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		021F93A9171CF20300C7583F /* LibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryViewController.h; sourceTree = "<group>"; };
-		021F93AA171CF20300C7583F /* LibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryViewController.m; sourceTree = "<group>"; };
-		021F93AB171CF20400C7583F /* LibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryViewController.xib; sourceTree = "<group>"; };
 		021F93AF171CF40800C7583F /* ABAudioPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ABAudioPlayerViewController.xib; sourceTree = "<group>"; };
 		021F93B1171DDBC300C7583F /* ABIpodAlbumTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ABIpodAlbumTableViewController.xib; sourceTree = "<group>"; };
 		021F93B3171DDDA600C7583F /* ABIpodTrackTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ABIpodTrackTableViewController.xib; sourceTree = "<group>"; };
 		021F93B5171DEFDB00C7583F /* ABTimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ABTimerViewController.xib; sourceTree = "<group>"; };
+		021FCD32171F429500441D9D /* ABBookmarkTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ABBookmarkTableViewController.xib; sourceTree = "<group>"; };
 		02720E9A15CAF10F00268E1A /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		02720E9B15CAF10F00268E1A /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		02720EA115CB0A9D00268E1A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -91,8 +86,6 @@
 		02AC7C8215B702E5007B574D /* Audiobook+-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Audiobook+-Prefix.pch"; sourceTree = "<group>"; };
 		02AC7C8315B702E5007B574D /* ABAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ABAppDelegate.h; sourceTree = "<group>"; };
 		02AC7C8415B702E5007B574D /* ABAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ABAppDelegate.m; sourceTree = "<group>"; };
-		02AC7C8715B702E5007B574D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		02AC7C8A15B702E5007B574D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		02AC7C9415B7033D007B574D /* ABIpodAlbumTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABIpodAlbumTableViewController.h; sourceTree = "<group>"; };
 		02AC7C9515B7033D007B574D /* ABIpodAlbumTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABIpodAlbumTableViewController.m; sourceTree = "<group>"; };
 		02AC7C9F15B7341B007B574D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -164,9 +157,6 @@
 		021F93AE171CF21400C7583F /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				021F93A9171CF20300C7583F /* LibraryViewController.h */,
-				021F93AA171CF20300C7583F /* LibraryViewController.m */,
-				021F93AB171CF20400C7583F /* LibraryViewController.xib */,
 				02AC7C9415B7033D007B574D /* ABIpodAlbumTableViewController.h */,
 				02AC7C9515B7033D007B574D /* ABIpodAlbumTableViewController.m */,
 				021F93B1171DDBC300C7583F /* ABIpodAlbumTableViewController.xib */,
@@ -179,6 +169,9 @@
 				02CEACD415C84B8A001BC80A /* ABTimerViewController.h */,
 				02CEACD515C84B8B001BC80A /* ABTimerViewController.m */,
 				021F93B5171DEFDB00C7583F /* ABTimerViewController.xib */,
+				02E3774915C33A6F0019BB77 /* ABBookmarkTableViewController.h */,
+				02E3774A15C33A6F0019BB77 /* ABBookmarkTableViewController.m */,
+				021FCD32171F429500441D9D /* ABBookmarkTableViewController.xib */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -240,12 +233,8 @@
 			children = (
 				02AC7C8315B702E5007B574D /* ABAppDelegate.h */,
 				02AC7C8415B702E5007B574D /* ABAppDelegate.m */,
-				02E3774915C33A6F0019BB77 /* ABBookmarkTableViewController.h */,
-				02E3774A15C33A6F0019BB77 /* ABBookmarkTableViewController.m */,
 				02AC7CAF15B9E4CE007B574D /* ABAudioPlayer.h */,
 				02AC7CB015B9E4CE007B574D /* ABAudioPlayer.m */,
-				02AC7C8615B702E5007B574D /* MainStoryboard_iPhone.storyboard */,
-				02AC7C8915B702E5007B574D /* MainStoryboard_iPad.storyboard */,
 				021F93AE171CF21400C7583F /* Library */,
 				021F93A5171CA56D00C7583F /* Containers */,
 				021F9391171CA4E100C7583F /* SidePanelController */,
@@ -322,16 +311,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				02AC7C7F15B702E5007B574D /* InfoPlist.strings in Resources */,
-				02AC7C8815B702E5007B574D /* MainStoryboard_iPhone.storyboard in Resources */,
-				02AC7C8B15B702E5007B574D /* MainStoryboard_iPad.storyboard in Resources */,
 				021F9390171CA3D800C7583F /* Default-568h@2x.png in Resources */,
 				021F93A2171CA56500C7583F /* CenterPanelViewController.xib in Resources */,
 				021F93A4171CA56500C7583F /* SidePanelViewController.xib in Resources */,
-				021F93AD171CF20400C7583F /* LibraryViewController.xib in Resources */,
 				021F93B0171CF40800C7583F /* ABAudioPlayerViewController.xib in Resources */,
 				021F93B2171DDBC400C7583F /* ABIpodAlbumTableViewController.xib in Resources */,
 				021F93B4171DDDA600C7583F /* ABIpodTrackTableViewController.xib in Resources */,
 				021F93B6171DEFDB00C7583F /* ABTimerViewController.xib in Resources */,
+				021FCD33171F429500441D9D /* ABBookmarkTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,7 +365,6 @@
 				021F939A171CA4F400C7583F /* UIViewController+JASidePanel.m in Sources */,
 				021F93A1171CA56500C7583F /* CenterPanelViewController.m in Sources */,
 				021F93A3171CA56500C7583F /* SidePanelViewController.m in Sources */,
-				021F93AC171CF20400C7583F /* LibraryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,22 +377,6 @@
 				02AC7C7E15B702E5007B574D /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		02AC7C8615B702E5007B574D /* MainStoryboard_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				02AC7C8715B702E5007B574D /* en */,
-			);
-			name = MainStoryboard_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		02AC7C8915B702E5007B574D /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				02AC7C8A15B702E5007B574D /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

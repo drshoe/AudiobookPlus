@@ -16,6 +16,7 @@
 @interface ABAudioPlayerViewController ()
 @end
 
+static ABAudioPlayerViewController *sharedController;
 @implementation ABAudioPlayerViewController
 //@synthesize trackCollection = _trackCollection;
 @synthesize progressBar = _progressBar;
@@ -27,6 +28,12 @@
 //@synthesize sleepTimerPicker = _sleepTimerPicker;
 //@synthesize datePickerView = _datePickerView;
 
++ (ABAudioPlayerViewController *)sharedController {
+    if (!sharedController) {
+        sharedController = [[ABAudioPlayerViewController alloc] init];
+    }
+    return sharedController;
+}
 - (ABAppDelegate *) appDelegate {
     if (!_appDelegate) {
         _appDelegate = (ABAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -146,26 +153,15 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)showBookmarks:(UIBarButtonItem *)sender {
+- (IBAction)showBookmarks:(UIButton *)sender {
     NSDictionary *trackInfo = [self.appDelegate.audioPlayer getTrackInfo];
-    
-        NSLog(@"this segue is show bookmarks");
-        NSString *albumTitle = self.appDelegate.audioPlayer.albumTitle;
-    /*
-        if ([segue.destinationViewController respondsToSelector:@selector(setBookmarkDatabase:)]) {
-            [segue.destinationViewController performSelector:@selector(setBookmarkDatabase:) withObject:self.bookmarkDatabase];
-            NSLog(@"bookmark database is set");
-        }
-        if ([segue.destinationViewController respondsToSelector:@selector(setAlbumTitle:)]) {
-            [segue.destinationViewController performSelector:@selector(setAlbumTitle:) withObject:albumTitle];
-            NSLog (@"the current album title is set to %@", albumTitle);
-        }
-        if ([segue.destinationViewController respondsToSelector:@selector(setTrackInfo:)]) {
-            [segue.destinationViewController performSelector:@selector(setTrackInfo:) withObject:trackInfo];
-            NSLog (@"trackInfo is set");
-        }
-        
-*/
+    NSLog(@"this segue is show bookmarks");
+    NSString *albumTitle = self.appDelegate.audioPlayer.albumTitle;
+    ABBookmarkTableViewController *bookmarkViewController = [ABBookmarkTableViewController sharedController];
+    [bookmarkViewController setBookmarkDatabase:self.bookmarkDatabase];
+    [bookmarkViewController setAlbumTitle:albumTitle];
+    [bookmarkViewController setTrackInfo:trackInfo];
+    [self presentModalViewController:bookmarkViewController animated:YES];
 }
 
 - (IBAction)playOrPause {
@@ -306,38 +302,5 @@
     self.progressBar.isTouched = NO;
     NSLog(@"just released the bar");
 }
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    NSLog(@"prepareForSegue is called");
-    /*
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-    Photographer *photographer = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    if ([segue.destinationViewController respondsToSelector:@selector(setPhotographer:)]) {
-    // use performSelector:withObject: to send without compiler checking
-    // (which is acceptable here because we used introspection to be sure this is okay)
-    */
-    NSDictionary *trackInfo = [self.appDelegate.audioPlayer getTrackInfo];
-    if ([segue.identifier isEqualToString:@"Show Bookmarks"]) {
-        NSLog(@"this segue is show bookmarks");
-        NSString *albumTitle = self.appDelegate.audioPlayer.albumTitle;
-        if ([segue.destinationViewController respondsToSelector:@selector(setBookmarkDatabase:)]) {
-            [segue.destinationViewController performSelector:@selector(setBookmarkDatabase:) withObject:self.bookmarkDatabase];
-            NSLog(@"bookmark database is set");
-        }
-        if ([segue.destinationViewController respondsToSelector:@selector(setAlbumTitle:)]) {
-            [segue.destinationViewController performSelector:@selector(setAlbumTitle:) withObject:albumTitle];
-            NSLog (@"the current album title is set to %@", albumTitle);
-        }
-        if ([segue.destinationViewController respondsToSelector:@selector(setTrackInfo:)]) {
-            [segue.destinationViewController performSelector:@selector(setTrackInfo:) withObject:trackInfo];
-            NSLog (@"trackInfo is set");
-        }
-
-    }
-}
-
-
-
 
 @end
