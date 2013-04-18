@@ -9,22 +9,21 @@
 #import "CenterPanelViewController.h"
 #import "ABIpodAlbumTableViewController.h"
 #import "ABAudioPlayerViewController.h"
+
 @interface CenterPanelViewController ()
 
 @end
-
+static CenterPanelViewController *sharedController;
 @implementation CenterPanelViewController
-@synthesize libraryViewController = _libraryViewController;
 
-#pragma mark - lazy instatiation
-- (UINavigationController *) libraryViewController {
-    if (!_libraryViewController) {
-        _libraryViewController = [[UINavigationController alloc] init];
++ (CenterPanelViewController *) sharedController {
+    if (!sharedController) {
         ABIpodAlbumTableViewController *albumTableViewController = [[ABIpodAlbumTableViewController alloc]init];
-        [_libraryViewController pushViewController:albumTableViewController animated:NO];
+        sharedController = [[CenterPanelViewController alloc] initWithRootViewController:albumTableViewController];
     }
-    return _libraryViewController;
+    return sharedController;
 }
+#pragma mark - lazy instatiation
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -40,7 +39,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self showViewControllerForType:SidePanelButtonTypeLibrary];
+    ABIpodAlbumTableViewController *albumTableViewController = [[ABIpodAlbumTableViewController alloc]init];
+    [self setRootViewController:albumTableViewController];
     
 }
 
@@ -53,40 +53,39 @@
 
 #pragma mark - child view controllers display and transitions
 - (void)showViewControllerForType:(SidePanelButtonType)index {
-    switch (index) {
-        case SidePanelButtonTypeNowPlaying:
-            [self displayContentController:[ABAudioPlayerViewController sharedController]];
+    //make the center panel disappear
+    indexToSwitch = index;
+    [[JASidePanelController sharedController] setCenterPanelHiddenThenAppearForDuration:0.3];
+}
+
+- (void)loadSelectedViewControllerWhenCenterPanelIsHidden {
+    switch (indexToSwitch) {
+        case SidePanelButtonTypeNowPlaying: {
+            [self popToRootViewControllerAnimated:NO];
+            [self setRootViewController:[ABAudioPlayerViewController sharedController]];
             break;
-        case SidePanelButtonTypeLibrary:
-            [self displayContentController:self.libraryViewController];
+        }
+        case SidePanelButtonTypeLibrary: {
+            [self popToRootViewControllerAnimated:NO];
+            ABIpodAlbumTableViewController *albumTableViewController = [[ABIpodAlbumTableViewController alloc]init];
+            [self setRootViewController:albumTableViewController];
             break;
-        case SidePanelButtonTypeBookmarks:
+        }
+        case SidePanelButtonTypeBookmarks: {
+            break;
+        }
+        case SidePanelButtonTypeSettings: {
             
             break;
-        case SidePanelButtonTypeSettings:
+        }
+        case SidePanelButtonTypeStats: {
             
             break;
-        case SidePanelButtonTypeStats:
-            
-            break;
+        }
         default:
             break;
     }
-    
+    [[JASidePanelController sharedController] _placeButtonForLeftPanel];
 }
 
-- (void) displayContentController: (UIViewController*) content;
-{
-    [self addChildViewController:content];                 // 1
-    //content.view.frame = [self frameForContentController]; // 2
-    [self.view addSubview:content.view];
-    [content didMoveToParentViewController:self];          // 3
-}
-
-- (void) hideContentController: (UIViewController*) content
-{
-    [content willMoveToParentViewController:nil];  // 1
-    [content.view removeFromSuperview];            // 2
-    [content removeFromParentViewController];      // 3
-}
 @end

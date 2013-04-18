@@ -35,8 +35,14 @@ typedef enum _JASidePanelState {
     JASidePanelLeftVisible,
     JASidePanelRightVisible
 } JASidePanelState;
+@protocol JASidePanelControllerDelegate <NSObject>
+- (void)loadSelectedViewControllerWhenCenterPanelIsHidden;
+
+@end
 
 @interface JASidePanelController : UIViewController<UIGestureRecognizerDelegate>
+// set the delegate
+@property (nonatomic,assign) id <JASidePanelControllerDelegate> delegate;
 
 #pragma mark - Usage
 
@@ -45,10 +51,14 @@ typedef enum _JASidePanelState {
 @property (nonatomic, strong) UIViewController *centerPanel; // required
 @property (nonatomic, strong) UIViewController *rightPanel;  // optional
 
+
++ (JASidePanelController *)sharedController;
+
 // show the panels
 - (void)showLeftPanel:(BOOL)animated __attribute__((deprecated("Use -showLeftPanelAnimated: instead")));
 - (void)showRightPanel:(BOOL)animated __attribute__((deprecated("Use -showRightPanelAnimated: instead")));
 - (void)showCenterPanel:(BOOL)animated __attribute__((deprecated("Use -showCenterPanelAnimated: instead")));
+- (void)_placeButtonForLeftPanel;
 
 // show the panels
 - (void)showLeftPanelAnimated:(BOOL)animated;
@@ -61,7 +71,7 @@ typedef enum _JASidePanelState {
 
 // Calling this while the left or right panel is visible causes the center panel to be completely hidden
 - (void)setCenterPanelHidden:(BOOL)centerPanelHidden animated:(BOOL)animated duration:(NSTimeInterval) duration;
-
+- (void)setCenterPanelHiddenThenAppearForDuration:(NSTimeInterval) duration;
 #pragma mark - Look & Feel
 
 // style

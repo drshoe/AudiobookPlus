@@ -175,6 +175,8 @@
         }
     }
     ABAudioPlayerViewController *audioPlayerViewController = [ABAudioPlayerViewController sharedController];
+    audioPlayerViewController.navigationItem.leftBarButtonItem = nil;
+    audioPlayerViewController.navigationItem.hidesBackButton = NO;
     [self.navigationController pushViewController:audioPlayerViewController animated:YES];
 }
 

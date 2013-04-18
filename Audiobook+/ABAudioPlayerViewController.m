@@ -126,6 +126,7 @@ static ABAudioPlayerViewController *sharedController;
         }
         
     }
+    
     [self initBookmarkDatabase];
 }
 

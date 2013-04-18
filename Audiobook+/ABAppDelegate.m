@@ -10,7 +10,6 @@
 #import "JASidePanelController.h"
 #import "SidePanelViewController.h"
 #import "CenterPanelViewController.h"
-
 @implementation ABAppDelegate
 
 @synthesize window = _window;
@@ -24,15 +23,17 @@
     // Override point for customization after application launch.
     
     self.window.backgroundColor = [UIColor whiteColor];
-    JASidePanelController *panelController = [[JASidePanelController alloc] init];
+    JASidePanelController *panelController = [JASidePanelController sharedController];
     panelController.shouldDelegateAutorotateToVisiblePanel = NO;
-    panelController.centerPanel = [[UINavigationController alloc] initWithRootViewController:[[CenterPanelViewController alloc] init]];
-    panelController.leftPanel = [[SidePanelViewController alloc] init];
+    CenterPanelViewController *centerPanelController = [CenterPanelViewController sharedController];
+    panelController.delegate = centerPanelController;
+    panelController.centerPanel = centerPanelController;
+    SidePanelViewController *sidePanelController = [SidePanelViewController sharedController];
+    sidePanelController.delegate = centerPanelController;
+    panelController.leftPanel = sidePanelController;
     self.window.rootViewController = panelController;
     [self.window makeKeyAndVisible];
-    
-    //[panelController release];
-    
+
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     [self becomeFirstResponder];
     return YES;

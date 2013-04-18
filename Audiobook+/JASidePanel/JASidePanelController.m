@@ -25,9 +25,10 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "JASidePanelController.h"
-
+#import "SidePanelViewController.h"
+#import "TVNavigationController.h"
 static char ja_kvoContext;
-
+static JASidePanelController *sharedController;
 @interface JASidePanelController() {
     CGRect _centerPanelRestingFrame;		
     CGPoint _locationBeforePan;
@@ -79,6 +80,15 @@ static char ja_kvoContext;
 @synthesize centerPanelHidden = _centerPanelHidden;
 @synthesize allowLeftSwipe = _allowLeftSwipe;
 @synthesize allowRightSwipe = _allowRightSwipe;
+@synthesize delegate = _delegate;
+
+#pragma mark - singleton
++ (JASidePanelController *) sharedController {
+    if (!sharedController) {
+        sharedController = [[JASidePanelController alloc] init];
+    }
+    return sharedController;
+}
 
 #pragma mark - Icon
 
@@ -427,12 +437,19 @@ static char ja_kvoContext;
 - (void)_placeButtonForLeftPanel {
     if (self.leftPanel) {
         UIViewController *buttonController = self.centerPanel;
-        if ([buttonController isKindOfClass:[UINavigationController class]]) {
+        if ([buttonController isKindOfClass:[TVNavigationController class]]) {
+            UINavigationController *nav = (TVNavigationController *)buttonController;
+            if ([nav.viewControllers count] > 0) {
+                buttonController = [nav.viewControllers objectAtIndex:1];
+            }
+        }
+        else if ([buttonController isKindOfClass:[UINavigationController class]]) {
             UINavigationController *nav = (UINavigationController *)buttonController;
             if ([nav.viewControllers count] > 0) {
                 buttonController = [nav.viewControllers objectAtIndex:0];
             }
         }
+        
         if (!buttonController.navigationItem.leftBarButtonItem) {   
             buttonController.navigationItem.leftBarButtonItem = [self leftButtonForCenterPanel];
         }
@@ -835,6 +852,9 @@ static char ja_kvoContext;
             self.leftPanelContainer.hidden = YES;
             self.rightPanelContainer.hidden = YES;
             [self _unloadPanels];
+            // reenable side panel buttons for next use
+            [[SidePanelViewController sharedController] enableButtons];
+            
         }];
     } else {
         self.centerPanelContainer.frame = _centerPanelRestingFrame;	
@@ -998,4 +1018,17 @@ static char ja_kvoContext;
     }
 }
 
+- (void)setCenterPanelHiddenThenAppearForDuration:(NSTimeInterval) duration {
+    [UIView animateWithDuration:duration animations:^{
+        CGRect frame = self.centerPanelContainer.frame;
+        frame.origin.x = self.state == JASidePanelLeftVisible ? self.centerPanelContainer.frame.size.width : -self.centerPanelContainer.frame.size.width;
+        self.centerPanelContainer.frame = frame;
+        if (self.shouldResizeLeftPanel || self.shouldResizeRightPanel) {
+            [self _layoutSidePanels];
+        }
+    } completion:^(__unused BOOL finished) {
+        [self.delegate loadSelectedViewControllerWhenCenterPanelIsHidden];
+        [self _showCenterPanel:YES bounce:NO];
+    }];
+}
 @end

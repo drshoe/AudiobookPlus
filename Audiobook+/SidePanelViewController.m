@@ -14,9 +14,17 @@
 @interface SidePanelViewController ()
 
 @end
-
+static SidePanelViewController *sharedController;
 @implementation SidePanelViewController
 @synthesize delegate;
+@synthesize buttons;
++ (SidePanelViewController *) sharedController {
+    if (!sharedController) {
+        sharedController = [[SidePanelViewController alloc] init];
+    }
+    return sharedController;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -39,7 +47,20 @@
 }
 
 - (IBAction)sidePanelButtonPressed:(UIButton *)sender {
+    [self disableButtons];
     [self.delegate showViewControllerForType:sender.tag];
+}
+
+- (void) disableButtons {
+    for (UIButton *button in buttons) {
+        button.enabled = NO;
+    }
+}
+
+- (void) enableButtons {
+    for (UIButton *button in buttons) {
+        button.enabled = YES;
+    }
 }
 
 @end

@@ -12,5 +12,10 @@
 @end;
 
 @interface SidePanelViewController : JADebugViewController
+
++ (SidePanelViewController *)sharedController;
 @property (nonatomic, assign) id <SidePanelViewControllerDelegate> delegate;
+@property (nonatomic, strong) IBOutletCollection(UIButton) NSArray *buttons;
+
+- (void) enableButtons;
 @end

@@ -8,9 +8,14 @@
 
 #import "JADebugViewController.h"
 #import "SidePanelViewController.h"
+#import "JASidePanelController.h"
+#import "TVNavigationController.h"
 
-@interface CenterPanelViewController : JADebugViewController <SidePanelViewControllerDelegate> {
-    
+@interface CenterPanelViewController : TVNavigationController <SidePanelViewControllerDelegate, JASidePanelControllerDelegate> {
+    SidePanelButtonType indexToSwitch;
 }
-@property (nonatomic, strong) UINavigationController *libraryViewController;
++ (CenterPanelViewController *)sharedController;
+
+
+
 @end

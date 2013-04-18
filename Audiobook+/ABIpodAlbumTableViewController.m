@@ -62,74 +62,63 @@
 
 
 #pragma mark - Table view data source
+/*
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSString *info = [NSString string];
     if (section == 0) {
         info = @"Now Playing";
     }
     else if (section == 1) {
-        info = @"Books";
+        info = @"Audiobooks";
     }
     return info;
-}
+}*/
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
     // Return the number of rows in the section.
-    if (section == 1) {
-        NSLog(@"there are %i albums",[self.albums count]);
-        return [self.albums count];
-    }
-    return 1;
+    NSLog(@"there are %i albums",[self.albums count]);
+    return [self.albums count];
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     UITableViewCell *cell;
-    if (indexPath.section != 0) {
-        static NSString *CellIdentifier = @"IpodAlbumCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        // Configure the cell...
-        // get the information about this particular album
-        MPMediaItemCollection *album = [self.albums objectAtIndex:indexPath.row];
-        // get the representative item for this album
-        MPMediaItem *representativeItem = [album representativeItem];
-        // get the name of the album
-        NSString *albumName = [representativeItem valueForProperty: MPMediaItemPropertyAlbumTitle];
-        // get the album artwork
-        MPMediaItemArtwork *artwork = [representativeItem valueForProperty:MPMediaItemPropertyArtwork];
-        UIImage *artworkImage = [artwork imageWithSize:cell.imageView.bounds.size];
-        if (artworkImage) {
-            // set the artwork image on the cell
-            cell.imageView.image = artworkImage;
-        }
-        else {
-            // there is no artwork image
-        }
-        // set the cell attributes
-        cell.textLabel.text = albumName;
-        NSLog(@"the name of the album is %@",albumName);
-        // set the cell's accessory type
+    static NSString *CellIdentifier = @"IpodAlbumCell";
+    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    // Configure the cell...
+    // get the information about this particular album
+    MPMediaItemCollection *album = [self.albums objectAtIndex:indexPath.row];
+    // get the representative item for this album
+    MPMediaItem *representativeItem = [album representativeItem];
+    // get the name of the album
+    NSString *albumName = [representativeItem valueForProperty: MPMediaItemPropertyAlbumTitle];
+    // get the album artwork
+    MPMediaItemArtwork *artwork = [representativeItem valueForProperty:MPMediaItemPropertyArtwork];
+    UIImage *artworkImage = [artwork imageWithSize:cell.imageView.bounds.size];
+    if (artworkImage) {
+        // set the artwork image on the cell
+        cell.imageView.image = artworkImage;
     }
     else {
-        static NSString *CellIdentifier = @"IpodLastPlayedCell";
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-        cell.textLabel.text = @"Now playing";
+        // there is no artwork image
     }
+    // set the cell attributes
+    cell.textLabel.text = albumName;
+    NSLog(@"the name of the album is %@",albumName);
+    // set the cell's accessory type
     return cell;
 }
 

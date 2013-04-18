@@ -27,6 +27,8 @@
 		02720EAB15CB14CF00268E1A /* Bookmarks+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 02720EAA15CB14CF00268E1A /* Bookmarks+Create.m */; };
 		02720EAE15CB23E600268E1A /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 02720EAD15CB23E600268E1A /* Book.m */; };
 		02720EB415CB240300268E1A /* Book+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 02720EB315CB240300268E1A /* Book+Create.m */; };
+		02AAD3F01720851C00ADA002 /* TVNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AAD3EE1720851C00ADA002 /* TVNavigationController.m */; };
+		02AAD3F11720851C00ADA002 /* TVNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02AAD3EF1720851C00ADA002 /* TVNavigationController.xib */; };
 		02AC7C7515B702E5007B574D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AC7C7415B702E5007B574D /* UIKit.framework */; };
 		02AC7C7715B702E5007B574D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AC7C7615B702E5007B574D /* Foundation.framework */; };
 		02AC7C7915B702E5007B574D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AC7C7815B702E5007B574D /* CoreGraphics.framework */; };
@@ -76,6 +78,9 @@
 		02720EAD15CB23E600268E1A /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		02720EB215CB240300268E1A /* Book+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Book+Create.h"; sourceTree = "<group>"; };
 		02720EB315CB240300268E1A /* Book+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Book+Create.m"; sourceTree = "<group>"; };
+		02AAD3ED1720851C00ADA002 /* TVNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVNavigationController.h; sourceTree = "<group>"; };
+		02AAD3EE1720851C00ADA002 /* TVNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVNavigationController.m; sourceTree = "<group>"; };
+		02AAD3EF1720851C00ADA002 /* TVNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TVNavigationController.xib; sourceTree = "<group>"; };
 		02AC7C7015B702E5007B574D /* Audiobook+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Audiobook+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		02AC7C7415B702E5007B574D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		02AC7C7615B702E5007B574D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -144,6 +149,9 @@
 		021F93A5171CA56D00C7583F /* Containers */ = {
 			isa = PBXGroup;
 			children = (
+				02AAD3ED1720851C00ADA002 /* TVNavigationController.h */,
+				02AAD3EE1720851C00ADA002 /* TVNavigationController.m */,
+				02AAD3EF1720851C00ADA002 /* TVNavigationController.xib */,
 				021F939B171CA56400C7583F /* CenterPanelViewController.h */,
 				021F939C171CA56400C7583F /* CenterPanelViewController.m */,
 				021F939D171CA56400C7583F /* CenterPanelViewController.xib */,
@@ -319,6 +327,7 @@
 				021F93B4171DDDA600C7583F /* ABIpodTrackTableViewController.xib in Resources */,
 				021F93B6171DEFDB00C7583F /* ABTimerViewController.xib in Resources */,
 				021FCD33171F429500441D9D /* ABBookmarkTableViewController.xib in Resources */,
+				02AAD3F11720851C00ADA002 /* TVNavigationController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +374,7 @@
 				021F939A171CA4F400C7583F /* UIViewController+JASidePanel.m in Sources */,
 				021F93A1171CA56500C7583F /* CenterPanelViewController.m in Sources */,
 				021F93A3171CA56500C7583F /* SidePanelViewController.m in Sources */,
+				02AAD3F01720851C00ADA002 /* TVNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
