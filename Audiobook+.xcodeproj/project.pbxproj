@@ -46,6 +46,10 @@
 		02E3774715C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02E3774515C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld */; };
 		02E3774B15C33A6F0019BB77 /* ABBookmarkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E3774A15C33A6F0019BB77 /* ABBookmarkTableViewController.m */; };
 		02F3D47A15CC5C0E00823552 /* Bookmarks.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F3D47915CC5C0E00823552 /* Bookmarks.m */; };
+		02FBB6881725B07200495C11 /* AlbumTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02FBB6871725B07200495C11 /* AlbumTableCell.m */; };
+		02FBB68C1725B0B400495C11 /* AlbumTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02FBB68B1725B0B400495C11 /* AlbumTableCell.xib */; };
+		02FBB6911725BFFA00495C11 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02FBB68F1725BFFA00495C11 /* SettingsViewController.m */; };
+		02FBB6921725BFFA00495C11 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02FBB6901725BFFA00495C11 /* SettingsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +116,12 @@
 		02E3774A15C33A6F0019BB77 /* ABBookmarkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABBookmarkTableViewController.m; sourceTree = "<group>"; };
 		02F3D47815CC5C0E00823552 /* Bookmarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmarks.h; sourceTree = "<group>"; };
 		02F3D47915CC5C0E00823552 /* Bookmarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmarks.m; sourceTree = "<group>"; };
+		02FBB6861725B07200495C11 /* AlbumTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumTableCell.h; path = Cells/AlbumTableCell.h; sourceTree = "<group>"; };
+		02FBB6871725B07200495C11 /* AlbumTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumTableCell.m; path = Cells/AlbumTableCell.m; sourceTree = "<group>"; };
+		02FBB68B1725B0B400495C11 /* AlbumTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AlbumTableCell.xib; path = Cells/AlbumTableCell.xib; sourceTree = "<group>"; };
+		02FBB68E1725BFFA00495C11 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		02FBB68F1725BFFA00495C11 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		02FBB6901725BFFA00495C11 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,11 +249,13 @@
 		02AC7C7A15B702E5007B574D /* Audiobook+ */ = {
 			isa = PBXGroup;
 			children = (
+				02FBB6851725B03C00495C11 /* Cells */,
 				02AC7C8315B702E5007B574D /* ABAppDelegate.h */,
 				02AC7C8415B702E5007B574D /* ABAppDelegate.m */,
 				02AC7CAF15B9E4CE007B574D /* ABAudioPlayer.h */,
 				02AC7CB015B9E4CE007B574D /* ABAudioPlayer.m */,
 				021F93AE171CF21400C7583F /* Library */,
+				02FBB68D1725BFCC00495C11 /* Settings */,
 				021F93A5171CA56D00C7583F /* Containers */,
 				021F9391171CA4E100C7583F /* SidePanelController */,
 				0234020F15C3432A0094C77C /* Data Model */,
@@ -264,6 +276,26 @@
 				021F93A6171CA5CE00C7583F /* Common.h */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		02FBB6851725B03C00495C11 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				02FBB6861725B07200495C11 /* AlbumTableCell.h */,
+				02FBB6871725B07200495C11 /* AlbumTableCell.m */,
+				02FBB68B1725B0B400495C11 /* AlbumTableCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		02FBB68D1725BFCC00495C11 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				02FBB68E1725BFFA00495C11 /* SettingsViewController.h */,
+				02FBB68F1725BFFA00495C11 /* SettingsViewController.m */,
+				02FBB6901725BFFA00495C11 /* SettingsViewController.xib */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,6 +360,8 @@
 				021F93B6171DEFDB00C7583F /* ABTimerViewController.xib in Resources */,
 				021FCD33171F429500441D9D /* ABBookmarkTableViewController.xib in Resources */,
 				02AAD3F11720851C00ADA002 /* TVNavigationController.xib in Resources */,
+				02FBB68C1725B0B400495C11 /* AlbumTableCell.xib in Resources */,
+				02FBB6921725BFFA00495C11 /* SettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +409,8 @@
 				021F93A1171CA56500C7583F /* CenterPanelViewController.m in Sources */,
 				021F93A3171CA56500C7583F /* SidePanelViewController.m in Sources */,
 				02AAD3F01720851C00ADA002 /* TVNavigationController.m in Sources */,
+				02FBB6881725B07200495C11 /* AlbumTableCell.m in Sources */,
+				02FBB6911725BFFA00495C11 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -92,13 +92,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewCell *cell;
-    static NSString *CellIdentifier = @"IpodAlbumCell";
-    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    AlbumTableCell *cell;
+    static NSString *CellIdentifier = @"AlbumTableCell";
+    cell = (AlbumTableCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AlbumTableCell" owner:self options:nil];
+        cell = (AlbumTableCell *)[nib objectAtIndex:0];
     }
     // Configure the cell...
+    cell.indexPath = indexPath;
     // get the information about this particular album
     MPMediaItemCollection *album = [self.albums objectAtIndex:indexPath.row];
     // get the representative item for this album
@@ -107,17 +109,21 @@
     NSString *albumName = [representativeItem valueForProperty: MPMediaItemPropertyAlbumTitle];
     // get the album artwork
     MPMediaItemArtwork *artwork = [representativeItem valueForProperty:MPMediaItemPropertyArtwork];
-    UIImage *artworkImage = [artwork imageWithSize:cell.imageView.bounds.size];
+    UIImage *artworkImage = [artwork imageWithSize:cell.albumArt.bounds.size];
     if (artworkImage) {
         // set the artwork image on the cell
-        cell.imageView.image = artworkImage;
+        cell.albumArt.image = artworkImage;
     }
     else {
         // there is no artwork image
     }
     // set the cell attributes
-    cell.textLabel.text = albumName;
+    cell.titleLabel.text = albumName;
     NSLog(@"the name of the album is %@",albumName);
+    
+    // set the listening progress
+    cell.progressView.progress = 0.3;
+    
     // set the cell's accessory type
     return cell;
 }
@@ -187,6 +193,11 @@
     [self.navigationController pushViewController:trackTableViewController animated:YES];
     NSLog(@"the album title is %@",albumName);
     NSLog(@"tracks have been set");
+}
+
+#pragma mark - AlbumTableCell methods
+- (void)accessoryButtonPressedAtIndexPath:(NSIndexPath *)indexPath {
+    
 }
 
 @end

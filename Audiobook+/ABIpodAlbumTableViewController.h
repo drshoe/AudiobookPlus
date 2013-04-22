@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
-@interface ABIpodAlbumTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+#import "AlbumTableCell.h"
+@interface ABIpodAlbumTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, AlbumTableCellDelegate> {
     
 }
 @property (nonatomic, strong) IBOutlet UITableView *theTableView;
