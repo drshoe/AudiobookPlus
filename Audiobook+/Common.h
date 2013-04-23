@@ -19,3 +19,13 @@ typedef enum {
     SidePanelButtonTypeStats,
     SidePanelButtonTypeSettings,
 } SidePanelButtonType;
+
+typedef enum {
+    SettingsSectionManageSettings, 
+    SettingsSectionHelp
+} SettingsSection;
+
+typedef enum {
+    ChapterAndBookmarkTableBookmarkSelected,
+    ChapterAndBookmarkTableChapterSelected
+} ChapterAndBookmarkTable;

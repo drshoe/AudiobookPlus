@@ -50,6 +50,8 @@
 		02FBB68C1725B0B400495C11 /* AlbumTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02FBB68B1725B0B400495C11 /* AlbumTableCell.xib */; };
 		02FBB6911725BFFA00495C11 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02FBB68F1725BFFA00495C11 /* SettingsViewController.m */; };
 		02FBB6921725BFFA00495C11 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02FBB6901725BFFA00495C11 /* SettingsViewController.xib */; };
+		02FBB6971727191200495C11 /* ChapterAndBookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02FBB6951727191200495C11 /* ChapterAndBookmarkViewController.m */; };
+		02FBB6981727191200495C11 /* ChapterAndBookmarkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02FBB6961727191200495C11 /* ChapterAndBookmarkViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +124,9 @@
 		02FBB68E1725BFFA00495C11 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		02FBB68F1725BFFA00495C11 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		02FBB6901725BFFA00495C11 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		02FBB6941727191200495C11 /* ChapterAndBookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChapterAndBookmarkViewController.h; sourceTree = "<group>"; };
+		02FBB6951727191200495C11 /* ChapterAndBookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChapterAndBookmarkViewController.m; sourceTree = "<group>"; };
+		02FBB6961727191200495C11 /* ChapterAndBookmarkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChapterAndBookmarkViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,18 +183,21 @@
 				02AC7C9415B7033D007B574D /* ABIpodAlbumTableViewController.h */,
 				02AC7C9515B7033D007B574D /* ABIpodAlbumTableViewController.m */,
 				021F93B1171DDBC300C7583F /* ABIpodAlbumTableViewController.xib */,
-				02AC7CA115B744EF007B574D /* ABIpodTrackTableViewController.h */,
-				02AC7CA215B744EF007B574D /* ABIpodTrackTableViewController.m */,
-				021F93B3171DDDA600C7583F /* ABIpodTrackTableViewController.xib */,
 				02AC7CA815B799FB007B574D /* ABAudioPlayerViewController.h */,
 				02AC7CA915B799FB007B574D /* ABAudioPlayerViewController.m */,
 				021F93AF171CF40800C7583F /* ABAudioPlayerViewController.xib */,
 				02CEACD415C84B8A001BC80A /* ABTimerViewController.h */,
 				02CEACD515C84B8B001BC80A /* ABTimerViewController.m */,
 				021F93B5171DEFDB00C7583F /* ABTimerViewController.xib */,
+				02AC7CA115B744EF007B574D /* ABIpodTrackTableViewController.h */,
+				02AC7CA215B744EF007B574D /* ABIpodTrackTableViewController.m */,
+				021F93B3171DDDA600C7583F /* ABIpodTrackTableViewController.xib */,
 				02E3774915C33A6F0019BB77 /* ABBookmarkTableViewController.h */,
 				02E3774A15C33A6F0019BB77 /* ABBookmarkTableViewController.m */,
 				021FCD32171F429500441D9D /* ABBookmarkTableViewController.xib */,
+				02FBB6941727191200495C11 /* ChapterAndBookmarkViewController.h */,
+				02FBB6951727191200495C11 /* ChapterAndBookmarkViewController.m */,
+				02FBB6961727191200495C11 /* ChapterAndBookmarkViewController.xib */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -362,6 +370,7 @@
 				02AAD3F11720851C00ADA002 /* TVNavigationController.xib in Resources */,
 				02FBB68C1725B0B400495C11 /* AlbumTableCell.xib in Resources */,
 				02FBB6921725BFFA00495C11 /* SettingsViewController.xib in Resources */,
+				02FBB6981727191200495C11 /* ChapterAndBookmarkViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +420,7 @@
 				02AAD3F01720851C00ADA002 /* TVNavigationController.m in Sources */,
 				02FBB6881725B07200495C11 /* AlbumTableCell.m in Sources */,
 				02FBB6911725BFFA00495C11 /* SettingsViewController.m in Sources */,
+				02FBB6971727191200495C11 /* ChapterAndBookmarkViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

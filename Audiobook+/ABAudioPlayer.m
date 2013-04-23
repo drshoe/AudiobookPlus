@@ -26,9 +26,6 @@
 @synthesize timer=_timer;
 @synthesize artwork = _artwork;
 
-
-
-
 - (id)initWithItems: (NSArray *)mpMediaItems withCurrentTrackNumber: (NSNumber *)currentTrackNumber {
     // first we create a subarray (starting from the current track number) then add it to the queue
     NSArray *avPlayerItems = [self avPlayerItemsFromMPMediaItems:mpMediaItems];

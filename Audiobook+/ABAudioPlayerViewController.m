@@ -12,6 +12,7 @@
 #import "Bookmarks+Create.h"
 #import "ABTimerViewController.h"
 #import "ABBookmarkTableViewController.h"
+#import "ChapterAndBookmarkViewController.h"
 
 @interface ABAudioPlayerViewController ()
 @end
@@ -77,35 +78,10 @@ static ABAudioPlayerViewController *sharedController;
             }
         }
     }];
-}
-- (void) initBookmarkDatabase {
-    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.bookmarkDatabase.fileURL path]]) {
-        // does not exist on disk, so create it
-        [self.bookmarkDatabase saveToURL:self.bookmarkDatabase.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
-            // creation successful, now let's populate the database
-            if (success) {
-                NSLog(@"create database");
-            }
-            else {
-                NSLog(@"failed to create the database");
-            }
-            
-            
-        }];
-    } else if (self.bookmarkDatabase.documentState == UIDocumentStateClosed) {
-        // exists on disk, but we need to open it
-        [self.bookmarkDatabase openWithCompletionHandler:^(BOOL success) {
-            // open successful, lets populate the database
-            if (success) {
-                NSLog (@"successfully opened the database");
-            }
-            else {
-                NSLog (@"failed to open the database");
-            }
-            
-        }];
-    }
     
+    // set navigation controller tab bar item
+    UIBarButtonItem *chapterAndBookmarkButton = [[UIBarButtonItem alloc] initWithTitle:@"Show" style:UIBarButtonItemStylePlain target:self action:@selector(showChaptersAndBookmarks:)];
+    self.navigationItem.rightBarButtonItem = chapterAndBookmarkButton;
 }
 
 
@@ -128,6 +104,8 @@ static ABAudioPlayerViewController *sharedController;
     }
     
     [self initBookmarkDatabase];
+    
+    
 }
 
 // prepare after the view appears, user might see a incomplete view but we can use activity indicator to tell the user that we
@@ -154,17 +132,8 @@ static ABAudioPlayerViewController *sharedController;
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)showBookmarks:(UIButton *)sender {
-    NSDictionary *trackInfo = [self.appDelegate.audioPlayer getTrackInfo];
-    NSLog(@"this segue is show bookmarks");
-    NSString *albumTitle = self.appDelegate.audioPlayer.albumTitle;
-    ABBookmarkTableViewController *bookmarkViewController = [ABBookmarkTableViewController sharedController];
-    [bookmarkViewController setBookmarkDatabase:self.bookmarkDatabase];
-    [bookmarkViewController setAlbumTitle:albumTitle];
-    [bookmarkViewController setTrackInfo:trackInfo];
-    [self presentModalViewController:bookmarkViewController animated:YES];
-}
 
+#pragma mark - playback controls
 - (IBAction)playOrPause {
     if (self.appDelegate.audioPlayer.playing) {
         [self.appDelegate.audioPlayer pauseTrack];
@@ -220,6 +189,7 @@ static ABAudioPlayerViewController *sharedController;
     }
 }
 
+#pragma mark - bookmark database methods
 - (void)bookmarkWithTrackInfo:(NSDictionary *)trackInfo
 {
     if (![[NSFileManager defaultManager] fileExistsAtPath:[self.bookmarkDatabase.fileURL path]]) {
@@ -266,6 +236,36 @@ static ABAudioPlayerViewController *sharedController;
     }
 }
 
+- (void) initBookmarkDatabase {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.bookmarkDatabase.fileURL path]]) {
+        // does not exist on disk, so create it
+        [self.bookmarkDatabase saveToURL:self.bookmarkDatabase.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+            // creation successful, now let's populate the database
+            if (success) {
+                NSLog(@"create database");
+            }
+            else {
+                NSLog(@"failed to create the database");
+            }
+            
+            
+        }];
+    } else if (self.bookmarkDatabase.documentState == UIDocumentStateClosed) {
+        // exists on disk, but we need to open it
+        [self.bookmarkDatabase openWithCompletionHandler:^(BOOL success) {
+            // open successful, lets populate the database
+            if (success) {
+                NSLog (@"successfully opened the database");
+            }
+            else {
+                NSLog (@"failed to open the database");
+            }
+            
+        }];
+    }
+}
+
+
 // bookmark database has a custom setter
 // first we check if the database that is being set is in fact identical. so we dont waste resources
 // then we open or create the document for this database
@@ -289,6 +289,7 @@ static ABAudioPlayerViewController *sharedController;
     [self bookmarkWithTrackInfo:trackInfo];
 }
 
+#pragma mark - progres bar
 - (IBAction)progressBarTouchDown:(OBSlider *)sender {
     self.progressBar.isTouched = YES;
     NSLog(@"just touched the bar");
@@ -302,6 +303,24 @@ static ABAudioPlayerViewController *sharedController;
 - (IBAction)progressBarTouchUpOutside:(OBSlider *)sender {
     self.progressBar.isTouched = NO;
     NSLog(@"just released the bar");
+}
+
+#pragma mark - chapter and bookmarks
+- (void) showChaptersAndBookmarks: (id) sender {
+    NSDictionary *trackInfo = [self.appDelegate.audioPlayer getTrackInfo];
+    NSLog(@"this segue is show bookmarks");
+    NSString *albumTitle = self.appDelegate.audioPlayer.albumTitle;
+    ChapterAndBookmarkViewController *bookmarkViewController = [ChapterAndBookmarkViewController sharedController];
+    [bookmarkViewController setBookmarkDatabase:self.bookmarkDatabase];
+    [bookmarkViewController setAlbumTitle:albumTitle];
+    [bookmarkViewController setTrackInfo:trackInfo];
+    
+    // setting chapters info
+    [bookmarkViewController setTracks:self.tracks];
+
+    
+    bookmarkViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:bookmarkViewController animated:YES completion:nil];
 }
 
 @end

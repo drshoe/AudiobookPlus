@@ -29,9 +29,9 @@
 
 
 @property (nonatomic, strong) UIManagedDocument *bookmarkDatabase;
+@property (nonatomic, copy) NSArray *tracks;
 
 + (ABAudioPlayerViewController *) sharedController;
-- (IBAction)showBookmarks:(UIButton *)sender;
 - (IBAction)playOrPause;
 - (IBAction)next;
 - (IBAction)previous;

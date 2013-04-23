@@ -9,6 +9,7 @@
 #import "CenterPanelViewController.h"
 #import "ABIpodAlbumTableViewController.h"
 #import "ABAudioPlayerViewController.h"
+#import "SettingsViewController.h"
 
 @interface CenterPanelViewController ()
 
@@ -75,7 +76,9 @@ static CenterPanelViewController *sharedController;
             break;
         }
         case SidePanelButtonTypeSettings: {
-            
+            [self popToRootViewControllerAnimated:NO];
+            SettingsViewController *settingsViewController = [[SettingsViewController alloc] init];
+            [self setRootViewController:settingsViewController];
             break;
         }
         case SidePanelButtonTypeStats: {

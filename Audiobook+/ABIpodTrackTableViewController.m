@@ -174,7 +174,9 @@
             [self.appDelegate.audioPlayer playNewAlbum:self.tracks withCurrentTrackNumber:currentTrackNumber];
         }
     }
+    
     ABAudioPlayerViewController *audioPlayerViewController = [ABAudioPlayerViewController sharedController];
+    audioPlayerViewController.tracks = self.tracks; // set it so that audioplayer can also present a tracktableviewcontroller
     audioPlayerViewController.navigationItem.leftBarButtonItem = nil;
     audioPlayerViewController.navigationItem.hidesBackButton = NO;
     [self.navigationController pushViewController:audioPlayerViewController animated:YES];
