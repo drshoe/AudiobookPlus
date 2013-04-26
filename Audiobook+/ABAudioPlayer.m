@@ -36,6 +36,11 @@
         self.allAVPlayerItems = avPlayerItems;
         self.currentTrackNumber = currentTrackNumber;
         self.allMPMediaPlayerItems = mpMediaItems;
+        self.actionAtItemEnd = AVPlayerActionAtItemEndAdvance;
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(playerItemDidReachEndAndPrepareToAdvance:)
+                                                     name:AVPlayerItemDidPlayToEndTimeNotification
+                                                   object:[self currentItem]];
     }
     return self;
 }
@@ -177,6 +182,7 @@
     // need to check the time first
     // we need to check the time first, if the user has been listening to this particular track for more than 5 seconds
     if ([self.currentTrackNumber intValue]>0) {
+        self.actionAtItemEnd = AVPlayerActionAtItemEndNone;
         int currentTrackNumber = [self.currentTrackNumber intValue];
         currentTrackNumber--;
         self.currentTrackNumber = [NSNumber numberWithInt:currentTrackNumber];
@@ -184,6 +190,7 @@
         for (int i=currentTrackNumber;i<self.allAVPlayerItems.count; i++) {
             [self insertItem:[self.allAVPlayerItems objectAtIndex:i] afterItem:nil];
         }
+        [self seekToTime:kCMTimeZero];
         [self playTrack];
         NSLog(@"previous");
         //NSLog(@"%@",self.items);
@@ -196,8 +203,13 @@
     if ([self.currentTrackNumber intValue]<self.allAVPlayerItems.count-1) {
         int currentTrackNumber = [self.currentTrackNumber intValue];
         currentTrackNumber++;
+        if (currentTrackNumber == [self.allMPMediaPlayerItems count]-1) {
+            // if we are at the last track, we should throw a warning and stop
+            self.actionAtItemEnd = AVPlayerActionAtItemEndPause;
+        }
         self.currentTrackNumber = [NSNumber numberWithInt:currentTrackNumber];
         [self advanceToNextItem];
+        [self seekToTime:kCMTimeZero];
         MPMediaItem *track = [self.allMPMediaPlayerItems objectAtIndex:[self.currentTrackNumber intValue]];
         [self setNowPlayingInfo:track];
         NSLog(@"next");
@@ -234,6 +246,19 @@
     NSLog (@"trackInfo has been constructed");
     NSLog (@"the trackInfo contains %@",trackInfo);
     return trackInfo;
+}
+
+- (void)playerItemDidReachEndAndPrepareToAdvance:(NSNotification *)notification {
+    //[self seekToTime:kCMTimeZero];
+    if ([self.currentTrackNumber integerValue]+1 == [self.allMPMediaPlayerItems count]-1) {
+        // if we are at the last track, we should throw a warning and stop
+        self.actionAtItemEnd = AVPlayerActionAtItemEndPause;
+    }
+    else {
+        //update now playinginfo to the next track
+        self.actionAtItemEnd = AVPlayerActionAtItemEndAdvance;
+        [self newTrackNumber:[NSNumber numberWithInteger:[self.currentTrackNumber integerValue]+1]];
+    }
 }
 
 @end

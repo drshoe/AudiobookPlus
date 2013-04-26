@@ -53,31 +53,8 @@ static ABAudioPlayerViewController *sharedController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // use AVPlayer to play the tracks because applicationplayer in MPMediaPlayer does not play in the background
-    if (!self.appDelegate.audioPlayer.playing) {
-        [self.appDelegate.audioPlayer playTrack];
-    }
-    // we set the current label to the title of the album
-    self.albumTitle.text = self.appDelegate.audioPlayer.albumTitle;
-    
-    // we add a playback observer to the player and make our UISlider to act like a progress bar
-    CMTime interval = CMTimeMake(33, 100);// 3fps
-    self.playbackObserver = [self.appDelegate.audioPlayer addPeriodicTimeObserverForInterval:interval queue:dispatch_get_current_queue() usingBlock: ^(CMTime time) {
-        // playbackDuration is an NSNumber object representing time in seconds
-        if ([self.appDelegate.audioPlayer.playbackDuration intValue]>0) {
-            // CMtime is just a struct that contains value, timescale and other variables
-            // get the current time in seconds by deviding value by timescale
-            double currentTime = (double)(self.appDelegate.audioPlayer.currentTime.value/self.appDelegate.audioPlayer.currentTime.timescale);
-            double normalizedTime =  currentTime / [self.appDelegate.audioPlayer.playbackDuration doubleValue];
-            //NSLog(@"the current time is %f", currentTime);
-            //NSLog(@"the playback duration is %f", self.appDelegate.audioPlayer.playbackDuration.doubleValue);
-            
-            //NSLog(@"the normalized time is %f", normalizedTime);
-            if (!self.progressBar.isTouched) {
-                self.progressBar.value = normalizedTime;
-            }
-        }
-    }];
+
+    [self addPeriodicTimeObserverToUpdateProgressBar];
     
     // set navigation controller tab bar item
     UIBarButtonItem *chapterAndBookmarkButton = [[UIBarButtonItem alloc] initWithTitle:@"Show" style:UIBarButtonItemStylePlain target:self action:@selector(showChaptersAndBookmarks:)];
@@ -95,17 +72,27 @@ static ABAudioPlayerViewController *sharedController;
         url = [url URLByAppendingPathComponent:@"Default Bookmark Database"];
         // url is now "<Documents Directory>/Default Bookmark Database"
         self.bookmarkDatabase = [[UIManagedDocument alloc] initWithFileURL:url]; // setter will create this for us on disk
-        // show album art
-        if (self.appDelegate.audioPlayer.artwork) {
-             UIImage *artworkImage = [self.appDelegate.audioPlayer.artwork imageWithSize: CGSizeMake (120, 120)];
-             [self.albumArt setImage:artworkImage];
-        }
+        
         
     }
-    
+
     [self initBookmarkDatabase];
     
     
+    
+    // use AVPlayer to play the tracks because applicationplayer in MPMediaPlayer does not play in the background
+    // resume playback whenever this reappears
+    if (!self.appDelegate.audioPlayer.playing) {
+        [self.appDelegate.audioPlayer playTrack];
+    }
+    // we set the current label to the title of the album
+    self.albumTitle.text = self.appDelegate.audioPlayer.albumTitle;
+    
+    // show album art
+    if (self.appDelegate.audioPlayer.artwork) {
+        UIImage *artworkImage = [self.appDelegate.audioPlayer.artwork imageWithSize: CGSizeMake (120, 120)];
+        [self.albumArt setImage:artworkImage];
+    }
 }
 
 // prepare after the view appears, user might see a incomplete view but we can use activity indicator to tell the user that we
@@ -159,12 +146,7 @@ static ABAudioPlayerViewController *sharedController;
     }
 }
 
-- (IBAction)progressBar:(OBSlider *)sender {
-    NSLog(@"progress bar value has been changed");
-    double newTime = sender.value * [self.appDelegate.audioPlayer.playbackDuration doubleValue];
-    CMTime newCMTime = CMTimeMake(newTime*self.appDelegate.audioPlayer.currentTime.timescale, self.appDelegate.audioPlayer.currentTime.timescale);
-    [self.appDelegate.audioPlayer seekToTime:newCMTime];
-}
+
 
 - (IBAction)sleepTimer {
     self.modalPresentationStyle = UIModalPresentationCurrentContext;
@@ -288,6 +270,31 @@ static ABAudioPlayerViewController *sharedController;
     }
     [self bookmarkWithTrackInfo:trackInfo];
 }
+#pragma mark - add periodic time observer to update progressbar
+- (void) addPeriodicTimeObserverToUpdateProgressBar {
+    // we add a playback observer to the player and make our UISlider to act like a progress bar
+    CMTime interval = CMTimeMake(50, 100);// 3fps
+    self.playbackObserver = [self.appDelegate.audioPlayer addPeriodicTimeObserverForInterval:interval queue:dispatch_get_current_queue() usingBlock: ^(CMTime time) {
+        // playbackDuration is an NSNumber object representing time in seconds
+        if ([self.appDelegate.audioPlayer.playbackDuration intValue]>0) {
+            // CMtime is just a struct that contains value, timescale and other variables
+            // get the current time in seconds by deviding value by timescale
+            double currentTime = (double)(self.appDelegate.audioPlayer.currentTime.value/self.appDelegate.audioPlayer.currentTime.timescale);
+            double normalizedTime =  currentTime / [self.appDelegate.audioPlayer.playbackDuration doubleValue];
+            //NSLog(@"the current time is %f", currentTime);
+            //NSLog(@"the playback duration is %f", self.appDelegate.audioPlayer.playbackDuration.doubleValue);
+            
+            //NSLog(@"the normalized time is %f", normalizedTime);
+            if (!self.progressBar.isTouched) {
+                self.progressBar.value = normalizedTime;
+            }
+        }
+    }];
+}
+
+- (void) removePeriodicTimeObserverToUpdateProgressBar {
+    [self.appDelegate.audioPlayer removeTimeObserver:self.playbackObserver];
+}
 
 #pragma mark - progres bar
 - (IBAction)progressBarTouchDown:(OBSlider *)sender {
@@ -296,13 +303,24 @@ static ABAudioPlayerViewController *sharedController;
 }
 
 - (IBAction)progressBarTouchUpInside:(OBSlider *)sender {
-    self.progressBar.isTouched = NO;
-    NSLog(@"just released the bar");
+    if (self.progressBar.isTouched) {
+        self.progressBar.isTouched = NO;
+        NSLog(@"just released the bar upinside");
+    }
 }
 
 - (IBAction)progressBarTouchUpOutside:(OBSlider *)sender {
-    self.progressBar.isTouched = NO;
-    NSLog(@"just released the bar");
+    if (self.progressBar.isTouched) {
+        self.progressBar.isTouched = NO;
+        NSLog(@"just released the bar upoutside");
+    }
+}
+
+- (IBAction)progressBar:(OBSlider *)sender {
+    NSLog(@"progress bar value has been changed");
+    double newTime = sender.value * [self.appDelegate.audioPlayer.playbackDuration doubleValue];
+    CMTime newCMTime = CMTimeMake(newTime*self.appDelegate.audioPlayer.currentTime.timescale, self.appDelegate.audioPlayer.currentTime.timescale);
+    [self.appDelegate.audioPlayer seekToTime:newCMTime];
 }
 
 #pragma mark - chapter and bookmarks

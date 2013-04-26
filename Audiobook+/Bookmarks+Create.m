@@ -50,6 +50,7 @@
         bookmark.bookmarkTrackTime = bookmarkTrackTime;
         bookmark.bookmarkTime = bookmarkTime;
         bookmark.fromBook = [Book bookWithAlbumTitle:albumTitle inManagedObjectContext:context];
+        bookmark.bookmarkTitle = [NSString stringWithFormat:@"Chapter %i",[trackNumber integerValue]];
     } else {
         NSLog(@"bookmark already exists");
         bookmark = [matches lastObject];
