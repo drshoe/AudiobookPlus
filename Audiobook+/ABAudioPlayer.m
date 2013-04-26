@@ -168,6 +168,10 @@
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&setCategoryError];
     [[AVAudioSession sharedInstance] setActive:YES error:&setActiveError];
     NSLog(@"play");
+    // set pause at the end if this is the last track
+    if ([self.currentTrackNumber integerValue] == [self.allMPMediaPlayerItems count]-1) {
+        self.actionAtItemEnd = AVPlayerActionAtItemEndPause;
+    }
 }
 
 - (void)pauseTrack {
@@ -182,7 +186,7 @@
     // need to check the time first
     // we need to check the time first, if the user has been listening to this particular track for more than 5 seconds
     if ([self.currentTrackNumber intValue]>0) {
-        self.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+        self.actionAtItemEnd = AVPlayerActionAtItemEndAdvance;
         int currentTrackNumber = [self.currentTrackNumber intValue];
         currentTrackNumber--;
         self.currentTrackNumber = [NSNumber numberWithInt:currentTrackNumber];
@@ -250,14 +254,19 @@
 
 - (void)playerItemDidReachEndAndPrepareToAdvance:(NSNotification *)notification {
     //[self seekToTime:kCMTimeZero];
-    if ([self.currentTrackNumber integerValue]+1 == [self.allMPMediaPlayerItems count]-1) {
-        // if we are at the last track, we should throw a warning and stop
-        self.actionAtItemEnd = AVPlayerActionAtItemEndPause;
+    if ([self.currentTrackNumber integerValue]+1 <= [self.allMPMediaPlayerItems count]-1) {
+        // if we are about to play the last track, we should set the action at the end of next track to be pause
+        if ([self.currentTrackNumber integerValue]+1 == [self.allMPMediaPlayerItems count]-1) {
+            self.actionAtItemEnd = AVPlayerActionAtItemEndPause;
+        }
+        else {
+            //update now playinginfo to the next track
+            self.actionAtItemEnd = AVPlayerActionAtItemEndAdvance;
+        }
+        [self newTrackNumber:[NSNumber numberWithInteger:[self.currentTrackNumber integerValue]+1]];
     }
     else {
-        //update now playinginfo to the next track
-        self.actionAtItemEnd = AVPlayerActionAtItemEndAdvance;
-        [self newTrackNumber:[NSNumber numberWithInteger:[self.currentTrackNumber integerValue]+1]];
+        [self pauseTrack];
     }
 }
 
