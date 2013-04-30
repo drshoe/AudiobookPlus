@@ -31,6 +31,7 @@
 @property (nonatomic, strong) NSTimer *timer;
 
 
+
 - (id)initWithItems: (NSArray *)avPlayerItems withCurrentTrackNumber: (NSNumber *)currentTrackNumber;
 - (NSArray *)avPlayerItemsFromMPMediaItems:(NSArray *) tracks;
 - (void)playTrack;

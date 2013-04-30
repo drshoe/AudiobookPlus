@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		020F918E17303BB400151F4C /* Chapters+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 020F918D17303BB400151F4C /* Chapters+Create.m */; };
+		020F91941730413D00151F4C /* Bookmarks.m in Sources */ = {isa = PBXBuildFile; fileRef = 020F91931730413D00151F4C /* Bookmarks.m */; };
+		020F91971730749D00151F4C /* Chapters.m in Sources */ = {isa = PBXBuildFile; fileRef = 020F91961730749C00151F4C /* Chapters.m */; };
 		021F938D171C9C8500C7583F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02CEACAD15C7424E001BC80A /* CoreMedia.framework */; };
 		021F9390171CA3D800C7583F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 021F938F171CA3D800C7583F /* Default-568h@2x.png */; };
 		021F9398171CA4F400C7583F /* JADebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021F9393171CA4F400C7583F /* JADebugViewController.m */; };
@@ -46,7 +49,6 @@
 		02CEACD615C84B8B001BC80A /* ABTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02CEACD515C84B8B001BC80A /* ABTimerViewController.m */; };
 		02E3774715C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02E3774515C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld */; };
 		02E3774B15C33A6F0019BB77 /* ABBookmarkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E3774A15C33A6F0019BB77 /* ABBookmarkTableViewController.m */; };
-		02F3D47A15CC5C0E00823552 /* Bookmarks.m in Sources */ = {isa = PBXBuildFile; fileRef = 02F3D47915CC5C0E00823552 /* Bookmarks.m */; };
 		02FBB6881725B07200495C11 /* AlbumTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02FBB6871725B07200495C11 /* AlbumTableCell.m */; };
 		02FBB68C1725B0B400495C11 /* AlbumTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02FBB68B1725B0B400495C11 /* AlbumTableCell.xib */; };
 		02FBB6911725BFFA00495C11 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02FBB68F1725BFFA00495C11 /* SettingsViewController.m */; };
@@ -56,6 +58,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		020F918C17303BB400151F4C /* Chapters+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Chapters+Create.h"; sourceTree = "<group>"; };
+		020F918D17303BB400151F4C /* Chapters+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Chapters+Create.m"; sourceTree = "<group>"; };
+		020F91921730413D00151F4C /* Bookmarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmarks.h; sourceTree = "<group>"; };
+		020F91931730413D00151F4C /* Bookmarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmarks.m; sourceTree = "<group>"; };
+		020F91951730749C00151F4C /* Chapters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chapters.h; sourceTree = "<group>"; };
+		020F91961730749C00151F4C /* Chapters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chapters.m; sourceTree = "<group>"; };
 		021F938F171CA3D800C7583F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		021F9392171CA4F400C7583F /* JADebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JADebugViewController.h; path = JASidePanel/JADebugViewController.h; sourceTree = "<group>"; };
 		021F9393171CA4F400C7583F /* JADebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JADebugViewController.m; path = JASidePanel/JADebugViewController.m; sourceTree = "<group>"; };
@@ -119,8 +127,6 @@
 		02E3774615C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ABBookmarkDataModel.xcdatamodel; sourceTree = "<group>"; };
 		02E3774915C33A6F0019BB77 /* ABBookmarkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABBookmarkTableViewController.h; sourceTree = "<group>"; };
 		02E3774A15C33A6F0019BB77 /* ABBookmarkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABBookmarkTableViewController.m; sourceTree = "<group>"; };
-		02F3D47815CC5C0E00823552 /* Bookmarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmarks.h; sourceTree = "<group>"; };
-		02F3D47915CC5C0E00823552 /* Bookmarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmarks.m; sourceTree = "<group>"; };
 		02FBB6861725B07200495C11 /* AlbumTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumTableCell.h; path = Cells/AlbumTableCell.h; sourceTree = "<group>"; };
 		02FBB6871725B07200495C11 /* AlbumTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumTableCell.m; path = Cells/AlbumTableCell.m; sourceTree = "<group>"; };
 		02FBB68B1725B0B400495C11 /* AlbumTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AlbumTableCell.xib; path = Cells/AlbumTableCell.xib; sourceTree = "<group>"; };
@@ -211,12 +217,16 @@
 				02720E9A15CAF10F00268E1A /* CoreDataTableViewController.h */,
 				02720E9B15CAF10F00268E1A /* CoreDataTableViewController.m */,
 				02E3774515C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld */,
+				020F91951730749C00151F4C /* Chapters.h */,
+				020F91961730749C00151F4C /* Chapters.m */,
+				020F91921730413D00151F4C /* Bookmarks.h */,
+				020F91931730413D00151F4C /* Bookmarks.m */,
+				020F918C17303BB400151F4C /* Chapters+Create.h */,
+				020F918D17303BB400151F4C /* Chapters+Create.m */,
 				02720EB215CB240300268E1A /* Book+Create.h */,
 				02720EB315CB240300268E1A /* Book+Create.m */,
 				02720EA915CB14CF00268E1A /* Bookmarks+Create.h */,
 				02720EAA15CB14CF00268E1A /* Bookmarks+Create.m */,
-				02F3D47815CC5C0E00823552 /* Bookmarks.h */,
-				02F3D47915CC5C0E00823552 /* Bookmarks.m */,
 				02720EAC15CB23E600268E1A /* Book.h */,
 				02720EAD15CB23E600268E1A /* Book.m */,
 			);
@@ -424,7 +434,6 @@
 				02720EAB15CB14CF00268E1A /* Bookmarks+Create.m in Sources */,
 				02720EAE15CB23E600268E1A /* Book.m in Sources */,
 				02720EB415CB240300268E1A /* Book+Create.m in Sources */,
-				02F3D47A15CC5C0E00823552 /* Bookmarks.m in Sources */,
 				021F9398171CA4F400C7583F /* JADebugViewController.m in Sources */,
 				021F9399171CA4F400C7583F /* JASidePanelController.m in Sources */,
 				021F939A171CA4F400C7583F /* UIViewController+JASidePanel.m in Sources */,
@@ -435,6 +444,9 @@
 				02FBB6911725BFFA00495C11 /* SettingsViewController.m in Sources */,
 				02FBB6971727191200495C11 /* ChapterAndBookmarkViewController.m in Sources */,
 				02C2AFF1172ADABF003EE7AD /* UIViewController+KNSemiModal.m in Sources */,
+				020F918E17303BB400151F4C /* Chapters+Create.m in Sources */,
+				020F91941730413D00151F4C /* Bookmarks.m in Sources */,
+				020F91971730749D00151F4C /* Chapters.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

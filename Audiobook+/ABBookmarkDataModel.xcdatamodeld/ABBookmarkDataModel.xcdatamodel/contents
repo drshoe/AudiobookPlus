@@ -3,21 +3,33 @@
     <entity name="Book" representedClassName="Book" syncable="YES">
         <attribute name="albumTitle" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="bookmarks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Bookmarks" inverseName="fromBook" inverseEntity="Bookmarks" syncable="YES"/>
+        <relationship name="chapters" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Chapters" inverseName="fromBook" inverseEntity="Chapters" syncable="YES"/>
     </entity>
     <entity name="Bookmarks" representedClassName="Bookmarks" syncable="YES">
         <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bookmarkTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="bookmarkTitle" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="bookmarkTrackTime" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="bookmarkTrackTime" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
         <attribute name="discNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="playbackDuration" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="playbackDuration" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
         <attribute name="trackNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="trackTitle" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="fromBook" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="bookmarks" inverseEntity="Book" syncable="YES"/>
     </entity>
+    <entity name="Chapters" representedClassName="Chapters" syncable="YES">
+        <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="discNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastPlayedTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastPlayedTrackTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="playbackDuration" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
+        <attribute name="trackNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="trackTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="fromBook" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="chapters" inverseEntity="Book" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Book" positionX="0" positionY="0" width="128" height="73"/>
+        <element name="Book" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Bookmarks" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="Chapters" positionX="160" positionY="192" width="128" height="165"/>
     </elements>
 </model>

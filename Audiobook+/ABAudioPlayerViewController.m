@@ -15,6 +15,7 @@
 #import "ChapterAndBookmarkViewController.h"
 #import "UIViewController+KNSemiModal.h"
 #import "CenterPanelViewController.h"
+#import "Chapters+Create.h"
 
 @interface ABAudioPlayerViewController ()
 @end
@@ -63,7 +64,6 @@ static ABAudioPlayerViewController *sharedController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self addPeriodicTimeObserverToUpdateProgressBar];
     
     // set navigation controller tab bar item
@@ -83,8 +83,6 @@ static ABAudioPlayerViewController *sharedController;
         url = [url URLByAppendingPathComponent:@"Default Bookmark Database"];
         // url is now "<Documents Directory>/Default Bookmark Database"
         self.bookmarkDatabase = [[UIManagedDocument alloc] initWithFileURL:url]; // setter will create this for us on disk
-        
-        
     }
 
     [self initBookmarkDatabase];
@@ -356,6 +354,79 @@ static ABAudioPlayerViewController *sharedController;
     
     bookmarkViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:bookmarkViewController animated:YES completion:nil];
+}
+
+#pragma mark - last played data and timer
+- (void) startLastPlayedTimer:(NSTimeInterval) seconds{
+    // the timer is started in audioplayer class
+    NSLog(@"start timer is called");
+    [self.lastPlayedTimer invalidate];
+    self.lastPlayedTimer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(saveLastPlayedProgressForCurrentTrack) userInfo:nil
+                                                           repeats:YES];
+}
+
+- (void) stopLastPlayedTimer {
+    if (self.lastPlayedTimer != nil){
+        [self.lastPlayedTimer invalidate];
+    }
+}
+
+- (void) saveLastPlayedProgressForCurrentTrack {
+    NSDictionary *trackInfo = [self.appDelegate.audioPlayer getTrackInfo];
+    
+    if (!self.bookmarkDatabase) {  // for demo purposes, we'll create a default database if none is set
+        NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+        url = [url URLByAppendingPathComponent:@"Default Bookmark Database"];
+        // url is now "<Documents Directory>/Default Photo Database"
+        self.bookmarkDatabase = [[UIManagedDocument alloc] initWithFileURL:url]; // setter will create this for us on disk
+    }
+    [self chapterWithTrackInfo:trackInfo];
+}
+
+- (void)chapterWithTrackInfo:(NSDictionary *)trackInfo
+{
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.bookmarkDatabase.fileURL path]]) {
+        // does not exist on disk, so create it
+        [self.bookmarkDatabase saveToURL:self.bookmarkDatabase.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
+            // creation successful, now let's populate the database
+            if (success) {
+                [self.bookmarkDatabase.managedObjectContext performBlock:^{
+                    [Chapters chapterWithTrackInfo:trackInfo inManagedObjectContext:self.bookmarkDatabase.managedObjectContext];
+                    [self.bookmarkDatabase saveToURL:self.bookmarkDatabase.fileURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:NULL];
+                }];
+            }
+            else {
+                NSLog(@"failed to create the database");
+            }
+            
+            
+        }];
+    } else if (self.bookmarkDatabase.documentState == UIDocumentStateClosed) {
+        // exists on disk, but we need to open it
+        [self.bookmarkDatabase openWithCompletionHandler:^(BOOL success) {
+            // open successful, lets populate the database
+            if (success) {
+                NSLog (@"successfully opened the database");
+                [self.bookmarkDatabase.managedObjectContext performBlock:^{
+                    [Chapters chapterWithTrackInfo:trackInfo inManagedObjectContext:self.bookmarkDatabase.managedObjectContext];
+                    [self.bookmarkDatabase saveToURL:self.bookmarkDatabase.fileURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:NULL];
+                }];
+            }
+            else {
+                NSLog (@"failed to open the database");
+            }
+            
+        }];
+        
+    } else if (self.bookmarkDatabase.documentState == UIDocumentStateNormal) {
+        // already open and ready to use
+        NSLog (@"database was already opened");
+        [self.bookmarkDatabase.managedObjectContext performBlock:^{
+            [Chapters chapterWithTrackInfo:trackInfo inManagedObjectContext:self.bookmarkDatabase.managedObjectContext];
+            [self.bookmarkDatabase saveToURL:self.bookmarkDatabase.fileURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:NULL];
+            
+        }];
+    }
 }
 
 @end

@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "ABAppDelegate.h"
+#import "CoreDataTableViewController.h"
 
-@interface ABIpodTrackTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ABIpodTrackTableViewController : CoreDataTableViewController
 
-@property (nonatomic, strong) IBOutlet UITableView *theTableView;
 @property (nonatomic, copy) NSArray *tracks;
 @property (nonatomic, weak) ABAppDelegate *appDelegate;
 @property (nonatomic, copy) NSString *albumTitle;
+
+@property (nonatomic, strong) UIManagedDocument *bookmarkDatabase;
 
 @end
 

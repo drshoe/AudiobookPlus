@@ -12,6 +12,7 @@
 
 
 #endif
+#define kTimer10s 10
 typedef enum {
     SidePanelButtonTypeNowPlaying,
     SidePanelButtonTypeLibrary,
@@ -29,3 +30,5 @@ typedef enum {
     ChapterAndBookmarkTableBookmarkSelected,
     ChapterAndBookmarkTableChapterSelected
 } ChapterAndBookmarkTable;
+
+

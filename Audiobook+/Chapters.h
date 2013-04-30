@@ -1,5 +1,5 @@
 //
-//  Bookmarks.h
+//  Chapters.h
 //  Audiobook+
 //
 //  Created by Sheng Xu on 2013-04-30.
@@ -11,17 +11,15 @@
 
 @class Book;
 
-@interface Bookmarks : NSManagedObject
+@interface Chapters : NSManagedObject
 
 @property (nonatomic, retain) NSString * artist;
-@property (nonatomic, retain) NSDate * bookmarkTime;
-@property (nonatomic, retain) NSString * bookmarkTitle;
-@property (nonatomic, retain) NSNumber * bookmarkTrackTime;
 @property (nonatomic, retain) NSNumber * discNumber;
-@property (nonatomic, retain) NSString * note;
 @property (nonatomic, retain) NSNumber * playbackDuration;
 @property (nonatomic, retain) NSNumber * trackNumber;
 @property (nonatomic, retain) NSString * trackTitle;
+@property (nonatomic, retain) NSDate * lastPlayedTime;
+@property (nonatomic, retain) NSNumber * lastPlayedTrackTime;
 @property (nonatomic, retain) Book *fromBook;
 
 @end

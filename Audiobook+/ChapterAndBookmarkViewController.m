@@ -166,7 +166,7 @@ static ChapterAndBookmarkViewController *sharedController;
 - (void)setTrackInfo:(NSDictionary *)trackInfo
 {
     _trackInfo = trackInfo;
-    self.title = [self.trackInfo objectForKey:@"albumTitle"];
+    //self.title = [self.trackInfo objectForKey:@"albumTitle"];
     [self setupFetchedResultsController];
 }
 

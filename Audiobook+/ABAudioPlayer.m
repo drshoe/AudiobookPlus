@@ -7,7 +7,7 @@
 //
 
 #import "ABAudioPlayer.h"
-
+#import "ABAudioPlayerViewController.h"
 
 @implementation ABAudioPlayer
 @synthesize currentTrackNumber = _currentTrackNumber;
@@ -172,6 +172,8 @@
     if ([self.currentTrackNumber integerValue] == [self.allMPMediaPlayerItems count]-1) {
         self.actionAtItemEnd = AVPlayerActionAtItemEndPause;
     }
+    // start timer to save the last played time to database
+    [[ABAudioPlayerViewController sharedController] startLastPlayedTimer:kTimer10s];
 }
 
 - (void)pauseTrack {
@@ -180,6 +182,7 @@
     NSLog(@"paused");
     NSError *setActiveError = nil;
     [[AVAudioSession sharedInstance] setActive:NO error:&setActiveError];
+    [[ABAudioPlayerViewController sharedController] stopLastPlayedTimer];
 }
 
 - (void)previousTrack {
@@ -220,6 +223,7 @@
     }
 }
 
+#pragma mark - timers
 - (void) startTimer:(NSTimeInterval) seconds{
     NSLog(@"start timer is called");
     self.timer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(pauseTrack) userInfo:nil

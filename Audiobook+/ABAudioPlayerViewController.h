@@ -34,6 +34,8 @@
 @property (nonatomic, strong) ABTimerViewController *timerViewController;
 @property (nonatomic, assign) BOOL shouldResumePlaying;
 
+@property (nonatomic, strong) NSTimer *lastPlayedTimer;
+
 + (ABAudioPlayerViewController *) sharedController;
 - (IBAction)playOrPause;
 - (IBAction)next;
@@ -45,6 +47,8 @@
 - (IBAction)progressBarTouchDown:(OBSlider *)sender;
 - (IBAction)progressBarTouchUpInside:(OBSlider *)sender;
 - (IBAction)progressBarTouchUpOutside:(OBSlider *)sender;
+- (void) startLastPlayedTimer:(NSTimeInterval) seconds;
+- (void) stopLastPlayedTimer;
 
 
 @end
