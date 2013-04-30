@@ -49,6 +49,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self initDataBase];
+}
+
+#pragma mark - init coredata database
+
+- (void) initDataBase {
     if (!self.bookmarkDatabase) {  // for demo purposes, we'll create a default database if none is set
         NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
         url = [url URLByAppendingPathComponent:@"Default Bookmark Database"];
@@ -57,8 +63,6 @@
     }
     [self initBookmarkDatabase];
 }
-
-#pragma mark - init coredata database
 - (void) initBookmarkDatabase {
     if (![[NSFileManager defaultManager] fileExistsAtPath:[self.bookmarkDatabase.fileURL path]]) {
         // does not exist on disk, so create it
@@ -66,6 +70,7 @@
             // creation successful, now let's populate the database
             if (success) {
                 NSLog(@"create database");
+                [self.theTableView reloadData];
             }
             else {
                 NSLog(@"failed to create the database");
@@ -79,6 +84,7 @@
             // open successful, lets populate the database
             if (success) {
                 NSLog (@"successfully opened the database");
+                [self.theTableView reloadData];
             }
             else {
                 NSLog (@"failed to open the database");
@@ -153,15 +159,6 @@
     cell.titleLabel.text = trackTitle;
     cell.detailedLabel.text = [[partText stringByAppendingString:trackText] stringByAppendingString:discText];
     
-    
-    // get the progress from database
-    
-    if (!self.bookmarkDatabase) {  // for demo purposes, we'll create a default database if none is set
-        NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-        url = [url URLByAppendingPathComponent:@"Default Bookmark Database"];
-        // url is now "<Documents Directory>/Default Photo Database"
-        self.bookmarkDatabase = [[UIManagedDocument alloc] initWithFileURL:url]; // setter will create this for us on disk
-    }
     Chapters *chapter = [self getChapterWithTrack:track inManagedObjectContext:self.bookmarkDatabase.managedObjectContext];
     // lastPlayedTrackTime is normalized time
     [cell.progressView setProgress:[chapter.lastPlayedTrackTime doubleValue]];
