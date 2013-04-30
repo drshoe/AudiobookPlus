@@ -41,6 +41,7 @@
 		02AC7CAA15B799FB007B574D /* ABAudioPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AC7CA915B799FB007B574D /* ABAudioPlayerViewController.m */; };
 		02AC7CAC15B85FE8007B574D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AC7CAB15B85FE8007B574D /* AVFoundation.framework */; };
 		02AC7CB115B9E4CE007B574D /* ABAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AC7CB015B9E4CE007B574D /* ABAudioPlayer.m */; };
+		02C2AFF1172ADABF003EE7AD /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C2AFF0172ADABF003EE7AD /* UIViewController+KNSemiModal.m */; };
 		02CEACB215C78275001BC80A /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 02CEACB115C78275001BC80A /* OBSlider.m */; };
 		02CEACD615C84B8B001BC80A /* ABTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02CEACD515C84B8B001BC80A /* ABTimerViewController.m */; };
 		02E3774715C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02E3774515C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld */; };
@@ -108,6 +109,8 @@
 		02AC7CAD15B85FEF007B574D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		02AC7CAF15B9E4CE007B574D /* ABAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABAudioPlayer.h; sourceTree = "<group>"; };
 		02AC7CB015B9E4CE007B574D /* ABAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABAudioPlayer.m; sourceTree = "<group>"; };
+		02C2AFEF172ADABF003EE7AD /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+KNSemiModal.h"; path = "ModalManager/UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
+		02C2AFF0172ADABF003EE7AD /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+KNSemiModal.m"; path = "ModalManager/UIViewController+KNSemiModal.m"; sourceTree = "<group>"; };
 		02CEACAD15C7424E001BC80A /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		02CEACB015C78275001BC80A /* OBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSlider.h; sourceTree = "<group>"; };
 		02CEACB115C78275001BC80A /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
@@ -257,7 +260,6 @@
 		02AC7C7A15B702E5007B574D /* Audiobook+ */ = {
 			isa = PBXGroup;
 			children = (
-				02FBB6851725B03C00495C11 /* Cells */,
 				02AC7C8315B702E5007B574D /* ABAppDelegate.h */,
 				02AC7C8415B702E5007B574D /* ABAppDelegate.m */,
 				02AC7CAF15B9E4CE007B574D /* ABAudioPlayer.h */,
@@ -265,6 +267,8 @@
 				021F93AE171CF21400C7583F /* Library */,
 				02FBB68D1725BFCC00495C11 /* Settings */,
 				021F93A5171CA56D00C7583F /* Containers */,
+				02FBB6851725B03C00495C11 /* Cells */,
+				02C2AFEE172ADA77003EE7AD /* ModalManager */,
 				021F9391171CA4E100C7583F /* SidePanelController */,
 				0234020F15C3432A0094C77C /* Data Model */,
 				02AC7C7B15B702E5007B574D /* Supporting Files */,
@@ -284,6 +288,15 @@
 				021F93A6171CA5CE00C7583F /* Common.h */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		02C2AFEE172ADA77003EE7AD /* ModalManager */ = {
+			isa = PBXGroup;
+			children = (
+				02C2AFEF172ADABF003EE7AD /* UIViewController+KNSemiModal.h */,
+				02C2AFF0172ADABF003EE7AD /* UIViewController+KNSemiModal.m */,
+			);
+			name = ModalManager;
 			sourceTree = "<group>";
 		};
 		02FBB6851725B03C00495C11 /* Cells */ = {
@@ -421,6 +434,7 @@
 				02FBB6881725B07200495C11 /* AlbumTableCell.m in Sources */,
 				02FBB6911725BFFA00495C11 /* SettingsViewController.m in Sources */,
 				02FBB6971727191200495C11 /* ChapterAndBookmarkViewController.m in Sources */,
+				02C2AFF1172ADABF003EE7AD /* UIViewController+KNSemiModal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

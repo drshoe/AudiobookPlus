@@ -13,7 +13,7 @@
 #import <CoreMedia/CoreMedia.h>
 #import "ABAppDelegate.h"
 #import "OBSlider.h"
-
+#import "ABTimerViewController.h"
 
 @interface ABAudioPlayerViewController : UIViewController
 //@property (nonatomic, strong) MPMediaItemCollection *trackCollection;
@@ -30,6 +30,8 @@
 
 @property (nonatomic, strong) UIManagedDocument *bookmarkDatabase;
 @property (nonatomic, copy) NSArray *tracks;
+
+@property (nonatomic, strong) ABTimerViewController *timerViewController;
 
 + (ABAudioPlayerViewController *) sharedController;
 - (IBAction)playOrPause;

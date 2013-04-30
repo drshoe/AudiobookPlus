@@ -7,7 +7,7 @@
 //
 
 #import "ABTimerViewController.h"
-
+#import "UIViewController+KNSemiModal.h"
 @interface ABTimerViewController ()
 
 @end
@@ -123,7 +123,10 @@
 }
 
 - (IBAction)cancel:(UIBarButtonItem *)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    // [self dismissModalViewControllerAnimated:YES];
+    // Here's how to call dismiss button on the parent ViewController
+    // be careful with view hierarchy
+    [self dismissSemiModalView];
 }
 
 - (IBAction)done:(UIBarButtonItem *)sender {
@@ -136,6 +139,7 @@
         [appDelegate.audioPlayer startTimer:self.seconds];
         NSLog(@"timer is set");
     }
-    [self dismissModalViewControllerAnimated:YES];
+    //[self dismissModalViewControllerAnimated:YES];
+    [self dismissSemiModalView];
 }
 @end

@@ -10,9 +10,11 @@
 #import "Bookmarks.h"
 #import "Book.h"
 #import "Bookmarks+Create.h"
-#import "ABTimerViewController.h"
+
 #import "ABBookmarkTableViewController.h"
 #import "ChapterAndBookmarkViewController.h"
+#import "UIViewController+KNSemiModal.h"
+#import "CenterPanelViewController.h"
 
 @interface ABAudioPlayerViewController ()
 @end
@@ -29,11 +31,19 @@ static ABAudioPlayerViewController *sharedController;
 //@synthesize sleepTimerPicker = _sleepTimerPicker;
 //@synthesize datePickerView = _datePickerView;
 
+
 + (ABAudioPlayerViewController *)sharedController {
     if (!sharedController) {
         sharedController = [[ABAudioPlayerViewController alloc] init];
     }
     return sharedController;
+}
+
+- (ABTimerViewController *) timerViewController {
+    if (!_timerViewController) {
+        _timerViewController = [[ABTimerViewController alloc] init];
+    }
+    return _timerViewController;
 }
 - (ABAppDelegate *) appDelegate {
     if (!_appDelegate) {
@@ -149,9 +159,12 @@ static ABAudioPlayerViewController *sharedController;
 
 
 - (IBAction)sleepTimer {
-    self.modalPresentationStyle = UIModalPresentationCurrentContext;
-    ABTimerViewController *timer = [[ABTimerViewController alloc] init];
-    [self presentModalViewController:timer animated:YES];
+    //self.modalPresentationStyle = UIModalPresentationCurrentContext;
+    //[self presentModalViewController:timer animated:YES];
+    [self presentSemiViewController:self.timerViewController withOptions:@{
+     KNSemiModalOptionKeys.pushParentBack : @(NO),
+     KNSemiModalOptionKeys.parentAlpha : @(0.8)
+	 }];
 }
 
 - (IBAction)fasterTimes {
