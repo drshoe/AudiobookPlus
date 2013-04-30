@@ -150,6 +150,7 @@ static ChapterAndBookmarkViewController *sharedController;
         return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
     }
     else {
+        NSLog(@"-------there are %i tracks",self.tracks.count);
         return [self.tracks count];
     }
 }
@@ -268,6 +269,7 @@ static ChapterAndBookmarkViewController *sharedController;
         double newTime = bookmarkTrackTime * [self.appDelegate.audioPlayer.playbackDuration doubleValue];
         CMTime newCMTime = CMTimeMake(newTime*self.appDelegate.audioPlayer.currentTime.timescale, self.appDelegate.audioPlayer.currentTime.timescale);
         [self.appDelegate.audioPlayer seekToTime:newCMTime];
+        [self.appDelegate.audioPlayer playTrack];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     else {

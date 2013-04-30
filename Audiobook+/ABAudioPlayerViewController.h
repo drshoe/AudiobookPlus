@@ -32,6 +32,7 @@
 @property (nonatomic, copy) NSArray *tracks;
 
 @property (nonatomic, strong) ABTimerViewController *timerViewController;
+@property (nonatomic, assign) BOOL shouldResumePlaying;
 
 + (ABAudioPlayerViewController *) sharedController;
 - (IBAction)playOrPause;

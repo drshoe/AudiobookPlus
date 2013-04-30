@@ -10,6 +10,7 @@
 #import "ABAudioPlayerViewController.h"
 #import "ABAppDelegate.h"
 #import "ABAudioPlayer.h"
+#import "AlbumTableCell.h"
 @interface ABIpodTrackTableViewController ()
 @end
 
@@ -75,10 +76,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"IpodTrackCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    AlbumTableCell *cell;
+    cell = (AlbumTableCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AlbumTableCell" owner:self options:nil];
+        cell = (AlbumTableCell *)[nib objectAtIndex:0];
     }
+    // Configure the cell...
+    cell.indexPath = indexPath;
     
     // Configure the cell...
     // get the title of the track
@@ -87,12 +92,22 @@
     NSString *trackNumber = [[track valueForProperty:MPMediaItemPropertyAlbumTrackNumber] stringValue];
     NSString *discNumber = [[track valueForProperty:MPMediaItemPropertyDiscNumber] stringValue];
     NSString *discCount = [[track valueForProperty:MPMediaItemPropertyDiscCount] stringValue];
-    cell.textLabel.text = trackTitle;
+    
     NSString *trackText = [[@"Track " stringByAppendingString:trackNumber] stringByAppendingString:@" of "];
     NSString *discText = [[[@"Disc " stringByAppendingString:discNumber] stringByAppendingString:@" of "] stringByAppendingString:discCount];
+    MPMediaItemArtwork *artwork = [track valueForProperty:MPMediaItemPropertyArtwork];
+    UIImage *artworkImage = [artwork imageWithSize:cell.albumArt.bounds.size];
     // we must add 1 because indexpath.row starts with 0
     NSString *partText = [[[@"Part " stringByAppendingString:[[NSNumber numberWithInt:indexPath.row+1] stringValue]] stringByAppendingString:@" of "] stringByAppendingString:[[NSNumber numberWithInt:self.tracks.count] stringValue]];
-    cell.detailTextLabel.text = [[partText stringByAppendingString:trackText] stringByAppendingString:discText];
+    if (artworkImage) {
+        // set the artwork image on the cell
+        cell.albumArt.image = artworkImage;
+    }
+    else {
+        // there is no artwork image
+    }
+    cell.titleLabel.text = trackTitle;
+    cell.detailedLabel.text = [[partText stringByAppendingString:trackText] stringByAppendingString:discText];
     return cell;
     
 }

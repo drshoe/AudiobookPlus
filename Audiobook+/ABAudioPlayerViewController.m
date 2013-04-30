@@ -63,12 +63,13 @@ static ABAudioPlayerViewController *sharedController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self addPeriodicTimeObserverToUpdateProgressBar];
     
     // set navigation controller tab bar item
     UIBarButtonItem *chapterAndBookmarkButton = [[UIBarButtonItem alloc] initWithTitle:@"Show" style:UIBarButtonItemStylePlain target:self action:@selector(showChaptersAndBookmarks:)];
     self.navigationItem.rightBarButtonItem = chapterAndBookmarkButton;
+    self.shouldResumePlaying = YES;
 }
 
 
@@ -87,14 +88,13 @@ static ABAudioPlayerViewController *sharedController;
     }
 
     [self initBookmarkDatabase];
-    
-    
-    
+
     // use AVPlayer to play the tracks because applicationplayer in MPMediaPlayer does not play in the background
     // resume playback whenever this reappears
-    if (!self.appDelegate.audioPlayer.playing) {
+    if (!self.appDelegate.audioPlayer.playing && self.shouldResumePlaying) {
         [self.appDelegate.audioPlayer playTrack];
     }
+    self.shouldResumePlaying = YES;
     // we set the current label to the title of the album
     self.albumTitle.text = self.appDelegate.audioPlayer.albumTitle;
     
@@ -338,16 +338,20 @@ static ABAudioPlayerViewController *sharedController;
 
 #pragma mark - chapter and bookmarks
 - (void) showChaptersAndBookmarks: (id) sender {
+    self.shouldResumePlaying = NO;
     NSDictionary *trackInfo = [self.appDelegate.audioPlayer getTrackInfo];
     NSLog(@"this segue is show bookmarks");
     NSString *albumTitle = self.appDelegate.audioPlayer.albumTitle;
     ChapterAndBookmarkViewController *bookmarkViewController = [ChapterAndBookmarkViewController sharedController];
     [bookmarkViewController setBookmarkDatabase:self.bookmarkDatabase];
     [bookmarkViewController setAlbumTitle:albumTitle];
+    
+    // setting chapters info, put this thing infront of track info to make sure self.tracks is updated before the tableview is reloaded
+    [bookmarkViewController setTracks:self.tracks];
+    
     [bookmarkViewController setTrackInfo:trackInfo];
     
-    // setting chapters info
-    [bookmarkViewController setTracks:self.tracks];
+    
 
     
     bookmarkViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;

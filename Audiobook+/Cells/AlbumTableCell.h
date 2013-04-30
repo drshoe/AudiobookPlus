@@ -15,6 +15,7 @@
 @property (nonatomic, strong) IBOutlet UIImageView *albumArt;
 @property (nonatomic, strong) IBOutlet UIProgressView *progressView;
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
+@property (nonatomic, strong) IBOutlet UILabel *detailedLabel;
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, assign) id <AlbumTableCellDelegate> delegate;
 @end
