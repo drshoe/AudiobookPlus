@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "AlbumTableCell.h"
-@interface ABIpodAlbumTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, AlbumTableCellDelegate> {
+@interface ABIpodAlbumTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     
 }
 @property (nonatomic, strong) IBOutlet UITableView *theTableView;
 @property (nonatomic, copy) NSArray *albums;
+@property (nonatomic, strong) NSTimer *reloadTimer;
 @end

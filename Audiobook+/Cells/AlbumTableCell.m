@@ -26,8 +26,9 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)accessoryButtonPressed:(id)sender {
-    [self.delegate accessoryButtonPressedAtIndexPath:self.indexPath];
+- (void) setIsNowPlaying:(BOOL)isNowPlaying {
+    _isNowPlaying = isNowPlaying;
+    [self.nowPlayingIcon setHidden:!_isNowPlaying];
 }
 
 @end

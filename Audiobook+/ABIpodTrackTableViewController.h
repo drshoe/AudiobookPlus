@@ -18,6 +18,7 @@
 @property (nonatomic, copy) NSString *albumTitle;
 
 @property (nonatomic, strong) UIManagedDocument *bookmarkDatabase;
+@property (nonatomic, strong) NSTimer *reloadTimer;
 
 @end
 

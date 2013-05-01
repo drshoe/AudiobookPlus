@@ -50,6 +50,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self initDataBase];
+    // reload the data every 10s to update the database
+    [self.theTableView reloadData];
+    [self startReloadTimer:kTimer10s];
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self stopReloadTimer];
 }
 
 #pragma mark - init coredata database
@@ -107,7 +115,24 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+#pragma mark - table reload timer
+- (void) startReloadTimer:(NSTimeInterval) seconds{
+    // the timer is started in audioplayer class
+    NSLog(@"start timer is called");
+    [self.reloadTimer invalidate];
+    self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(reloadTableView) userInfo:nil
+                                                           repeats:YES];
+}
 
+- (void) stopReloadTimer {
+    if (self.reloadTimer != nil){
+        [self.reloadTimer invalidate];
+    }
+}
+
+- (void) reloadTableView {
+    [self.theTableView reloadData];
+}
 #pragma mark - Table view data source
 
 
@@ -155,6 +180,7 @@
     }
     else {
         // there is no artwork image
+        cell.albumArt.image = nil;
     }
     cell.titleLabel.text = trackTitle;
     cell.detailedLabel.text = [[partText stringByAppendingString:trackText] stringByAppendingString:discText];
@@ -162,10 +188,18 @@
     Chapters *chapter = [self getChapterWithTrack:track inManagedObjectContext:self.bookmarkDatabase.managedObjectContext];
     // lastPlayedTrackTime is normalized time
     [cell.progressView setProgress:[chapter.lastPlayedTrackTime doubleValue]];
-    return cell;
     
+    // set the cell now playing indicator
+    if (self.appDelegate.audioPlayer.playing) {
+        cell.isNowPlaying = [self trackInfoForTrack:track matchesTrackInfo:[self.appDelegate.audioPlayer getTrackInfo]];
+    }
+    else {
+        cell.isNowPlaying = NO;
+    }
+    return cell;
 }
 
+#pragma mark - getter method for chapter entity
 - (Chapters *)getChapterWithTrack: (MPMediaItem *)track inManagedObjectContext: (NSManagedObjectContext*)context{
     Chapters *chapter = nil;
     
@@ -196,6 +230,30 @@
     return chapter;
 }
 
+#pragma mark - compare trackinfos to see if they are the same
+- (BOOL) trackInfoForTrack:(MPMediaItem *)track matchesTrackInfo:(NSDictionary *)trackInfo {
+    NSString *trackTitle = [track valueForProperty:MPMediaItemPropertyTitle];
+    NSString *albumTitle = [track valueForProperty:MPMediaItemPropertyAlbumTitle];
+    NSNumber *playbackDuration = [track valueForProperty:MPMediaItemPropertyPlaybackDuration];
+    NSNumber *trackNumber = [track valueForProperty:MPMediaItemPropertyAlbumTrackNumber];
+    NSNumber *discNumber = [track valueForProperty:MPMediaItemPropertyDiscNumber];
+    NSString *artist = [track valueForProperty:MPMediaItemPropertyArtist];
+    
+    NSString *trackTitle2 = [trackInfo objectForKey:@"trackTitle"];
+    NSString *albumTitle2 = [trackInfo objectForKey:@"albumTitle"];
+    NSNumber *playbackDuration2 = [trackInfo objectForKey:@"playbackDuration"];
+    NSNumber *trackNumber2 = [trackInfo objectForKey:@"trackNumber"];
+    NSNumber *discNumber2 = [trackInfo objectForKey:@"discNumber"];
+    NSString *artist2 = [trackInfo objectForKey:@"artist"];
+    
+    if ([trackTitle isEqualToString:trackTitle2] && [albumTitle isEqualToString:albumTitle2] && [playbackDuration integerValue] == [playbackDuration2 integerValue] && [trackNumber integerValue] == [trackNumber2 integerValue] && [discNumber integerValue] == [discNumber2 integerValue] && [artist isEqualToString:artist2]) {
+        // the track is now being played
+        return YES;
+    }
+    else {
+        return NO;
+    }
+}
 
 /*
 // Override to support conditional editing of the table view.

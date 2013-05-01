@@ -53,6 +53,18 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.theTableView reloadData];
+    [self startReloadTimer:kTimer10s];
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self stopReloadTimer];
+}
+
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -124,7 +136,14 @@
     // set the listening progress
     cell.progressView.progress = 0.3;
     
-    // set the cell's accessory type
+    // set the cell now playing indicator
+    ABAppDelegate *appDelegate = (ABAppDelegate *)[[UIApplication sharedApplication] delegate];
+    if (appDelegate.audioPlayer.playing) {
+        cell.isNowPlaying = [self albumInfoForAlbum:albumName matchesTrackInfo:[appDelegate.audioPlayer getTrackInfo]];
+    }
+    else {
+        cell.isNowPlaying = NO;
+    }
     return cell;
 }
 
@@ -195,9 +214,38 @@
     NSLog(@"tracks have been set");
 }
 
-#pragma mark - AlbumTableCell methods
-- (void)accessoryButtonPressedAtIndexPath:(NSIndexPath *)indexPath {
+#pragma mark - table reload timer
+- (void) startReloadTimer:(NSTimeInterval) seconds{
+    // the timer is started in audioplayer class
+    NSLog(@"start timer is called");
+    [self.reloadTimer invalidate];
+    self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(reloadTableView) userInfo:nil
+                                                       repeats:YES];
+}
+
+- (void) stopReloadTimer {
+    if (self.reloadTimer != nil){
+        [self.reloadTimer invalidate];
+    }
+}
+
+- (void) reloadTableView {
+    [self.theTableView reloadData];
+}
+
+- (BOOL) albumInfoForAlbum:(NSString *)albumTitle matchesTrackInfo:(NSDictionary *)trackInfo {
     
+    
+    NSString *albumTitle2 = [trackInfo objectForKey:@"albumTitle"];
+
+    
+    if ([albumTitle isEqualToString:albumTitle2]) {
+        // the track is now being played
+        return YES;
+    }
+    else {
+        return NO;
+    }
 }
 
 @end
