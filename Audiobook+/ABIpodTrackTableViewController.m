@@ -12,6 +12,7 @@
 #import "ABAudioPlayer.h"
 #import "AlbumTableCell.h"
 #import "Chapters+Create.h"
+ 
 @interface ABIpodTrackTableViewController ()
 @end
 
@@ -49,7 +50,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self initDataBase];
+    [DataManager sharedManager].delegate = self;
     // reload the data every 10s to update the database
     [self.theTableView reloadData];
     [self startReloadTimer:kTimer10s];
@@ -57,52 +58,9 @@
 
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [DataManager sharedManager].delegate = nil;
     [self stopReloadTimer];
 }
-
-#pragma mark - init coredata database
-
-- (void) initDataBase {
-    if (!self.bookmarkDatabase) {  // for demo purposes, we'll create a default database if none is set
-        NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-        url = [url URLByAppendingPathComponent:@"Default Bookmark Database"];
-        // url is now "<Documents Directory>/Default Photo Database"
-        self.bookmarkDatabase = [[UIManagedDocument alloc] initWithFileURL:url]; // setter will create this for us on disk
-    }
-    [self initBookmarkDatabase];
-}
-- (void) initBookmarkDatabase {
-    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.bookmarkDatabase.fileURL path]]) {
-        // does not exist on disk, so create it
-        [self.bookmarkDatabase saveToURL:self.bookmarkDatabase.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
-            // creation successful, now let's populate the database
-            if (success) {
-                NSLog(@"create database");
-                [self.theTableView reloadData];
-            }
-            else {
-                NSLog(@"failed to create the database");
-            }
-            
-            
-        }];
-    } else if (self.bookmarkDatabase.documentState == UIDocumentStateClosed) {
-        // exists on disk, but we need to open it
-        [self.bookmarkDatabase openWithCompletionHandler:^(BOOL success) {
-            // open successful, lets populate the database
-            if (success) {
-                NSLog (@"successfully opened the database");
-                [self.theTableView reloadData];
-            }
-            else {
-                NSLog (@"failed to open the database");
-            }
-            
-        }];
-    }
-    
-}
-
 
 - (void)viewDidUnload
 {
@@ -185,7 +143,8 @@
     cell.titleLabel.text = trackTitle;
     cell.detailedLabel.text = [[partText stringByAppendingString:trackText] stringByAppendingString:discText];
     
-    Chapters *chapter = [self getChapterWithTrack:track inManagedObjectContext:self.bookmarkDatabase.managedObjectContext];
+    // chapter could be nil if it was never initialized
+    Chapters *chapter = [[DataManager sharedManager] getChapterWithTrack:track];
     // lastPlayedTrackTime is normalized time
     [cell.progressView setProgress:[chapter.lastPlayedTrackTime doubleValue]];
     
@@ -197,37 +156,6 @@
         cell.isNowPlaying = NO;
     }
     return cell;
-}
-
-#pragma mark - getter method for chapter entity
-- (Chapters *)getChapterWithTrack: (MPMediaItem *)track inManagedObjectContext: (NSManagedObjectContext*)context{
-    Chapters *chapter = nil;
-    
-    NSString *trackTitle = [track valueForProperty:MPMediaItemPropertyTitle];
-    NSString *albumTitle = [track valueForProperty:MPMediaItemPropertyAlbumTitle];
-    NSNumber *playbackDuration = [track valueForProperty:MPMediaItemPropertyPlaybackDuration];
-    NSNumber *trackNumber = [track valueForProperty:MPMediaItemPropertyAlbumTrackNumber];
-    NSNumber *discNumber = [track valueForProperty:MPMediaItemPropertyDiscNumber];
-    NSString *artist = [track valueForProperty:MPMediaItemPropertyArtist];
-    
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Chapters"];
-    request.predicate = [NSPredicate predicateWithFormat:@"(trackTitle = %@) AND (fromBook.albumTitle = %@) AND (playbackDuration = %@) AND (trackNumber = %@) AND (discNumber = %@) AND (artist = %@)", trackTitle, albumTitle, playbackDuration, trackNumber, discNumber, artist];
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"trackTitle" ascending:YES];
-    request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    NSError *error = nil;
-    NSArray *matches = [context executeFetchRequest:request error:&error];
-    if (!matches || ([matches count] > 1)) {
-        NSLog(@"we have duplicate track last played info, error!");
-        // handle error
-    } else if ([matches count] == 0) {
-        NSLog(@"no last played info found for this track");
-        chapter = nil;
-    } else {
-        NSLog(@"found last played info");
-        chapter = [matches lastObject];
-    }
-    
-    return chapter;
 }
 
 #pragma mark - compare trackinfos to see if they are the same
@@ -337,6 +265,11 @@
     audioPlayerViewController.navigationItem.leftBarButtonItem = nil;
     audioPlayerViewController.navigationItem.hidesBackButton = NO;
     [self.navigationController pushViewController:audioPlayerViewController animated:YES];
+}
+
+#pragma mark - datamanager delegate
+- (void)didFinishedCreatingOrOpeningDatabase {
+    [self.theTableView reloadData];
 }
 
 @end

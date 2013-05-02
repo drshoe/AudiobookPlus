@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "AlbumTableCell.h"
-@interface ABIpodAlbumTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+#import "DataManager.h"
+@interface ABIpodAlbumTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, DataManagerDelegate> {
     
 }
 @property (nonatomic, strong) IBOutlet UITableView *theTableView;

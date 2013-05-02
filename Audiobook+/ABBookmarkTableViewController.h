@@ -10,14 +10,13 @@
 #import "CoreDataTableViewController.h"
 #import "Book.h"
 #import "ABAppDelegate.h"
-
-@interface ABBookmarkTableViewController : CoreDataTableViewController
+#import "DataManager.h"
+@interface ABBookmarkTableViewController : CoreDataTableViewController <DataManagerDelegate>
 
 // model is the core data database of bookmarks
 @property (nonatomic, copy) NSString *albumTitle;
 @property (nonatomic, copy) NSDictionary *trackInfo;
 //@property (nonatomic, retain) Book *book;
-@property (nonatomic, strong) UIManagedDocument *bookmarkDatabase;
 @property (nonatomic, weak) ABAppDelegate *appDelegate;
 
 +(ABBookmarkTableViewController *)sharedController;

@@ -16,7 +16,6 @@ static ABBookmarkTableViewController *sharedController;
 @implementation ABBookmarkTableViewController
 //@synthesize book = _book;
 @synthesize albumTitle = _albumTitle;
-@synthesize bookmarkDatabase = _bookmarkDatabase;
 @synthesize appDelegate = _appDelegate;
 
 +(ABBookmarkTableViewController *)sharedController {
@@ -53,45 +52,14 @@ static ABBookmarkTableViewController *sharedController;
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void) initBookmarkDatabase {
-    if (![[NSFileManager defaultManager] fileExistsAtPath:[self.bookmarkDatabase.fileURL path]]) {
-        // does not exist on disk, so create it
-        [self.bookmarkDatabase saveToURL:self.bookmarkDatabase.fileURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
-            // creation successful, now let's populate the database
-            if (success) {
-                NSLog(@"create database");
-            }
-            else {
-                NSLog(@"failed to create the database");
-            }
-            
-            
-        }];
-    } else if (self.bookmarkDatabase.documentState == UIDocumentStateClosed) {
-        // exists on disk, but we need to open it
-        [self.bookmarkDatabase openWithCompletionHandler:^(BOOL success) {
-            // open successful, lets populate the database
-            if (success) {
-                NSLog (@"successfully opened the database");
-            }
-            else {
-                NSLog (@"failed to open the database");
-            }
-            
-        }];
-    }
-    
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if (!self.bookmarkDatabase) {  // for demo purposes, we'll create a default database if none is set
-        NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-        url = [url URLByAppendingPathComponent:@"Default Bookmark Database"];
-        // url is now "<Documents Directory>/Default Photo Database"
-        self.bookmarkDatabase = [[UIManagedDocument alloc] initWithFileURL:url]; // setter will create this for us on disk
-    }
-    [self initBookmarkDatabase];
+    [DataManager sharedManager].delegate = self;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [DataManager sharedManager].delegate = nil;
 }
 
 - (void)viewDidUnload
@@ -126,7 +94,7 @@ static ABBookmarkTableViewController *sharedController;
     // if we have not initialized the managedObjectContext
     NSLog (@"initiating fetchresultcontroller");
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
-                                                                        managedObjectContext:self.bookmarkDatabase.managedObjectContext
+                                                                        managedObjectContext:[DataManager sharedManager].bookmarkDatabase.managedObjectContext
                                                                           sectionNameKeyPath:nil
                                                                                    cacheName:nil];
 }
@@ -224,6 +192,11 @@ static ABBookmarkTableViewController *sharedController;
 
 - (IBAction)back:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - datamanager delegate
+- (void)didFinishedCreatingOrOpeningDatabase {
+    [self.theTableView reloadData];
 }
 
 @end

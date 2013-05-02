@@ -8,7 +8,7 @@
 
 #import "ABIpodAlbumTableViewController.h"
 #import "ABIpodTrackTableViewController.h"
-
+#import "Chapters+Create.h"
 @interface ABIpodAlbumTableViewController ()
 
 @end
@@ -57,11 +57,13 @@
     [super viewWillAppear:animated];
     [self.theTableView reloadData];
     [self startReloadTimer:kTimer10s];
+    [DataManager sharedManager].delegate = self;
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self stopReloadTimer];
+    [DataManager sharedManager].delegate = nil;
 }
 
 
@@ -134,7 +136,8 @@
     NSLog(@"the name of the album is %@",albumName);
     
     // set the listening progress
-    cell.progressView.progress = 0.3;
+    NSDictionary *albumProgress = [self totalTimePlayedAndTotalPlaybackDurationOfTheAlbum:album];
+    cell.progressView.progress = [albumProgress[@"percentCompleted"] doubleValue];
     
     // set the cell now playing indicator
     ABAppDelegate *appDelegate = (ABAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -144,8 +147,11 @@
     else {
         cell.isNowPlaying = NO;
     }
+    
     return cell;
 }
+
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -246,6 +252,32 @@
     else {
         return NO;
     }
+}
+
+#pragma mark - find percentage completion of the album by adding individual tracks
+-(NSDictionary *) totalTimePlayedAndTotalPlaybackDurationOfTheAlbum: (MPMediaItemCollection *)album {
+    NSArray *tracks = [album items];
+    Chapters *chapter = nil;
+    NSTimeInterval totalPlaybackDuration = 0;
+    NSTimeInterval totalTimePlayed = 0;
+    for (MPMediaItem *track in tracks) {
+        NSNumber *playbackDuration = [track valueForProperty:MPMediaItemPropertyPlaybackDuration];
+        totalPlaybackDuration += [playbackDuration doubleValue];
+        
+        // get already played time
+        chapter = [[DataManager sharedManager]getChapterWithTrack:track];
+        totalTimePlayed += [chapter.lastPlayedTrackTime doubleValue]*[chapter.playbackDuration doubleValue];
+    }
+    double percent = totalTimePlayed/totalPlaybackDuration;
+    NSDictionary *result = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:totalTimePlayed],@"totalTimePlayed",[NSNumber numberWithDouble:totalPlaybackDuration],@"totalPlaybackDuration", [NSNumber numberWithDouble:percent],@"percentCompleted",nil];
+    return result;
+}
+
+
+
+#pragma mark - datamanager delegate
+- (void)didFinishedCreatingOrOpeningDatabase {
+    [self.theTableView reloadData];
 }
 
 @end

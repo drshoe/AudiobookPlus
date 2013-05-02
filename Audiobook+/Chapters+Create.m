@@ -37,10 +37,10 @@
     NSArray *matches = [context executeFetchRequest:request error:&error];
     
     if (!matches || ([matches count] > 1)) {
-        NSLog(@"we have duplicate bookmarks");
+        NSLog(@"we have duplicate chapter when creating");
         // handle error
     } else if ([matches count] == 0) {
-        NSLog(@"creating new bookmark");
+        NSLog(@"creating new chapter");
         chapter = [NSEntityDescription insertNewObjectForEntityForName:@"Chapters" inManagedObjectContext:context];
         chapter.trackTitle = trackTitle;
         chapter.playbackDuration = playbackDuration;
@@ -52,7 +52,7 @@
         chapter.fromBook = [Book bookWithAlbumTitle:albumTitle inManagedObjectContext:context];
         //chapter.bookmarkTitle = [NSString stringWithFormat:@"Chapter %i",[trackNumber integerValue]];
     } else {
-        NSLog(@"bookmark already exists");
+        NSLog(@"chapter already exists when creating");
         chapter = [matches lastObject];
         chapter.lastPlayedTrackTime = lastPlayedTrackTime;
         chapter.lastPlayedTime = lastPlayedTime;

@@ -252,7 +252,7 @@
     double normalizedTime =  currentTime / [self.playbackDuration doubleValue];
     [trackInfo setObject: [NSNumber numberWithFloat:normalizedTime] forKey:@"bookmarkTrackTime"];
     NSLog (@"trackInfo has been constructed");
-    NSLog (@"the trackInfo contains %@",trackInfo);
+    //NSLog (@"the trackInfo contains %@",trackInfo);
     return trackInfo;
 }
 

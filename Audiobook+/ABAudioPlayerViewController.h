@@ -14,8 +14,9 @@
 #import "ABAppDelegate.h"
 #import "OBSlider.h"
 #import "ABTimerViewController.h"
+#import "DataManager.h"
 
-@interface ABAudioPlayerViewController : UIViewController
+@interface ABAudioPlayerViewController : UIViewController <DataManagerDelegate>
 //@property (nonatomic, strong) MPMediaItemCollection *trackCollection;
 @property (nonatomic, weak) ABAppDelegate *appDelegate;
 @property (weak, nonatomic) IBOutlet OBSlider *progressBar;
@@ -27,8 +28,6 @@
 //@property (strong, nonatomic) IBOutlet TDDatePickerController* datePickerView;
 //@property (
 
-
-@property (nonatomic, strong) UIManagedDocument *bookmarkDatabase;
 @property (nonatomic, copy) NSArray *tracks;
 
 @property (nonatomic, strong) ABTimerViewController *timerViewController;
