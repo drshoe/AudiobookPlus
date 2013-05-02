@@ -225,7 +225,7 @@
 
 #pragma mark - timers
 - (void) startTimer:(NSTimeInterval) seconds{
-    NSLog(@"start timer is called");
+    NSLog(@"stop timer is called");
     self.timer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(pauseTrack) userInfo:nil
                                                          repeats:NO];
 }

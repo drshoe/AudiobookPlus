@@ -76,7 +76,7 @@
 #pragma mark - table reload timer
 - (void) startReloadTimer:(NSTimeInterval) seconds{
     // the timer is started in audioplayer class
-    NSLog(@"start timer is called");
+    NSLog(@"reload track table view timer is called");
     [self.reloadTimer invalidate];
     self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(reloadTableView) userInfo:nil
                                                            repeats:YES];

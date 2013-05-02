@@ -266,7 +266,7 @@ static ABAudioPlayerViewController *sharedController;
 #pragma mark - last played data and timer
 - (void) startLastPlayedTimer:(NSTimeInterval) seconds{
     // the timer is started in audioplayer class
-    NSLog(@"start timer is called");
+    NSLog(@"last played timer is called");
     [self.lastPlayedTimer invalidate];
     self.lastPlayedTimer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(saveLastPlayedProgressForCurrentTrack) userInfo:nil
                                                            repeats:YES];
