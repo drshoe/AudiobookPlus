@@ -16,6 +16,7 @@
 -(id)initWithRootViewController:(UIViewController *)rootViewController {
     //create the fake controller and set it as the root
     UIViewController *fakeController = [[UIViewController alloc] init];
+    fakeController.view.backgroundColor = [UIColor greenColor];
     if (self = [super initWithRootViewController:fakeController]) {
         self.fakeRootViewController = fakeController;
         //hide the back button on the perceived root

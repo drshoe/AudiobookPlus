@@ -1,14 +1,14 @@
 //
-//  AlbumTableCell.m
+//  ChapterCell.m
 //  Audiobook+
 //
-//  Created by Sheng Xu on 2013-04-22.
+//  Created by Sheng Xu on 2013-05-03.
 //
 //
 
-#import "AlbumTableCell.h"
+#import "ChapterCell.h"
 
-@implementation AlbumTableCell
+@implementation ChapterCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -29,10 +29,6 @@
 - (void) setIsNowPlaying:(BOOL)isNowPlaying {
     _isNowPlaying = isNowPlaying;
     [self.nowPlayingIcon setHidden:!_isNowPlaying];
-}
-
-- (void) setTimeLeft:(NSTimeInterval) timeLeft {
-    
 }
 
 @end

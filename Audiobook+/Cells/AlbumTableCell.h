@@ -18,4 +18,5 @@
 @property (nonatomic, assign) BOOL isNowPlaying;
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
+@property (nonatomic, strong) IBOutlet UILabel *timeLeftLabel;
 @end

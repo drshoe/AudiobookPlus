@@ -148,7 +148,25 @@
         cell.isNowPlaying = NO;
     }
     
+    // set time played and time remain
+    NSTimeInterval timeRemain = [albumProgress[@"totalPlaybackDuration"] doubleValue]-[albumProgress[@"totalTimePlayed"] doubleValue];
+    cell.timeLeftLabel.text = [self stringFromTimeInterval:timeRemain];
+    
     return cell;
+}
+
+#pragma mark - helper method to convert time interval to string
+- (NSString *)stringFromTimeInterval:(NSTimeInterval)interval {
+    NSInteger ti = (NSInteger)interval;
+    NSInteger seconds = ti % 60;
+    NSInteger minutes = (ti / 60) % 60;
+    NSInteger hours = (ti / 3600);
+    if (hours < 1) {
+        return [NSString stringWithFormat:@"%02i:%02i", minutes, seconds];
+    }
+    else {
+        return [NSString stringWithFormat:@"%02i:%02i:%02i", hours, minutes, seconds];
+    }
 }
 
 

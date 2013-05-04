@@ -17,7 +17,6 @@
 @property (nonatomic, weak) ABAppDelegate *appDelegate;
 @property (nonatomic, copy) NSString *albumTitle;
 @property (nonatomic, strong) NSTimer *reloadTimer;
-
 @end
 
 

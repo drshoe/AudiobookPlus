@@ -9,6 +9,7 @@
 #import "ChapterAndBookmarkViewController.h"
 #import "Bookmarks.h"
 #import "ABAudioPlayerViewController.h"
+#import "ChapterCell.h"
 @interface ChapterAndBookmarkViewController ()
 
 @end
@@ -155,10 +156,12 @@ static ChapterAndBookmarkViewController *sharedController;
         return cell;
     }
     else {
-        static NSString *CellIdentifier = @"IpodTrackCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        static NSString *CellIdentifier = @"IpodChapterCell";
+        ChapterCell *cell;
+        cell = (ChapterCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ChapterCell" owner:self options:nil];
+            cell = (ChapterCell *)[nib objectAtIndex:0];
         }
         
         // Configure the cell...
@@ -168,13 +171,47 @@ static ChapterAndBookmarkViewController *sharedController;
         NSString *trackNumber = [[track valueForProperty:MPMediaItemPropertyAlbumTrackNumber] stringValue];
         NSString *discNumber = [[track valueForProperty:MPMediaItemPropertyDiscNumber] stringValue];
         NSString *discCount = [[track valueForProperty:MPMediaItemPropertyDiscCount] stringValue];
-        cell.textLabel.text = trackTitle;
+        cell.titleLabel.text = trackTitle;
         NSString *trackText = [[@"Track " stringByAppendingString:trackNumber] stringByAppendingString:@" of "];
         NSString *discText = [[[@"Disc " stringByAppendingString:discNumber] stringByAppendingString:@" of "] stringByAppendingString:discCount];
         // we must add 1 because indexpath.row starts with 0
         NSString *partText = [[[@"Part " stringByAppendingString:[[NSNumber numberWithInt:indexPath.row+1] stringValue]] stringByAppendingString:@" of "] stringByAppendingString:[[NSNumber numberWithInt:self.tracks.count] stringValue]];
         cell.detailTextLabel.text = [[partText stringByAppendingString:trackText] stringByAppendingString:discText];
+        
+        // set the cell now playing indicator
+        if (self.appDelegate.audioPlayer.playing) {
+            cell.isNowPlaying = [self trackInfoForTrack:track matchesTrackInfo:[self.appDelegate.audioPlayer getTrackInfo]];
+        }
+        else {
+            cell.isNowPlaying = NO;
+        }
         return cell;
+
+    }
+}
+
+#pragma mark - compare trackinfos to see if they are the same
+- (BOOL) trackInfoForTrack:(MPMediaItem *)track matchesTrackInfo:(NSDictionary *)trackInfo {
+    NSString *trackTitle = [track valueForProperty:MPMediaItemPropertyTitle];
+    NSString *albumTitle = [track valueForProperty:MPMediaItemPropertyAlbumTitle];
+    NSNumber *playbackDuration = [track valueForProperty:MPMediaItemPropertyPlaybackDuration];
+    NSNumber *trackNumber = [track valueForProperty:MPMediaItemPropertyAlbumTrackNumber];
+    NSNumber *discNumber = [track valueForProperty:MPMediaItemPropertyDiscNumber];
+    NSString *artist = [track valueForProperty:MPMediaItemPropertyArtist];
+    
+    NSString *trackTitle2 = [trackInfo objectForKey:@"trackTitle"];
+    NSString *albumTitle2 = [trackInfo objectForKey:@"albumTitle"];
+    NSNumber *playbackDuration2 = [trackInfo objectForKey:@"playbackDuration"];
+    NSNumber *trackNumber2 = [trackInfo objectForKey:@"trackNumber"];
+    NSNumber *discNumber2 = [trackInfo objectForKey:@"discNumber"];
+    NSString *artist2 = [trackInfo objectForKey:@"artist"];
+    
+    if ([trackTitle isEqualToString:trackTitle2] && [albumTitle isEqualToString:albumTitle2] && [playbackDuration integerValue] == [playbackDuration2 integerValue] && [trackNumber integerValue] == [trackNumber2 integerValue] && [discNumber integerValue] == [discNumber2 integerValue] && [artist isEqualToString:artist2]) {
+        // the track is now being played
+        return YES;
+    }
+    else {
+        return NO;
     }
 }
 

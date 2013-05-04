@@ -21,6 +21,8 @@ static CenterPanelViewController *sharedController;
     if (!sharedController) {
         ABIpodAlbumTableViewController *albumTableViewController = [[ABIpodAlbumTableViewController alloc]init];
         sharedController = [[CenterPanelViewController alloc] initWithRootViewController:albumTableViewController];
+        sharedController.navigationBar.tintColor = [UIColor blackColor];
+        sharedController.navigationBar.translucent = YES;
     }
     return sharedController;
 }

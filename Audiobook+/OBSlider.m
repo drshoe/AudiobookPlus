@@ -116,6 +116,7 @@
             scrubbingSpeedChangePosIndex = [self.scrubbingSpeeds count];
         }
         self.scrubbingSpeed = [[self.scrubbingSpeeds objectAtIndex:scrubbingSpeedChangePosIndex - 1] floatValue];
+        NSLog(@"the scrubbing speed is %f", self.scrubbingSpeed);
         
         CGRect trackRect = [self trackRectForBounds:self.bounds];
         self.realPositionValue = self.realPositionValue + (self.maximumValue - self.minimumValue) * (trackingOffset / trackRect.size.width);

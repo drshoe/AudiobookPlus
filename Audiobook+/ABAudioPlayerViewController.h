@@ -35,6 +35,8 @@
 
 @property (nonatomic, strong) NSTimer *lastPlayedTimer;
 
+@property (nonatomic, strong) IBOutlet UILabel *timePlayed;
+@property (nonatomic, strong) IBOutlet UILabel *timeRemaining;
 + (ABAudioPlayerViewController *) sharedController;
 - (IBAction)playOrPause;
 - (IBAction)next;

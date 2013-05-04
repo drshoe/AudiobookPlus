@@ -202,16 +202,40 @@ static ABAudioPlayerViewController *sharedController;
             //NSLog(@"the current time is %f", currentTime);
             //NSLog(@"the playback duration is %f", self.appDelegate.audioPlayer.playbackDuration.doubleValue);
             
+            
+            
             //NSLog(@"the normalized time is %f", normalizedTime);
             if (!self.progressBar.isTouched) {
                 self.progressBar.value = normalizedTime;
+                
+                // set time played and time remain
+                NSTimeInterval timeRemain = [self.appDelegate.audioPlayer.playbackDuration doubleValue] - currentTime;
+                NSTimeInterval timePlayed = currentTime;
+                self.timePlayed.text = [self stringFromTimeInterval:timePlayed];
+                self.timeRemaining.text = [self stringFromTimeInterval:timeRemain];
             }
         }
     }];
 }
 
+
+
 - (void) removePeriodicTimeObserverToUpdateProgressBar {
     [self.appDelegate.audioPlayer removeTimeObserver:self.playbackObserver];
+}
+
+#pragma mark - helper method to convert time interval to string
+- (NSString *)stringFromTimeInterval:(NSTimeInterval)interval {
+    NSInteger ti = (NSInteger)interval;
+    NSInteger seconds = ti % 60;
+    NSInteger minutes = (ti / 60) % 60;
+    NSInteger hours = (ti / 3600);
+    if (hours < 1) {
+        return [NSString stringWithFormat:@"%02i:%02i", minutes, seconds];
+    }
+    else {
+        return [NSString stringWithFormat:@"%02i:%02i:%02i", hours, minutes, seconds];
+    }
 }
 
 #pragma mark - progres bar

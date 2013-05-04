@@ -303,7 +303,8 @@ static JASidePanelController *sharedController;
 }
 
 - (void)stylePanel:(UIView *)panel {
-    panel.layer.cornerRadius = 6.0f;
+    // set the panel corner radius to 0
+    panel.layer.cornerRadius = 0.0f;
     panel.clipsToBounds = YES;
 }
 
