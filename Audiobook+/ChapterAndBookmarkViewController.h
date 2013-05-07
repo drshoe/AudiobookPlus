@@ -10,6 +10,7 @@
 #import "CoreDataTableViewController.h"
 #import "ABAppDelegate.h"
 #import "DataManager.h"
+#import "BookmarkCell.h"
 @interface ChapterAndBookmarkViewController : CoreDataTableViewController <DataManagerDelegate>
 // model is the core data database of bookmarks
 @property (nonatomic, copy) NSString *albumTitle;
@@ -22,5 +23,7 @@
 @property (nonatomic, copy) NSArray *tracks;
 
 @property (nonatomic, assign) ChapterAndBookmarkTable selectedIndex;
+
+@property (nonatomic, strong) BookmarkCell *sampleBookmarkCell;
 +(ChapterAndBookmarkViewController *)sharedController;
 @end

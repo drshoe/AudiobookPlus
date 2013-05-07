@@ -50,6 +50,7 @@
         bookmark.bookmarkTrackTime = bookmarkTrackTime;
         bookmark.bookmarkTime = bookmarkTime;
         bookmark.fromBook = [Book bookWithAlbumTitle:albumTitle inManagedObjectContext:context];
+        //bookmark.note = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget urna orci. Aenean vel luctus quam. Integer mollis ante in neque tincidunt at vulputate lectus ultrices. Nunc vitae diam purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam elementum tempor neque, in volutpat magna vestibulum in. Cras vel lacus ligula. Proin enim turpis, sollicitudin vitae ultrices ac, venenatis nec mi. Integer sodales, felis non mollis fringilla, elit dolor placerat dolor, nec pulvinar nunc tellus eget erat. Integer porttitor elit a nulla ornare eleifend. Praesent laoreet, nibh et auctor interdum, neque odio ornare dolor, quis ultrices augue nulla id velit. Integer felis dui, molestie vitae malesuada nec, mollis et risus. Proin quis dui sed velit iaculis blandit et interdum metus.";
         bookmark.bookmarkTitle = [NSString stringWithFormat:@"Chapter %i",[trackNumber integerValue]];
     } else {
         NSLog(@"bookmark already exists");

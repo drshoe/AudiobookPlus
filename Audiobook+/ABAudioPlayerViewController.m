@@ -85,7 +85,7 @@ static ABAudioPlayerViewController *sharedController;
         [self.appDelegate.audioPlayer playTrack];
         [self saveLastPlayedProgressForCurrentTrack];
     }
-    self.shouldResumePlaying = YES;
+    self.shouldResumePlaying = NO;
     // we set the current label to the title of the album
     self.albumTitle.text = self.appDelegate.audioPlayer.albumTitle;
     

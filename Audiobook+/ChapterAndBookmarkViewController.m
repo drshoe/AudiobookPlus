@@ -10,6 +10,7 @@
 #import "Bookmarks.h"
 #import "ABAudioPlayerViewController.h"
 #import "ChapterCell.h"
+#import "BookmarkCell.h"
 @interface ChapterAndBookmarkViewController ()
 
 @end
@@ -54,6 +55,7 @@ static ChapterAndBookmarkViewController *sharedController;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.sampleBookmarkCell = [[BookmarkCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
 }
 
 
@@ -118,6 +120,7 @@ static ChapterAndBookmarkViewController *sharedController;
 {
     if (self.selectedIndex == ChapterAndBookmarkTableBookmarkSelected) {
         return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
+        NSLog(@"%i",[[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects]);
     }
     else {
         NSLog(@"-------there are %i tracks",self.tracks.count);
@@ -125,6 +128,17 @@ static ChapterAndBookmarkViewController *sharedController;
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.selectedIndex == ChapterAndBookmarkTableBookmarkSelected) {
+        //Bookmarks *bookmark = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        //return [BookmarkCell cellHeightForNote:bookmark.note andButton:self.sampleBookmarkCell.noteButton];
+        return 44;
+    }
+    else {
+        return 44;
+    }
+
+}
 /*
  - (void)setAlbumTitle:(NSString *)albumTitle
  {
@@ -145,16 +159,28 @@ static ChapterAndBookmarkViewController *sharedController;
     if (self.selectedIndex == ChapterAndBookmarkTableBookmarkSelected) {
         static NSString *CellIdentifier = @"Bookmarks Cell";
         
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        BookmarkCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"BookmarkCell" owner:self options:nil];
+            cell = (BookmarkCell *)[nib objectAtIndex:0];
         }
         // Configure the cell...
         // Configure the cell...
         NSLog(@"show bookmarks");
         Bookmarks *bookmark = [self.fetchedResultsController objectAtIndexPath:indexPath]; // ask NSFRC for the NSMO at the row in question
-        cell.textLabel.text = bookmark.bookmarkTitle;
-        cell.detailTextLabel.text = [bookmark.bookmarkTime description];
+        
+        // set chapter title
+        cell.chapterLabel.text = bookmark.trackTitle;
+        
+        // set bookmark date and time
+        [cell initDateLabel:bookmark.bookmarkTime];
+    
+        // set the time played
+        NSTimeInterval timeRemain = [bookmark.bookmarkTrackTime doubleValue] * [bookmark.playbackDuration doubleValue];
+        cell.progressLabel.text = [self stringFromTimeInterval:timeRemain];
+        
+        // set the note
+        cell.note = bookmark.note;
         return cell;
     }
     else {
@@ -191,6 +217,21 @@ static ChapterAndBookmarkViewController *sharedController;
 
     }
 }
+
+#pragma mark - helper method to convert time interval to string
+- (NSString *)stringFromTimeInterval:(NSTimeInterval)interval {
+    NSInteger ti = (NSInteger)interval;
+    NSInteger seconds = ti % 60;
+    NSInteger minutes = (ti / 60) % 60;
+    NSInteger hours = (ti / 3600);
+    if (hours < 1) {
+        return [NSString stringWithFormat:@"%02i:%02i", minutes, seconds];
+    }
+    else {
+        return [NSString stringWithFormat:@"%02i:%02i:%02i", hours, minutes, seconds];
+    }
+}
+
 
 #pragma mark - compare trackinfos to see if they are the same
 - (BOOL) trackInfoForTrack:(MPMediaItem *)track matchesTrackInfo:(NSDictionary *)trackInfo {
@@ -320,6 +361,11 @@ static ChapterAndBookmarkViewController *sharedController;
 
 #pragma mark - datamanager delegate
 - (void)didFinishedCreatingOrOpeningDatabase {
+    [self.theTableView reloadData];
+}
+
+#pragma mark - nsnotification
+- (void)reloadTableView {
     [self.theTableView reloadData];
 }
 

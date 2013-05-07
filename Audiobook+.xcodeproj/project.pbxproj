@@ -14,6 +14,8 @@
 		020F91A31731EF6A00151F4C /* Bookmarks.m in Sources */ = {isa = PBXBuildFile; fileRef = 020F91A21731EF6A00151F4C /* Bookmarks.m */; };
 		020F91A91734BC4200151F4C /* ChapterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 020F91A81734BC4200151F4C /* ChapterCell.m */; };
 		020F91AB1734BC6800151F4C /* ChapterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 020F91AA1734BC6800151F4C /* ChapterCell.xib */; };
+		020F91AE1739663400151F4C /* BookmarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 020F91AD1739663400151F4C /* BookmarkCell.m */; };
+		020F91B01739669500151F4C /* BookmarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 020F91AF1739669400151F4C /* BookmarkCell.xib */; };
 		021F938D171C9C8500C7583F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02CEACAD15C7424E001BC80A /* CoreMedia.framework */; };
 		021F9390171CA3D800C7583F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 021F938F171CA3D800C7583F /* Default-568h@2x.png */; };
 		021F9398171CA4F400C7583F /* JADebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021F9393171CA4F400C7583F /* JADebugViewController.m */; };
@@ -74,6 +76,9 @@
 		020F91A71734BC4200151F4C /* ChapterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChapterCell.h; path = Cells/ChapterCell.h; sourceTree = "<group>"; };
 		020F91A81734BC4200151F4C /* ChapterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChapterCell.m; path = Cells/ChapterCell.m; sourceTree = "<group>"; };
 		020F91AA1734BC6800151F4C /* ChapterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChapterCell.xib; path = Cells/ChapterCell.xib; sourceTree = "<group>"; };
+		020F91AC1739663300151F4C /* BookmarkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookmarkCell.h; path = Cells/BookmarkCell.h; sourceTree = "<group>"; };
+		020F91AD1739663400151F4C /* BookmarkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookmarkCell.m; path = Cells/BookmarkCell.m; sourceTree = "<group>"; };
+		020F91AF1739669400151F4C /* BookmarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookmarkCell.xib; path = Cells/BookmarkCell.xib; sourceTree = "<group>"; };
 		021F938F171CA3D800C7583F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		021F9392171CA4F400C7583F /* JADebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JADebugViewController.h; path = JASidePanel/JADebugViewController.h; sourceTree = "<group>"; };
 		021F9393171CA4F400C7583F /* JADebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JADebugViewController.m; path = JASidePanel/JADebugViewController.m; sourceTree = "<group>"; };
@@ -328,6 +333,9 @@
 				020F91A71734BC4200151F4C /* ChapterCell.h */,
 				020F91A81734BC4200151F4C /* ChapterCell.m */,
 				020F91AA1734BC6800151F4C /* ChapterCell.xib */,
+				020F91AC1739663300151F4C /* BookmarkCell.h */,
+				020F91AD1739663400151F4C /* BookmarkCell.m */,
+				020F91AF1739669400151F4C /* BookmarkCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -408,6 +416,7 @@
 				02FBB6921725BFFA00495C11 /* SettingsViewController.xib in Resources */,
 				02FBB6981727191200495C11 /* ChapterAndBookmarkViewController.xib in Resources */,
 				020F91AB1734BC6800151F4C /* ChapterCell.xib in Resources */,
+				020F91B01739669500151F4C /* BookmarkCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +472,7 @@
 				020F91A01731EF6900151F4C /* Chapters.m in Sources */,
 				020F91A31731EF6A00151F4C /* Bookmarks.m in Sources */,
 				020F91A91734BC4200151F4C /* ChapterCell.m in Sources */,
+				020F91AE1739663400151F4C /* BookmarkCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

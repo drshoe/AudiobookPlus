@@ -176,7 +176,7 @@
             track = [self.tracks objectAtIndex:self.nowPlayingIndexPath.row];
         }
         else {
-            track = [self.tracks objectAtIndex:self.nowPlayingIndexPath.row];
+            track = [self.tracks objectAtIndex:self.lastPlayedIndexPath.row];
         }
     }
     else {
@@ -227,6 +227,7 @@
         cell.timeLeftLabel.text = [self stringFromTimeInterval:timeRemain];
     }
     else {
+        // for the case if chapter is not initialized in the database yet. therefore the time remain is equal to the playbackduration of that track
         NSTimeInterval timeRemain = [[track valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
         cell.timeLeftLabel.text = [self stringFromTimeInterval:timeRemain];
     }
@@ -314,6 +315,7 @@
             currentTrackNumber = [NSNumber numberWithInteger:self.lastPlayedIndexPath.row];
         }
     }
+    Chapters *chapter = [[DataManager sharedManager] getChapterWithTrack:[self.tracks objectAtIndex:[currentTrackNumber integerValue]]];
     
     // set the currentList of tracks
     // set the player to nil to release it so we do not have multiple instances of the same player
@@ -327,6 +329,7 @@
             if ([self.appDelegate.audioPlayer.currentTrackNumber isEqualToNumber:currentTrackNumber]) {
                 //do nothing
                 NSLog(@"track is NOT changed");
+                chapter = nil;
             }
             // modify the queue with new track at the beginning of the queue
             else {
@@ -338,6 +341,7 @@
         else {
             NSLog(@"the album has been changed");
             [self.appDelegate.audioPlayer playNewAlbum:self.tracks withCurrentTrackNumber:currentTrackNumber];
+            // seek to last played position
         }
     }
     
@@ -346,6 +350,11 @@
     audioPlayerViewController.navigationItem.leftBarButtonItem = nil;
     audioPlayerViewController.navigationItem.hidesBackButton = NO;
     [self.navigationController pushViewController:audioPlayerViewController animated:YES];
+    if (chapter) {
+        double newTime = [chapter.lastPlayedTrackTime doubleValue] * [self.appDelegate.audioPlayer.playbackDuration doubleValue];
+        CMTime newCMTime = CMTimeMake(newTime*self.appDelegate.audioPlayer.currentTime.timescale, self.appDelegate.audioPlayer.currentTime.timescale);
+        [self.appDelegate.audioPlayer seekToTime:newCMTime];
+    }
 }
 
 #pragma mark - datamanager delegate
