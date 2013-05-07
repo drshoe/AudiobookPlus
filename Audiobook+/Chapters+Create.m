@@ -38,6 +38,10 @@
     
     if (!matches || ([matches count] > 1)) {
         NSLog(@"we have duplicate chapter when creating");
+        chapter = [matches lastObject];
+        chapter.lastPlayedTrackTime = lastPlayedTrackTime;
+        chapter.lastPlayedTime = lastPlayedTime;
+        [context deleteObject:[matches objectAtIndex:0]];
         // handle error
     } else if ([matches count] == 0) {
         NSLog(@"creating new chapter");

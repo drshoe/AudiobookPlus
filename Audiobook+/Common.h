@@ -12,7 +12,10 @@
 
 
 #endif
-#define kTimer10s 10
+#define kTimer10s 1
+#define kTimer5s 5
+
+#define kAudioBookDidChangeNotification @"AudiobookPlayerDidChangeChapterNotification"
 typedef enum {
     SidePanelButtonTypeNowPlaying,
     SidePanelButtonTypeLibrary,

@@ -40,6 +40,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -50,16 +51,26 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    // find the last play indexPath if it exists
+    [self updateLastPlayedAndNowPlayingStatus];
     [DataManager sharedManager].delegate = self;
     // reload the data every 10s to update the database
     [self.theTableView reloadData];
-    [self startReloadTimer:kTimer10s];
+    [self startReloadTimer:kTimer5s];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewAndUpdateStatus) name:kAudioBookDidChangeNotification object:nil];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    // [self.theTableView scrollToRowAtIndexPath:self.lastPlayedIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [DataManager sharedManager].delegate = nil;
     [self stopReloadTimer];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kAudioBookDidChangeNotification object:nil];
+    
 }
 
 - (void)viewDidUnload
@@ -88,22 +99,61 @@
     }
 }
 
-- (void) reloadTableView {
+- (void) reloadTableViewAndUpdateStatus {
+    [self updateLastPlayedAndNowPlayingStatus];
     [self.theTableView reloadData];
+}
+
+- (void) reloadTableView {
+    if (self.appDelegate.audioPlayer.playing) {
+        [self.theTableView reloadData];
+    }
 }
 #pragma mark - Table view data source
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        if (self.nowPlayingIndexPath) {
+            return @"Now Playing";
+        }
+        else if (self.lastPlayedIndexPath) {
+            return @"Last Played";
+        }
+        else {
+            return nil;
+        }
+    }
+    else {
+        return @"Parts";
+    }
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    if (self.nowPlayingIndexPath || self.lastPlayedIndexPath) {
+        return 2;
+    }
+    else {
+        return 1;
+    }
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSLog(@"there are %i number of tracks",[self.tracks count]);
-    return self.tracks.count;
+    if (section == 0) {
+        if (self.nowPlayingIndexPath || self.lastPlayedIndexPath) {
+            return 1;
+        }
+        else {
+            return self.tracks.count;
+        }
+    }
+    else {
+        return self.tracks.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -120,7 +170,18 @@
     
     // Configure the cell...
     // get the title of the track
-    MPMediaItem *track = [self.tracks objectAtIndex:indexPath.row];
+    MPMediaItem *track;
+    if (indexPath.section == 0 && (self.nowPlayingIndexPath || self.lastPlayedIndexPath)) {
+        if (self.nowPlayingIndexPath) {
+            track = [self.tracks objectAtIndex:self.nowPlayingIndexPath.row];
+        }
+        else {
+            track = [self.tracks objectAtIndex:self.nowPlayingIndexPath.row];
+        }
+    }
+    else {
+        track = [self.tracks objectAtIndex:indexPath.row];
+    }
     NSString *trackTitle = [track valueForProperty:MPMediaItemPropertyTitle];
     NSString *trackNumber = [[track valueForProperty:MPMediaItemPropertyAlbumTrackNumber] stringValue];
     NSString *discNumber = [[track valueForProperty:MPMediaItemPropertyDiscNumber] stringValue];
@@ -149,12 +210,16 @@
     [cell.progressView setProgress:[chapter.lastPlayedTrackTime doubleValue]];
     
     // set the cell now playing indicator
-    if (self.appDelegate.audioPlayer.playing) {
-        cell.isNowPlaying = [self trackInfoForTrack:track matchesTrackInfo:[self.appDelegate.audioPlayer getTrackInfo]];
-    }
-    else {
-        cell.isNowPlaying = NO;
-    }
+    //if (self.appDelegate.audioPlayer.playing) {
+        BOOL isNowPlaying = [[DataManager sharedManager] trackInfoForTrack:track matchesTrackInfo:[self.appDelegate.audioPlayer getTrackInfo]];
+        cell.isNowPlaying = isNowPlaying;
+    /*if (isNowPlaying) {
+        [self.theTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    }*/
+    //}
+    //else {
+    //    cell.isNowPlaying = NO;
+    //}
     
     // set time played and time remain
     if (chapter) {
@@ -166,6 +231,13 @@
         cell.timeLeftLabel.text = [self stringFromTimeInterval:timeRemain];
     }
     
+    // set last played indicator
+    /*
+    if (![self.appDelegate.audioPlayer.albumTitle isEqualToString: self.albumTitle]) {
+        if (self.lastPlayedIndexPath && indexPath.row == self.lastPlayedIndexPath.row) {
+            cell.isLastPlayed = YES;
+        }
+    }*/
     return cell;
 }
 
@@ -180,31 +252,6 @@
     }
     else {
         return [NSString stringWithFormat:@"%02i:%02i:%02i", hours, minutes, seconds];
-    }
-}
-
-#pragma mark - compare trackinfos to see if they are the same
-- (BOOL) trackInfoForTrack:(MPMediaItem *)track matchesTrackInfo:(NSDictionary *)trackInfo {
-    NSString *trackTitle = [track valueForProperty:MPMediaItemPropertyTitle];
-    NSString *albumTitle = [track valueForProperty:MPMediaItemPropertyAlbumTitle];
-    NSNumber *playbackDuration = [track valueForProperty:MPMediaItemPropertyPlaybackDuration];
-    NSNumber *trackNumber = [track valueForProperty:MPMediaItemPropertyAlbumTrackNumber];
-    NSNumber *discNumber = [track valueForProperty:MPMediaItemPropertyDiscNumber];
-    NSString *artist = [track valueForProperty:MPMediaItemPropertyArtist];
-    
-    NSString *trackTitle2 = [trackInfo objectForKey:@"trackTitle"];
-    NSString *albumTitle2 = [trackInfo objectForKey:@"albumTitle"];
-    NSNumber *playbackDuration2 = [trackInfo objectForKey:@"playbackDuration"];
-    NSNumber *trackNumber2 = [trackInfo objectForKey:@"trackNumber"];
-    NSNumber *discNumber2 = [trackInfo objectForKey:@"discNumber"];
-    NSString *artist2 = [trackInfo objectForKey:@"artist"];
-    
-    if ([trackTitle isEqualToString:trackTitle2] && [albumTitle isEqualToString:albumTitle2] && [playbackDuration integerValue] == [playbackDuration2 integerValue] && [trackNumber integerValue] == [trackNumber2 integerValue] && [discNumber integerValue] == [discNumber2 integerValue] && [artist isEqualToString:artist2]) {
-        // the track is now being played
-        return YES;
-    }
-    else {
-        return NO;
     }
 }
 
@@ -259,6 +306,15 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     NSNumber *currentTrackNumber = [NSNumber numberWithInteger:indexPath.row];
+    if (indexPath.section == 0 && (self.lastPlayedIndexPath || self.nowPlayingIndexPath)) {
+        if (self.nowPlayingIndexPath) {
+            currentTrackNumber = [NSNumber numberWithInteger:self.nowPlayingIndexPath.row];
+        }
+        else if (self.lastPlayedIndexPath) {
+            currentTrackNumber = [NSNumber numberWithInteger:self.lastPlayedIndexPath.row];
+        }
+    }
+    
     // set the currentList of tracks
     // set the player to nil to release it so we do not have multiple instances of the same player
     if (!self.appDelegate.audioPlayer) {
@@ -295,6 +351,15 @@
 #pragma mark - datamanager delegate
 - (void)didFinishedCreatingOrOpeningDatabase {
     [self.theTableView reloadData];
+}
+
+#pragma mark - update last played or now playing status
+- (void) updateLastPlayedAndNowPlayingStatus {
+    self.lastPlayedIndexPath = [[DataManager sharedManager] indexPathForLastPlayedTrackForTracks:self.tracks inAlbum:self.albumTitle];
+    self.nowPlayingIndexPath = [[DataManager sharedManager] indexPathForNowPlayingTrackForTracks:self.tracks inAlbum:self.albumTitle];
+    if (self.nowPlayingIndexPath) {
+        self.lastPlayedIndexPath = nil;
+    }
 }
 
 @end

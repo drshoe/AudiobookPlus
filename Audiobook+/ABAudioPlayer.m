@@ -143,6 +143,8 @@
         [nowPlayingInfo setObject:title forKey:MPMediaItemPropertyTitle];
     }
     nowPlayingInfoCentre.nowPlayingInfo = nowPlayingInfo;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAudioBookDidChangeNotification object:nil];
 }
 
 - (void)playTrack {
@@ -268,6 +270,7 @@
             self.actionAtItemEnd = AVPlayerActionAtItemEndAdvance;
         }
         [self newTrackNumber:[NSNumber numberWithInteger:[self.currentTrackNumber integerValue]+1]];
+
     }
     else {
         [self pauseTrack];

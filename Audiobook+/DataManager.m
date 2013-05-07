@@ -8,6 +8,8 @@
 
 #import "DataManager.h"
 #import "Bookmarks+Create.h"
+#import "Book+Create.h"
+#import "ABAppDelegate.h"
 
 static DataManager *sharedManager;
 @implementation DataManager
@@ -187,6 +189,8 @@ static DataManager *sharedManager;
     if (!matches || ([matches count] > 1)) {
         NSLog(@"we have duplicate track last played info, error!");
         // handle error
+        chapter = [matches lastObject];
+        [self.bookmarkDatabase.managedObjectContext deleteObject:[matches objectAtIndex:0]];
     } else if ([matches count] == 0) {
         NSLog(@"no last played info found for this track");
         chapter = nil;
@@ -198,6 +202,108 @@ static DataManager *sharedManager;
     return chapter;
 }
 
+- (Chapters *)lastPlayedChapterForAlbumTitle:(NSString *)albumTitle {
+    Chapters *chapter = nil;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Chapters"];
+    request.predicate = [NSPredicate predicateWithFormat:@"(fromBook.albumTitle = %@)",albumTitle];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"lastPlayedTime" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    NSError *error = nil;
+    NSArray *matches = [self.bookmarkDatabase.managedObjectContext executeFetchRequest:request error:&error];
+    chapter = [matches lastObject];
+    return chapter;
+}
+
+#pragma mark - compare trackinfos to see if they are the same
+- (BOOL) trackInfoForTrack:(MPMediaItem *)track matchesTrackInfo:(NSDictionary *)trackInfo {
+    NSString *trackTitle = [track valueForProperty:MPMediaItemPropertyTitle];
+    NSString *albumTitle = [track valueForProperty:MPMediaItemPropertyAlbumTitle];
+    NSNumber *playbackDuration = [track valueForProperty:MPMediaItemPropertyPlaybackDuration];
+    NSNumber *trackNumber = [track valueForProperty:MPMediaItemPropertyAlbumTrackNumber];
+    NSNumber *discNumber = [track valueForProperty:MPMediaItemPropertyDiscNumber];
+    NSString *artist = [track valueForProperty:MPMediaItemPropertyArtist];
+    
+    NSString *trackTitle2 = [trackInfo objectForKey:@"trackTitle"];
+    NSString *albumTitle2 = [trackInfo objectForKey:@"albumTitle"];
+    NSNumber *playbackDuration2 = [trackInfo objectForKey:@"playbackDuration"];
+    NSNumber *trackNumber2 = [trackInfo objectForKey:@"trackNumber"];
+    NSNumber *discNumber2 = [trackInfo objectForKey:@"discNumber"];
+    NSString *artist2 = [trackInfo objectForKey:@"artist"];
+    
+    if ([trackTitle isEqualToString:trackTitle2] && [albumTitle isEqualToString:albumTitle2] && [playbackDuration integerValue] == [playbackDuration2 integerValue] && [trackNumber integerValue] == [trackNumber2 integerValue] && [discNumber integerValue] == [discNumber2 integerValue] && [artist isEqualToString:artist2]) {
+        // the track is now being played
+        return YES;
+    }
+    else {
+        return NO;
+    }
+}
+
+- (BOOL) trackInfoForTrack:(MPMediaItem *)track matchesChapterInfo:(Chapters *)chapter {
+    NSString *trackTitle = [track valueForProperty:MPMediaItemPropertyTitle];
+    NSString *albumTitle = [track valueForProperty:MPMediaItemPropertyAlbumTitle];
+    NSNumber *playbackDuration = [track valueForProperty:MPMediaItemPropertyPlaybackDuration];
+    NSNumber *trackNumber = [track valueForProperty:MPMediaItemPropertyAlbumTrackNumber];
+    NSNumber *discNumber = [track valueForProperty:MPMediaItemPropertyDiscNumber];
+    NSString *artist = [track valueForProperty:MPMediaItemPropertyArtist];
+    
+    NSString *trackTitle2 = chapter.trackTitle;
+    NSString *albumTitle2 = chapter.fromBook.albumTitle;
+    NSNumber *playbackDuration2 = chapter.playbackDuration;
+    NSNumber *trackNumber2 = chapter.trackNumber;
+    NSNumber *discNumber2 = chapter.discNumber;
+    NSString *artist2 = chapter.artist;
+    
+    // we make sure chapter is not nil
+    if (chapter && [trackTitle isEqualToString:trackTitle2] && [albumTitle isEqualToString:albumTitle2] && [playbackDuration integerValue] == [playbackDuration2 integerValue] && [trackNumber integerValue] == [trackNumber2 integerValue] && [discNumber integerValue] == [discNumber2 integerValue] && [artist isEqualToString:artist2]) {
+        // the track is now being played
+        return YES;
+    }
+    else {
+        return NO;
+    }
+}
+
+- (BOOL) isLastPlayedTrack:(MPMediaItem *)track forAlbum:(NSString *)albumTitle {
+    return [self trackInfoForTrack:track matchesChapterInfo:[self lastPlayedChapterForAlbumTitle:albumTitle]];
+}
+
+- (NSIndexPath *)indexPathForLastPlayedTrackForTracks: (NSArray *)tracks inAlbum: (NSString *)albumTitle {
+    NSInteger row = -1;
+    NSInteger counter = 0;
+    for (MPMediaItem *track in tracks) {
+        if ([self isLastPlayedTrack:track forAlbum:albumTitle]) {
+            row = counter;
+            break;
+        }
+        counter ++;
+    }
+    if (row != -1) {
+        return [NSIndexPath indexPathForRow:row inSection:0];
+    }
+    else {
+        return nil;
+    }
+}
+
+- (NSIndexPath *)indexPathForNowPlayingTrackForTracks: (NSArray *)tracks inAlbum: (NSString *)albumTitle {
+    NSInteger row = -1;
+    NSInteger counter = 0;
+    ABAppDelegate *appDelegate = (ABAppDelegate *)[[UIApplication sharedApplication] delegate];
+    for (MPMediaItem *track in tracks) {
+        if ([self trackInfoForTrack:track matchesTrackInfo:[appDelegate.audioPlayer getTrackInfo]]) {
+            row = counter;
+            break;
+        }
+        counter ++;
+    }
+    if (row != -1) {
+        return [NSIndexPath indexPathForRow:row inSection:0];
+    }
+    else {
+        return nil;
+    }
+}
 
 
 @end

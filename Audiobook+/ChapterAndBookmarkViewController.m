@@ -60,10 +60,12 @@ static ChapterAndBookmarkViewController *sharedController;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [DataManager sharedManager].delegate = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:kAudioBookDidChangeNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [DataManager sharedManager].delegate = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kAudioBookDidChangeNotification object:nil];
 }
 - (void)viewDidUnload
 {

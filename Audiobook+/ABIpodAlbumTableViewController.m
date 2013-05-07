@@ -56,7 +56,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.theTableView reloadData];
-    [self startReloadTimer:kTimer10s];
+    [self startReloadTimer:kTimer5s];
     [DataManager sharedManager].delegate = self;
 }
 
@@ -141,12 +141,12 @@
     
     // set the cell now playing indicator
     ABAppDelegate *appDelegate = (ABAppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (appDelegate.audioPlayer.playing) {
+    //if (appDelegate.audioPlayer.playing) {
         cell.isNowPlaying = [self albumInfoForAlbum:albumName matchesTrackInfo:[appDelegate.audioPlayer getTrackInfo]];
-    }
-    else {
-        cell.isNowPlaying = NO;
-    }
+    //}
+    //else {
+    //    cell.isNowPlaying = NO;
+    //}
     
     // set time played and time remain
     NSTimeInterval timeRemain = [albumProgress[@"totalPlaybackDuration"] doubleValue]-[albumProgress[@"totalTimePlayed"] doubleValue];

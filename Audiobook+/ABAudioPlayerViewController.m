@@ -83,6 +83,7 @@ static ABAudioPlayerViewController *sharedController;
     // resume playback whenever this reappears
     if (!self.appDelegate.audioPlayer.playing && self.shouldResumePlaying) {
         [self.appDelegate.audioPlayer playTrack];
+        [self saveLastPlayedProgressForCurrentTrack];
     }
     self.shouldResumePlaying = YES;
     // we set the current label to the title of the album
@@ -93,11 +94,14 @@ static ABAudioPlayerViewController *sharedController;
         UIImage *artworkImage = [self.appDelegate.audioPlayer.artwork imageWithSize: CGSizeMake (120, 120)];
         [self.albumArt setImage:artworkImage];
     }
+    
+    [self addPeriodicTimeObserverToUpdateProgressBar];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [DataManager sharedManager].delegate = nil;
+    [self removePeriodicTimeObserverToUpdateProgressBar];
 }
 
 // prepare after the view appears, user might see a incomplete view but we can use activity indicator to tell the user that we
@@ -129,6 +133,7 @@ static ABAudioPlayerViewController *sharedController;
 - (IBAction)playOrPause {
     if (self.appDelegate.audioPlayer.playing) {
         [self.appDelegate.audioPlayer pauseTrack];
+        [self saveLastPlayedProgressForCurrentTrack];
     }
     else {
         [self.appDelegate.audioPlayer playTrack];
@@ -246,24 +251,36 @@ static ABAudioPlayerViewController *sharedController;
 
 - (IBAction)progressBarTouchUpInside:(OBSlider *)sender {
     if (self.progressBar.isTouched) {
-        self.progressBar.isTouched = NO;
         NSLog(@"just released the bar upinside");
+        double newTime = sender.value * [self.appDelegate.audioPlayer.playbackDuration doubleValue];
+        CMTime newCMTime = CMTimeMake(newTime*self.appDelegate.audioPlayer.currentTime.timescale, self.appDelegate.audioPlayer.currentTime.timescale);
+        [self.appDelegate.audioPlayer seekToTime:newCMTime];
+        [self saveLastPlayedProgressForCurrentTrack];
+        self.progressBar.isTouched = NO;
+        
+
     }
 }
 
 - (IBAction)progressBarTouchUpOutside:(OBSlider *)sender {
     if (self.progressBar.isTouched) {
-        self.progressBar.isTouched = NO;
         NSLog(@"just released the bar upoutside");
+        double newTime = sender.value * [self.appDelegate.audioPlayer.playbackDuration doubleValue];
+        CMTime newCMTime = CMTimeMake(newTime*self.appDelegate.audioPlayer.currentTime.timescale, self.appDelegate.audioPlayer.currentTime.timescale);
+        [self.appDelegate.audioPlayer seekToTime:newCMTime];
+        [self saveLastPlayedProgressForCurrentTrack];
+        self.progressBar.isTouched = NO;
+        
+
     }
 }
 
 - (IBAction)progressBar:(OBSlider *)sender {
-    NSLog(@"progress bar value has been changed");
-    double newTime = sender.value * [self.appDelegate.audioPlayer.playbackDuration doubleValue];
-    CMTime newCMTime = CMTimeMake(newTime*self.appDelegate.audioPlayer.currentTime.timescale, self.appDelegate.audioPlayer.currentTime.timescale);
-    [self.appDelegate.audioPlayer seekToTime:newCMTime];
-    [self saveLastPlayedProgressForCurrentTrack];
+    NSLog(@"progress bar value has been changed, updating timestamp");
+    NSTimeInterval timeRemain = (1-sender.value) * [self.appDelegate.audioPlayer.playbackDuration doubleValue];
+    NSTimeInterval timePlayed = sender.value * [self.appDelegate.audioPlayer.playbackDuration doubleValue];
+    self.timePlayed.text = [self stringFromTimeInterval:timePlayed];
+    self.timeRemaining.text = [self stringFromTimeInterval:timeRemain];
 }
 
 #pragma mark - chapter and bookmarks
@@ -291,7 +308,7 @@ static ABAudioPlayerViewController *sharedController;
 - (void) startLastPlayedTimer:(NSTimeInterval) seconds{
     // the timer is started in audioplayer class
     NSLog(@"last played timer is called");
-    [self.lastPlayedTimer invalidate];
+    [self stopLastPlayedTimer];
     self.lastPlayedTimer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(saveLastPlayedProgressForCurrentTrack) userInfo:nil
                                                            repeats:YES];
 }

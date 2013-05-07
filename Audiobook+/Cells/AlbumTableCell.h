@@ -16,7 +16,9 @@
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *detailedLabel;
 @property (nonatomic, assign) BOOL isNowPlaying;
+@property (nonatomic, assign) BOOL isLastPlayed;
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) IBOutlet UILabel *timeLeftLabel;
+@property (nonatomic, strong) IBOutlet UILabel *lastPlayedLabel;
 @end

@@ -31,8 +31,9 @@
     [self.nowPlayingIcon setHidden:!_isNowPlaying];
 }
 
-- (void) setTimeLeft:(NSTimeInterval) timeLeft {
-    
+- (void) setIsLastPlayed:(BOOL)isLastPlayed{
+    _isLastPlayed = isLastPlayed;
+    [self.lastPlayedLabel setHidden:!_isLastPlayed];
 }
 
 @end

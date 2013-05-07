@@ -20,4 +20,9 @@
 - (void)bookmarkWithTrackInfo:(NSDictionary *)trackInfo;
 - (void)chapterWithTrackInfo:(NSDictionary *)trackInfo;
 - (Chapters *)getChapterWithTrack: (MPMediaItem *)track;
+- (Chapters *)lastPlayedChapterForAlbumTitle:(NSString *)albumTitle;
+- (BOOL) trackInfoForTrack:(MPMediaItem *)track matchesTrackInfo:(NSDictionary *)trackInfo;
+- (BOOL) isLastPlayedTrack:(MPMediaItem *)track forAlbum:(NSString *)albumTitle;
+- (NSIndexPath *)indexPathForLastPlayedTrackForTracks: (NSArray *)tracks inAlbum: (NSString *)albumTitle;
+- (NSIndexPath *)indexPathForNowPlayingTrackForTracks: (NSArray *)tracks inAlbum: (NSString *)albumTitle;
 @end
