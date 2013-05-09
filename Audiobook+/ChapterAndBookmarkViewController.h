@@ -25,5 +25,7 @@
 @property (nonatomic, assign) ChapterAndBookmarkTable selectedIndex;
 
 @property (nonatomic, strong) BookmarkCell *sampleBookmarkCell;
+
+@property (nonatomic, strong) IBOutlet UIButton *editButton;
 +(ChapterAndBookmarkViewController *)sharedController;
 @end

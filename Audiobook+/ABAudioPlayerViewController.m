@@ -63,6 +63,7 @@ static ABAudioPlayerViewController *sharedController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.trackedViewName = @"PlayerView";
     [self addPeriodicTimeObserverToUpdateProgressBar];
     
     // set navigation controller tab bar item
@@ -297,9 +298,6 @@ static ABAudioPlayerViewController *sharedController;
     
     [bookmarkViewController setTrackInfo:trackInfo];
     
-    
-
-    
     bookmarkViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentViewController:bookmarkViewController animated:YES completion:nil];
 }
@@ -309,8 +307,7 @@ static ABAudioPlayerViewController *sharedController;
     // the timer is started in audioplayer class
     NSLog(@"last played timer is called");
     [self stopLastPlayedTimer];
-    self.lastPlayedTimer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(saveLastPlayedProgressForCurrentTrack) userInfo:nil
-                                                           repeats:YES];
+    self.lastPlayedTimer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(saveLastPlayedProgressForCurrentTrack) userInfo:nil repeats:YES];
 }
 
 - (void) stopLastPlayedTimer {

@@ -2,7 +2,7 @@
 //  Chapters.m
 //  Audiobook+
 //
-//  Created by Sheng Xu on 2013-05-01.
+//  Created by Sheng Xu on 2013-05-08.
 //
 //
 
@@ -19,6 +19,7 @@
 @dynamic trackTitle;
 @dynamic lastPlayedTime;
 @dynamic lastPlayedTrackTime;
+@dynamic completed;
 @dynamic fromBook;
 
 @end

@@ -2,7 +2,7 @@
 //  Chapters.h
 //  Audiobook+
 //
-//  Created by Sheng Xu on 2013-05-01.
+//  Created by Sheng Xu on 2013-05-08.
 //
 //
 
@@ -20,6 +20,7 @@
 @property (nonatomic, retain) NSString * trackTitle;
 @property (nonatomic, retain) NSDate * lastPlayedTime;
 @property (nonatomic, retain) NSNumber * lastPlayedTrackTime;
+@property (nonatomic, retain) NSNumber * completed;
 @property (nonatomic, retain) Book *fromBook;
 
 @end

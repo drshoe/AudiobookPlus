@@ -49,6 +49,7 @@ static ChapterAndBookmarkViewController *sharedController;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.trackedViewName = @"ChapterAndBookmarkView";
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -258,28 +259,44 @@ static ChapterAndBookmarkViewController *sharedController;
     }
 }
 
-/*
+#pragma mark - tableview editing delegate and method
+- (IBAction)enableAndDisableEditing:(id)sender {
+    if (self.theTableView.isEditing) {
+        [self.theTableView setEditing:NO animated:YES];
+        [self.editButton setTitle:@"Edit" forState:UIControlStateNormal];
+    }
+    else {
+        [self.theTableView setEditing:YES animated:YES];
+        [self.editButton setTitle:@"Done" forState:UIControlStateNormal];
+    }
+}
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
  {
  // Return NO if you do not want the specified item to be editable.
- return YES;
+     if (self.selectedIndex == ChapterAndBookmarkTableBookmarkSelected) {
+         return YES;
+     }
+     else {
+         return NO;
+     }
  }
- */
+ 
 
-/*
+
  // Override to support editing the table view.
  - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
  {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+     if (editingStyle == UITableViewCellEditingStyleDelete) {
+         // Delete the row from the data source
+         [[DataManager sharedManager].bookmarkDatabase.managedObjectContext deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+         //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+     }
+     //else if (editingStyle == UITableViewCellEditingStyleInsert) {
+         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+     //}
  }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
+ 
 
 /*
  // Override to support rearranging the table view.
@@ -356,6 +373,14 @@ static ChapterAndBookmarkViewController *sharedController;
 
 - (IBAction)segmentedControlPressed:(UISegmentedControl *)sender {
     self.selectedIndex = sender.selectedSegmentIndex;
+    if (self.selectedIndex == ChapterAndBookmarkTableBookmarkSelected) {
+        [self.editButton setHidden:NO];
+        [self.theTableView setEditing:NO animated:YES];
+        [self.editButton setTitle:@"Edit" forState:UIControlStateNormal];
+    }
+    else {
+        [self.editButton setHidden:YES];
+    }
     [self.theTableView reloadData];
 }
 

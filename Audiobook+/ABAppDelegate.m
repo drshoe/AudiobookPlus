@@ -10,6 +10,8 @@
 #import "JASidePanelController.h"
 #import "SidePanelViewController.h"
 #import "CenterPanelViewController.h"
+#import "Appirater.h"
+#import "AnalyticsManager.h"
 @implementation ABAppDelegate
 
 @synthesize window = _window;
@@ -36,6 +38,22 @@
 
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     [self becomeFirstResponder];
+    
+    // appirater
+    [Appirater setAppId:@"0000"];
+    [Appirater setDaysUntilPrompt:15];
+    [Appirater setUsesUntilPrompt:20];
+    // significant events are when user resumes a track, or user finishes a track, or user bookmark
+    [Appirater setSignificantEventsUntilPrompt:20];
+    // 2 = 2 days
+    [Appirater setTimeBeforeReminding:2];
+    // can set debug to yes to test appirater immediately after launch
+    [Appirater setDebug:NO];
+    [Appirater appLaunched:YES];
+    
+    // setup google analytics
+    [[AnalyticsManager sharedManager]initWithTrackingId:@"UA-40741080-1"];
+    
     return YES;
 }
 							
@@ -54,6 +72,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

@@ -15,8 +15,8 @@
 #import "OBSlider.h"
 #import "ABTimerViewController.h"
 #import "DataManager.h"
-
-@interface ABAudioPlayerViewController : UIViewController <DataManagerDelegate>
+#import "GAITrackedViewController.h"
+@interface ABAudioPlayerViewController : GAITrackedViewController <DataManagerDelegate>
 //@property (nonatomic, strong) MPMediaItemCollection *trackCollection;
 @property (nonatomic, weak) ABAppDelegate *appDelegate;
 @property (weak, nonatomic) IBOutlet OBSlider *progressBar;

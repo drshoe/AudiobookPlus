@@ -19,6 +19,7 @@
     </entity>
     <entity name="Chapters" representedClassName="Chapters" syncable="YES">
         <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="completed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="discNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="lastPlayedTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="lastPlayedTrackTime" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -30,6 +31,6 @@
     <elements>
         <element name="Book" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Bookmarks" positionX="0" positionY="0" width="128" height="195"/>
-        <element name="Chapters" positionX="160" positionY="192" width="128" height="165"/>
+        <element name="Chapters" positionX="160" positionY="192" width="128" height="180"/>
     </elements>
 </model>

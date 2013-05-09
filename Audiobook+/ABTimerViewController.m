@@ -43,6 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.trackedViewName = @"TimerView";
 	// Do any additional setup after loading the view.
     
 }

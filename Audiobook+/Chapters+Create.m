@@ -23,6 +23,7 @@
     NSString *artist = [trackInfo objectForKey:@"artist"];
     // bookmark track time is the where the track has been played when the user bookmark the track
     NSNumber *lastPlayedTrackTime = [trackInfo objectForKey:@"bookmarkTrackTime"];
+    NSNumber *completed = [trackInfo objectForKey:@"completed"];
     
     // the following is NOT used for quering but are added as additional info for the bookmark
     // we must set bookmark
@@ -41,6 +42,7 @@
         chapter = [matches lastObject];
         chapter.lastPlayedTrackTime = lastPlayedTrackTime;
         chapter.lastPlayedTime = lastPlayedTime;
+        chapter.completed = completed;
         [context deleteObject:[matches objectAtIndex:0]];
         // handle error
     } else if ([matches count] == 0) {
@@ -54,12 +56,14 @@
         chapter.lastPlayedTrackTime = lastPlayedTrackTime;
         chapter.lastPlayedTime = lastPlayedTime;
         chapter.fromBook = [Book bookWithAlbumTitle:albumTitle inManagedObjectContext:context];
+        chapter.completed = completed;
         //chapter.bookmarkTitle = [NSString stringWithFormat:@"Chapter %i",[trackNumber integerValue]];
     } else {
         NSLog(@"chapter already exists when creating");
         chapter = [matches lastObject];
         chapter.lastPlayedTrackTime = lastPlayedTrackTime;
         chapter.lastPlayedTime = lastPlayedTime;
+        chapter.completed = completed;
     }
     
     return chapter;

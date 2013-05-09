@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface JADebugViewController : UIViewController
+#import "GAITrackedViewController.h"
+@interface JADebugViewController : GAITrackedViewController
 
 @end

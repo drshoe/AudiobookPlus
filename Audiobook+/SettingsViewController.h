@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface SettingsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+#import "GAITrackedViewController.h"
+@interface SettingsViewController : GAITrackedViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView *theTableView;
 

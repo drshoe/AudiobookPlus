@@ -10,7 +10,8 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "AlbumTableCell.h"
 #import "DataManager.h"
-@interface ABIpodAlbumTableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, DataManagerDelegate> {
+#import "GAITrackedViewController.h"
+@interface ABIpodAlbumTableViewController : GAITrackedViewController <UITableViewDataSource, UITableViewDelegate, DataManagerDelegate> {
     
 }
 @property (nonatomic, strong) IBOutlet UITableView *theTableView;

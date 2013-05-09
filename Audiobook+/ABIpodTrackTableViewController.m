@@ -12,6 +12,7 @@
 #import "ABAudioPlayer.h"
 #import "AlbumTableCell.h"
 #import "Chapters+Create.h"
+#import "Appirater.h"
  
 @interface ABIpodTrackTableViewController ()
 @end
@@ -40,6 +41,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.trackedViewName = @"TracksView";
     
 
     // Uncomment the following line to preserve selection between presentations.
@@ -207,6 +209,17 @@
     // chapter could be nil if it was never initialized
     Chapters *chapter = [[DataManager sharedManager] getChapterWithTrack:track];
     // lastPlayedTrackTime is normalized time
+    
+    double progress = 0.0;
+    if (chapter) {
+        if (![chapter.completed boolValue]) {
+            progress = [chapter.lastPlayedTrackTime doubleValue];
+        }
+        else {
+            progress = 1.0;
+        }
+    }
+    
     [cell.progressView setProgress:[chapter.lastPlayedTrackTime doubleValue]];
     
     // set the cell now playing indicator
@@ -223,8 +236,13 @@
     
     // set time played and time remain
     if (chapter) {
-        NSTimeInterval timeRemain = [chapter.playbackDuration doubleValue]* (1-[chapter.lastPlayedTrackTime doubleValue]);
-        cell.timeLeftLabel.text = [self stringFromTimeInterval:timeRemain];
+        NSTimeInterval timeRemain = [chapter.playbackDuration doubleValue]* (1.0-progress);
+        if (progress == 1.0) {
+            cell.timeLeftLabel.text = @"Completed";
+        }
+        else {
+            cell.timeLeftLabel.text = [self stringFromTimeInterval:timeRemain];
+        }
     }
     else {
         // for the case if chapter is not initialized in the database yet. therefore the time remain is equal to the playbackduration of that track
@@ -350,7 +368,12 @@
     audioPlayerViewController.navigationItem.leftBarButtonItem = nil;
     audioPlayerViewController.navigationItem.hidesBackButton = NO;
     [self.navigationController pushViewController:audioPlayerViewController animated:YES];
-    if (chapter) {
+    
+    // resume from last played time
+    if (chapter && ![chapter.completed boolValue]) {
+        // tell appirator that the user just resumed playing a track, which is a significant event
+        [Appirater userDidSignificantEvent:YES];
+
         double newTime = [chapter.lastPlayedTrackTime doubleValue] * [self.appDelegate.audioPlayer.playbackDuration doubleValue];
         CMTime newCMTime = CMTimeMake(newTime*self.appDelegate.audioPlayer.currentTime.timescale, self.appDelegate.audioPlayer.currentTime.timescale);
         [self.appDelegate.audioPlayer seekToTime:newCMTime];

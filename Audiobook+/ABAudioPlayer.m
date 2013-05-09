@@ -8,6 +8,7 @@
 
 #import "ABAudioPlayer.h"
 #import "ABAudioPlayerViewController.h"
+#import "Appirater.h"
 
 @implementation ABAudioPlayer
 @synthesize currentTrackNumber = _currentTrackNumber;
@@ -253,6 +254,28 @@
     double currentTime = (double)(self.currentTime.value/self.currentTime.timescale);
     double normalizedTime =  currentTime / [self.playbackDuration doubleValue];
     [trackInfo setObject: [NSNumber numberWithFloat:normalizedTime] forKey:@"bookmarkTrackTime"];
+    [trackInfo setObject:[NSNumber numberWithBool:NO] forKey:@"completed"];
+    NSLog (@"trackInfo has been constructed");
+    //NSLog (@"the trackInfo contains %@",trackInfo);
+    return trackInfo;
+}
+
+- (NSDictionary *)getTrackInfoWithCompletedFlag {
+    NSMutableDictionary *trackInfo = [[NSMutableDictionary alloc] init];
+    // trackTitle, albumTitle, playbackDuration, trackNumber, discNumber, artist;
+    [trackInfo setObject:self.albumTitle forKey:@"albumTitle"];
+    [trackInfo setObject:self.trackTitle forKey:@"trackTitle"];
+    [trackInfo setObject:self.playbackDuration forKey:@"playbackDuration"];
+    [trackInfo setObject:self.trackNumber forKey:@"trackNumber"];
+    [trackInfo setObject:self.discNumber forKey:@"discNumber"];
+    [trackInfo setObject:self.artist forKey:@"artist"];
+    [trackInfo setObject:[NSDate date] forKey:@"bookmarkTime"];
+    // we use the progress bar value to record the point on the particular track. it can later
+    // be easily converted to CMTime and then use seekToTime to move to the correct instant.
+    double currentTime = (double)(self.currentTime.value/self.currentTime.timescale);
+    double normalizedTime =  currentTime / [self.playbackDuration doubleValue];
+    [trackInfo setObject: [NSNumber numberWithFloat:normalizedTime] forKey:@"bookmarkTrackTime"];
+    [trackInfo setObject:[NSNumber numberWithBool:YES] forKey:@"completed"];
     NSLog (@"trackInfo has been constructed");
     //NSLog (@"the trackInfo contains %@",trackInfo);
     return trackInfo;
@@ -260,6 +283,11 @@
 
 - (void)playerItemDidReachEndAndPrepareToAdvance:(NSNotification *)notification {
     //[self seekToTime:kCMTimeZero];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:kAudioBookDidChangeNotification object:nil];
+    // tell appirater that a user has finished playing a track, which is a significant event
+    [Appirater userDidSignificantEvent:YES];
+
+    [[DataManager sharedManager] chapterWithTrackInfo:[self getTrackInfoWithCompletedFlag]];
     if ([self.currentTrackNumber integerValue]+1 <= [self.allMPMediaPlayerItems count]-1) {
         // if we are about to play the last track, we should set the action at the end of next track to be pause
         if ([self.currentTrackNumber integerValue]+1 == [self.allMPMediaPlayerItems count]-1) {
