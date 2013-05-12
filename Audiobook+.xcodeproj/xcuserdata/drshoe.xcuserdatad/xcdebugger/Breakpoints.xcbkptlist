@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Audiobook+/ABAudioPlayerViewController.m"
-         timestampString = "389819100.31412"
+         timestampString = "390003011.661621"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "289"
-         endingLineNumber = "289"
+         startingLineNumber = "290"
+         endingLineNumber = "290"
          landmarkName = "-showChaptersAndBookmarks:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Audiobook+/ABAudioPlayerViewController.m"
-         timestampString = "389819100.31412"
+         timestampString = "390003011.661621"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "293"
-         endingLineNumber = "293"
+         startingLineNumber = "294"
+         endingLineNumber = "294"
          landmarkName = "-showChaptersAndBookmarks:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -157,19 +157,6 @@
          startingLineNumber = "58"
          endingLineNumber = "58"
          landmarkName = "-editNote:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Audiobook+/ABIpodTrackTableViewController.m"
-         timestampString = "389819100.31412"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "385"
-         endingLineNumber = "385"
-         landmarkName = "-didFinishedCreatingOrOpeningDatabase"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

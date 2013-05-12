@@ -16,6 +16,7 @@
 #import "UIViewController+KNSemiModal.h"
 #import "CenterPanelViewController.h"
 #import "Chapters+Create.h"
+#import "ShareThis.h"
 
 @interface ABAudioPlayerViewController ()
 @end
@@ -325,6 +326,11 @@ static ABAudioPlayerViewController *sharedController;
 #pragma mark - datamanager delegate
 - (void)didFinishedCreatingOrOpeningDatabase {
 
+}
+
+#pragma mark - sharing
+- (IBAction)shareButtonPressed:(id)sender {
+    [ShareThis showShareOptionsToShareUrl:[NSURL URLWithString:@"www.google.com"] title:@"check this out" image:nil onViewController:self];
 }
 
 @end

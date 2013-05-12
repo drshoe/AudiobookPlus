@@ -12,6 +12,7 @@
 #import "CenterPanelViewController.h"
 #import "Appirater.h"
 #import "AnalyticsManager.h"
+#import "ShareThis.h"
 @implementation ABAppDelegate
 
 @synthesize window = _window;
@@ -54,6 +55,9 @@
     // setup google analytics
     [[AnalyticsManager sharedManager]initWithTrackingId:@"UA-40741080-1"];
     
+    // setup share this
+    [ShareThis startSessionWithFacebookURLSchemeSuffix:nil pocketAPI:nil readabilityKey:nil readabilitySecret:nil];
+    
     return YES;
 }
 							
@@ -78,11 +82,13 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[NSNotificationCenter defaultCenter] postNotificationName:AppDidBecomeActiveNotificationName object:nil];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[NSNotificationCenter defaultCenter] postNotificationName:AppWillTerminateNotificationName object:nil];
 }
 
 // receive remote control events
@@ -127,6 +133,10 @@
         case UIEventSubtypeRemoteControlStop:
             break;
     }
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [ShareThis handleFacebookOpenUrl:url];
 }
 
 - (BOOL)canBecomeFirstResponder {

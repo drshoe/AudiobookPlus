@@ -68,6 +68,42 @@
 		02720EA215CB0A9D00268E1A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02720EA115CB0A9D00268E1A /* CoreData.framework */; };
 		02720EAB15CB14CF00268E1A /* Bookmarks+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 02720EAA15CB14CF00268E1A /* Bookmarks+Create.m */; };
 		02720EB415CB240300268E1A /* Book+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 02720EB315CB240300268E1A /* Book+Create.m */; };
+		0284D37C173D7DE200E712C1 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0284D37B173D7DE200E712C1 /* FacebookSDK.framework */; };
+		0284D37E173D7DF700E712C1 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0284D37D173D7DF700E712C1 /* FacebookSDKResources.bundle */; };
+		0284D380173D7E2400E712C1 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0284D37F173D7E2400E712C1 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0284D382173D7E2B00E712C1 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0284D381173D7E2B00E712C1 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0284D384173D7E4700E712C1 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0284D383173D7E4700E712C1 /* libsqlite3.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0284D386173D7E5600E712C1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0284D385173D7E5600E712C1 /* Security.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0284D388173D7E5B00E712C1 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0284D387173D7E5B00E712C1 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0284D3D8173EF34E00E712C1 /* Instapaper-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0284D3B6173EF34E00E712C1 /* Instapaper-Icon.png */; };
+		0284D3D9173EF34E00E712C1 /* Instapaper-Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0284D3B7173EF34E00E712C1 /* Instapaper-Icon@2x.png */; };
+		0284D3DA173EF34E00E712C1 /* Pocket-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0284D3B8173EF34E00E712C1 /* Pocket-Icon.png */; };
+		0284D3DB173EF34E00E712C1 /* Pocket-Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0284D3B9173EF34E00E712C1 /* Pocket-Icon@2x.png */; };
+		0284D3DC173EF34E00E712C1 /* Readability-Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0284D3BA173EF34E00E712C1 /* Readability-Icon.png */; };
+		0284D3DD173EF34E00E712C1 /* Readability-Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0284D3BB173EF34E00E712C1 /* Readability-Icon@2x.png */; };
+		0284D3DE173EF34E00E712C1 /* EmailService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D3BE173EF34E00E712C1 /* EmailService.m */; };
+		0284D3DF173EF34E00E712C1 /* FacebookService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D3C0173EF34E00E712C1 /* FacebookService.m */; };
+		0284D3E0173EF34E00E712C1 /* InstapaperActivityItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D3C2173EF34E00E712C1 /* InstapaperActivityItem.m */; };
+		0284D3E1173EF34E00E712C1 /* InstapaperService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D3C4173EF34E00E712C1 /* InstapaperService.m */; };
+		0284D3E2173EF34E00E712C1 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D3C7173EF34E00E712C1 /* KeychainItemWrapper.m */; };
+		0284D3E3173EF34E00E712C1 /* MessageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D3C9173EF34E00E712C1 /* MessageService.m */; };
+		0284D3E4173EF34E00E712C1 /* PocketActivityItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D3CB173EF34E00E712C1 /* PocketActivityItem.m */; };
+		0284D3E5173EF34E00E712C1 /* PocketService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D3CD173EF34E00E712C1 /* PocketService.m */; };
+		0284D3E6173EF34E00E712C1 /* ReadabilityActivityItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D3CF173EF34E00E712C1 /* ReadabilityActivityItem.m */; };
+		0284D3E7173EF34E00E712C1 /* ReadabilityService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D3D1173EF34E00E712C1 /* ReadabilityService.m */; };
+		0284D3E8173EF34E00E712C1 /* ReadLaterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D3D3173EF34E00E712C1 /* ReadLaterService.m */; };
+		0284D3E9173EF34E00E712C1 /* ShareThis.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D3D5173EF34E00E712C1 /* ShareThis.m */; };
+		0284D3EA173EF34E00E712C1 /* TwitterService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D3D7173EF34E00E712C1 /* TwitterService.m */; };
+		0284D3F8173EF83400E712C1 /* DEComposeRuledView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D3EE173EF83400E712C1 /* DEComposeRuledView.m */; };
+		0284D3F9173EF83400E712C1 /* DEComposeTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D3F0173EF83400E712C1 /* DEComposeTextView.m */; };
+		0284D3FA173EF83400E712C1 /* REComposeBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D3F2173EF83400E712C1 /* REComposeBackgroundView.m */; };
+		0284D3FB173EF83400E712C1 /* REComposeSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D3F4173EF83400E712C1 /* REComposeSheetView.m */; };
+		0284D3FC173EF83400E712C1 /* REComposeViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0284D3F5173EF83400E712C1 /* REComposeViewController.bundle */; };
+		0284D3FD173EF83400E712C1 /* REComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D3F7173EF83400E712C1 /* REComposeViewController.m */; };
+		0284D3FF173EF87D00E712C1 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0284D3FE173EF87D00E712C1 /* Twitter.framework */; };
+		0284D404173EF8C000E712C1 /* GCOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D401173EF8C000E712C1 /* GCOAuth.m */; settings = {COMPILER_FLAGS = " -fno-objc-arc"; }; };
+		0284D405173EF8C000E712C1 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 0284D403173EF8C000E712C1 /* NSData+Base64.m */; settings = {COMPILER_FLAGS = " -fno-objc-arc"; }; };
+		0284D407173EF91A00E712C1 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0284D406173EF91A00E712C1 /* MessageUI.framework */; };
 		02AAD3F01720851C00ADA002 /* TVNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AAD3EE1720851C00ADA002 /* TVNavigationController.m */; };
 		02AAD3F11720851C00ADA002 /* TVNavigationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02AAD3EF1720851C00ADA002 /* TVNavigationController.xib */; };
 		02AC7C7515B702E5007B574D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AC7C7415B702E5007B574D /* UIKit.framework */; };
@@ -180,6 +216,62 @@
 		02720EAA15CB14CF00268E1A /* Bookmarks+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Bookmarks+Create.m"; sourceTree = "<group>"; };
 		02720EB215CB240300268E1A /* Book+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Book+Create.h"; sourceTree = "<group>"; };
 		02720EB315CB240300268E1A /* Book+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Book+Create.m"; sourceTree = "<group>"; };
+		0284D37B173D7DE200E712C1 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		0284D37D173D7DF700E712C1 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
+		0284D37F173D7E2400E712C1 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		0284D381173D7E2B00E712C1 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		0284D383173D7E4700E712C1 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		0284D385173D7E5600E712C1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		0284D387173D7E5B00E712C1 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		0284D3B6173EF34E00E712C1 /* Instapaper-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Instapaper-Icon.png"; sourceTree = "<group>"; };
+		0284D3B7173EF34E00E712C1 /* Instapaper-Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Instapaper-Icon@2x.png"; sourceTree = "<group>"; };
+		0284D3B8173EF34E00E712C1 /* Pocket-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pocket-Icon.png"; sourceTree = "<group>"; };
+		0284D3B9173EF34E00E712C1 /* Pocket-Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pocket-Icon@2x.png"; sourceTree = "<group>"; };
+		0284D3BA173EF34E00E712C1 /* Readability-Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Readability-Icon.png"; sourceTree = "<group>"; };
+		0284D3BB173EF34E00E712C1 /* Readability-Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Readability-Icon@2x.png"; sourceTree = "<group>"; };
+		0284D3BD173EF34E00E712C1 /* EmailService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailService.h; sourceTree = "<group>"; };
+		0284D3BE173EF34E00E712C1 /* EmailService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailService.m; sourceTree = "<group>"; };
+		0284D3BF173EF34E00E712C1 /* FacebookService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookService.h; sourceTree = "<group>"; };
+		0284D3C0173EF34E00E712C1 /* FacebookService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookService.m; sourceTree = "<group>"; };
+		0284D3C1173EF34E00E712C1 /* InstapaperActivityItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstapaperActivityItem.h; sourceTree = "<group>"; };
+		0284D3C2173EF34E00E712C1 /* InstapaperActivityItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstapaperActivityItem.m; sourceTree = "<group>"; };
+		0284D3C3173EF34E00E712C1 /* InstapaperService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstapaperService.h; sourceTree = "<group>"; };
+		0284D3C4173EF34E00E712C1 /* InstapaperService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstapaperService.m; sourceTree = "<group>"; };
+		0284D3C6173EF34E00E712C1 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		0284D3C7173EF34E00E712C1 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		0284D3C8173EF34E00E712C1 /* MessageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageService.h; sourceTree = "<group>"; };
+		0284D3C9173EF34E00E712C1 /* MessageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageService.m; sourceTree = "<group>"; };
+		0284D3CA173EF34E00E712C1 /* PocketActivityItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketActivityItem.h; sourceTree = "<group>"; };
+		0284D3CB173EF34E00E712C1 /* PocketActivityItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketActivityItem.m; sourceTree = "<group>"; };
+		0284D3CC173EF34E00E712C1 /* PocketService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PocketService.h; sourceTree = "<group>"; };
+		0284D3CD173EF34E00E712C1 /* PocketService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PocketService.m; sourceTree = "<group>"; };
+		0284D3CE173EF34E00E712C1 /* ReadabilityActivityItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadabilityActivityItem.h; sourceTree = "<group>"; };
+		0284D3CF173EF34E00E712C1 /* ReadabilityActivityItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadabilityActivityItem.m; sourceTree = "<group>"; };
+		0284D3D0173EF34E00E712C1 /* ReadabilityService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadabilityService.h; sourceTree = "<group>"; };
+		0284D3D1173EF34E00E712C1 /* ReadabilityService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadabilityService.m; sourceTree = "<group>"; };
+		0284D3D2173EF34E00E712C1 /* ReadLaterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadLaterService.h; sourceTree = "<group>"; };
+		0284D3D3173EF34E00E712C1 /* ReadLaterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadLaterService.m; sourceTree = "<group>"; };
+		0284D3D4173EF34E00E712C1 /* ShareThis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareThis.h; sourceTree = "<group>"; };
+		0284D3D5173EF34E00E712C1 /* ShareThis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareThis.m; sourceTree = "<group>"; };
+		0284D3D6173EF34E00E712C1 /* TwitterService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterService.h; sourceTree = "<group>"; };
+		0284D3D7173EF34E00E712C1 /* TwitterService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterService.m; sourceTree = "<group>"; };
+		0284D3ED173EF83400E712C1 /* DEComposeRuledView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEComposeRuledView.h; sourceTree = "<group>"; };
+		0284D3EE173EF83400E712C1 /* DEComposeRuledView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEComposeRuledView.m; sourceTree = "<group>"; };
+		0284D3EF173EF83400E712C1 /* DEComposeTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEComposeTextView.h; sourceTree = "<group>"; };
+		0284D3F0173EF83400E712C1 /* DEComposeTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEComposeTextView.m; sourceTree = "<group>"; };
+		0284D3F1173EF83400E712C1 /* REComposeBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REComposeBackgroundView.h; sourceTree = "<group>"; };
+		0284D3F2173EF83400E712C1 /* REComposeBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REComposeBackgroundView.m; sourceTree = "<group>"; };
+		0284D3F3173EF83400E712C1 /* REComposeSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REComposeSheetView.h; sourceTree = "<group>"; };
+		0284D3F4173EF83400E712C1 /* REComposeSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REComposeSheetView.m; sourceTree = "<group>"; };
+		0284D3F5173EF83400E712C1 /* REComposeViewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = REComposeViewController.bundle; sourceTree = "<group>"; };
+		0284D3F6173EF83400E712C1 /* REComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REComposeViewController.h; sourceTree = "<group>"; };
+		0284D3F7173EF83400E712C1 /* REComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REComposeViewController.m; sourceTree = "<group>"; };
+		0284D3FE173EF87D00E712C1 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		0284D400173EF8C000E712C1 /* GCOAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCOAuth.h; sourceTree = "<group>"; };
+		0284D401173EF8C000E712C1 /* GCOAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCOAuth.m; sourceTree = "<group>"; };
+		0284D402173EF8C000E712C1 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		0284D403173EF8C000E712C1 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		0284D406173EF91A00E712C1 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		02AAD3ED1720851C00ADA002 /* TVNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVNavigationController.h; sourceTree = "<group>"; };
 		02AAD3EE1720851C00ADA002 /* TVNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVNavigationController.m; sourceTree = "<group>"; };
 		02AAD3EF1720851C00ADA002 /* TVNavigationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TVNavigationController.xib; sourceTree = "<group>"; };
@@ -230,6 +322,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0284D407173EF91A00E712C1 /* MessageUI.framework in Frameworks */,
+				0284D3FF173EF87D00E712C1 /* Twitter.framework in Frameworks */,
+				0284D388173D7E5B00E712C1 /* Social.framework in Frameworks */,
+				0284D386173D7E5600E712C1 /* Security.framework in Frameworks */,
+				0284D384173D7E4700E712C1 /* libsqlite3.dylib in Frameworks */,
+				0284D382173D7E2B00E712C1 /* Accounts.framework in Frameworks */,
+				0284D380173D7E2400E712C1 /* AdSupport.framework in Frameworks */,
 				020F9227173C1F4B00151F4C /* StoreKit.framework in Frameworks */,
 				020F9225173C1EF800151F4C /* SystemConfiguration.framework in Frameworks */,
 				020F9223173C1EE900151F4C /* CFNetwork.framework in Frameworks */,
@@ -242,6 +341,7 @@
 				02AC7C7715B702E5007B574D /* Foundation.framework in Frameworks */,
 				02AC7C7915B702E5007B574D /* CoreGraphics.framework in Frameworks */,
 				020F922E173C243300151F4C /* libGoogleAnalytics.a in Frameworks */,
+				0284D37C173D7DE200E712C1 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,6 +703,93 @@
 			name = "Data Model";
 			sourceTree = "<group>";
 		};
+		0284D389173ED41500E712C1 /* ShareThis */ = {
+			isa = PBXGroup;
+			children = (
+				0284D400173EF8C000E712C1 /* GCOAuth.h */,
+				0284D401173EF8C000E712C1 /* GCOAuth.m */,
+				0284D402173EF8C000E712C1 /* NSData+Base64.h */,
+				0284D403173EF8C000E712C1 /* NSData+Base64.m */,
+				0284D3B5173EF34E00E712C1 /* Assets */,
+				0284D3BC173EF34E00E712C1 /* Code */,
+			);
+			name = ShareThis;
+			sourceTree = "<group>";
+		};
+		0284D3B5173EF34E00E712C1 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				0284D3B6173EF34E00E712C1 /* Instapaper-Icon.png */,
+				0284D3B7173EF34E00E712C1 /* Instapaper-Icon@2x.png */,
+				0284D3B8173EF34E00E712C1 /* Pocket-Icon.png */,
+				0284D3B9173EF34E00E712C1 /* Pocket-Icon@2x.png */,
+				0284D3BA173EF34E00E712C1 /* Readability-Icon.png */,
+				0284D3BB173EF34E00E712C1 /* Readability-Icon@2x.png */,
+			);
+			name = Assets;
+			path = ShareThis/Assets;
+			sourceTree = "<group>";
+		};
+		0284D3BC173EF34E00E712C1 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				0284D3BD173EF34E00E712C1 /* EmailService.h */,
+				0284D3BE173EF34E00E712C1 /* EmailService.m */,
+				0284D3BF173EF34E00E712C1 /* FacebookService.h */,
+				0284D3C0173EF34E00E712C1 /* FacebookService.m */,
+				0284D3C1173EF34E00E712C1 /* InstapaperActivityItem.h */,
+				0284D3C2173EF34E00E712C1 /* InstapaperActivityItem.m */,
+				0284D3C3173EF34E00E712C1 /* InstapaperService.h */,
+				0284D3C4173EF34E00E712C1 /* InstapaperService.m */,
+				0284D3C5173EF34E00E712C1 /* KeyChainItemWrapper */,
+				0284D3C8173EF34E00E712C1 /* MessageService.h */,
+				0284D3C9173EF34E00E712C1 /* MessageService.m */,
+				0284D3CA173EF34E00E712C1 /* PocketActivityItem.h */,
+				0284D3CB173EF34E00E712C1 /* PocketActivityItem.m */,
+				0284D3CC173EF34E00E712C1 /* PocketService.h */,
+				0284D3CD173EF34E00E712C1 /* PocketService.m */,
+				0284D3CE173EF34E00E712C1 /* ReadabilityActivityItem.h */,
+				0284D3CF173EF34E00E712C1 /* ReadabilityActivityItem.m */,
+				0284D3D0173EF34E00E712C1 /* ReadabilityService.h */,
+				0284D3D1173EF34E00E712C1 /* ReadabilityService.m */,
+				0284D3D2173EF34E00E712C1 /* ReadLaterService.h */,
+				0284D3D3173EF34E00E712C1 /* ReadLaterService.m */,
+				0284D3D4173EF34E00E712C1 /* ShareThis.h */,
+				0284D3D5173EF34E00E712C1 /* ShareThis.m */,
+				0284D3D6173EF34E00E712C1 /* TwitterService.h */,
+				0284D3D7173EF34E00E712C1 /* TwitterService.m */,
+			);
+			name = Code;
+			path = ShareThis/Code;
+			sourceTree = "<group>";
+		};
+		0284D3C5173EF34E00E712C1 /* KeyChainItemWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				0284D3C6173EF34E00E712C1 /* KeychainItemWrapper.h */,
+				0284D3C7173EF34E00E712C1 /* KeychainItemWrapper.m */,
+			);
+			path = KeyChainItemWrapper;
+			sourceTree = "<group>";
+		};
+		0284D3EC173EF83400E712C1 /* REComposeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0284D3ED173EF83400E712C1 /* DEComposeRuledView.h */,
+				0284D3EE173EF83400E712C1 /* DEComposeRuledView.m */,
+				0284D3EF173EF83400E712C1 /* DEComposeTextView.h */,
+				0284D3F0173EF83400E712C1 /* DEComposeTextView.m */,
+				0284D3F1173EF83400E712C1 /* REComposeBackgroundView.h */,
+				0284D3F2173EF83400E712C1 /* REComposeBackgroundView.m */,
+				0284D3F3173EF83400E712C1 /* REComposeSheetView.h */,
+				0284D3F4173EF83400E712C1 /* REComposeSheetView.m */,
+				0284D3F5173EF83400E712C1 /* REComposeViewController.bundle */,
+				0284D3F6173EF83400E712C1 /* REComposeViewController.h */,
+				0284D3F7173EF83400E712C1 /* REComposeViewController.m */,
+			);
+			path = REComposeViewController;
+			sourceTree = "<group>";
+		};
 		02AC7C6515B702E5007B574D = {
 			isa = PBXGroup;
 			children = (
@@ -624,6 +811,15 @@
 		02AC7C7315B702E5007B574D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0284D406173EF91A00E712C1 /* MessageUI.framework */,
+				0284D3FE173EF87D00E712C1 /* Twitter.framework */,
+				0284D387173D7E5B00E712C1 /* Social.framework */,
+				0284D385173D7E5600E712C1 /* Security.framework */,
+				0284D383173D7E4700E712C1 /* libsqlite3.dylib */,
+				0284D381173D7E2B00E712C1 /* Accounts.framework */,
+				0284D37F173D7E2400E712C1 /* AdSupport.framework */,
+				0284D37D173D7DF700E712C1 /* FacebookSDKResources.bundle */,
+				0284D37B173D7DE200E712C1 /* FacebookSDK.framework */,
 				020F9226173C1F4B00151F4C /* StoreKit.framework */,
 				020F9224173C1EF700151F4C /* SystemConfiguration.framework */,
 				020F9222173C1EE800151F4C /* CFNetwork.framework */,
@@ -654,6 +850,8 @@
 				02C2AFEE172ADA77003EE7AD /* ModalManager */,
 				021F9391171CA4E100C7583F /* SidePanelController */,
 				0234020F15C3432A0094C77C /* Data Model */,
+				0284D389173ED41500E712C1 /* ShareThis */,
+				0284D3EC173EF83400E712C1 /* REComposeViewController */,
 				020F91B4173C19CC00151F4C /* Appirater */,
 				020F91B5173C1E5F00151F4C /* Google Analytics */,
 				02AC7C7B15B702E5007B574D /* Supporting Files */,
@@ -828,6 +1026,14 @@
 				020F921F173C1E9C00151F4C /* AppiraterLocalizable.strings in Resources */,
 				020F9220173C1E9C00151F4C /* AppiraterLocalizable.strings in Resources */,
 				020F9221173C1E9C00151F4C /* AppiraterLocalizable.strings in Resources */,
+				0284D37E173D7DF700E712C1 /* FacebookSDKResources.bundle in Resources */,
+				0284D3D8173EF34E00E712C1 /* Instapaper-Icon.png in Resources */,
+				0284D3D9173EF34E00E712C1 /* Instapaper-Icon@2x.png in Resources */,
+				0284D3DA173EF34E00E712C1 /* Pocket-Icon.png in Resources */,
+				0284D3DB173EF34E00E712C1 /* Pocket-Icon@2x.png in Resources */,
+				0284D3DC173EF34E00E712C1 /* Readability-Icon.png in Resources */,
+				0284D3DD173EF34E00E712C1 /* Readability-Icon@2x.png in Resources */,
+				0284D3FC173EF83400E712C1 /* REComposeViewController.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -886,6 +1092,26 @@
 				020F91B3173AD75200151F4C /* Chapters.m in Sources */,
 				020F9206173C1E9C00151F4C /* Appirater.m in Sources */,
 				020F9231173C26A200151F4C /* AnalyticsManager.m in Sources */,
+				0284D3DE173EF34E00E712C1 /* EmailService.m in Sources */,
+				0284D3DF173EF34E00E712C1 /* FacebookService.m in Sources */,
+				0284D3E0173EF34E00E712C1 /* InstapaperActivityItem.m in Sources */,
+				0284D3E1173EF34E00E712C1 /* InstapaperService.m in Sources */,
+				0284D3E2173EF34E00E712C1 /* KeychainItemWrapper.m in Sources */,
+				0284D3E3173EF34E00E712C1 /* MessageService.m in Sources */,
+				0284D3E4173EF34E00E712C1 /* PocketActivityItem.m in Sources */,
+				0284D3E5173EF34E00E712C1 /* PocketService.m in Sources */,
+				0284D3E6173EF34E00E712C1 /* ReadabilityActivityItem.m in Sources */,
+				0284D3E7173EF34E00E712C1 /* ReadabilityService.m in Sources */,
+				0284D3E8173EF34E00E712C1 /* ReadLaterService.m in Sources */,
+				0284D3E9173EF34E00E712C1 /* ShareThis.m in Sources */,
+				0284D3EA173EF34E00E712C1 /* TwitterService.m in Sources */,
+				0284D3F8173EF83400E712C1 /* DEComposeRuledView.m in Sources */,
+				0284D3F9173EF83400E712C1 /* DEComposeTextView.m in Sources */,
+				0284D3FA173EF83400E712C1 /* REComposeBackgroundView.m in Sources */,
+				0284D3FB173EF83400E712C1 /* REComposeSheetView.m in Sources */,
+				0284D3FD173EF83400E712C1 /* REComposeViewController.m in Sources */,
+				0284D404173EF8C000E712C1 /* GCOAuth.m in Sources */,
+				0284D405173EF8C000E712C1 /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1155,6 +1381,10 @@
 		02AC7C9215B702E5007B574D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Documents/FacebookSDK\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Audiobook+/Audiobook+-Prefix.pch";
 				INFOPLIST_FILE = "Audiobook+/Audiobook+-Info.plist";
@@ -1172,6 +1402,10 @@
 		02AC7C9315B702E5007B574D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Documents/FacebookSDK\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Audiobook+/Audiobook+-Prefix.pch";
 				INFOPLIST_FILE = "Audiobook+/Audiobook+-Info.plist";
