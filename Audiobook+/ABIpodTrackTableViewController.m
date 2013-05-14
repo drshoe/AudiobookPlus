@@ -365,9 +365,14 @@
     
     ABAudioPlayerViewController *audioPlayerViewController = [ABAudioPlayerViewController sharedController];
     audioPlayerViewController.tracks = self.tracks; // set it so that audioplayer can also present a tracktableviewcontroller
-    audioPlayerViewController.navigationItem.leftBarButtonItem = nil;
-    audioPlayerViewController.navigationItem.hidesBackButton = NO;
-    [self.navigationController pushViewController:audioPlayerViewController animated:YES];
+    //audioPlayerViewController.navigationItem.leftBarButtonItem = nil;
+    //audioPlayerViewController.navigationItem.hidesBackButton = NO;
+    //[self.navigationController pushViewController:audioPlayerViewController animated:YES];
+    
+    // for the case using uitabbarviewcontroller
+    UIViewController *presentingController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    audioPlayerViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [presentingController presentViewController:audioPlayerViewController animated:YES completion:nil];
     
     // resume from last played time
     if (chapter && ![chapter.completed boolValue]) {

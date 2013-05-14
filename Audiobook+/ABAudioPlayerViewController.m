@@ -286,7 +286,7 @@ static ABAudioPlayerViewController *sharedController;
 }
 
 #pragma mark - chapter and bookmarks
-- (void) showChaptersAndBookmarks: (id) sender {
+- (IBAction)showChaptersAndBookmarks: (id) sender {
     self.shouldResumePlaying = NO;
     NSDictionary *trackInfo = [self.appDelegate.audioPlayer getTrackInfo];
     NSLog(@"this segue is show bookmarks");
@@ -333,4 +333,7 @@ static ABAudioPlayerViewController *sharedController;
     [ShareThis showShareOptionsToShareUrl:[NSURL URLWithString:@"www.google.com"] title:@"check this out" image:nil onViewController:self];
 }
 
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

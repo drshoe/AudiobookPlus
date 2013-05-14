@@ -64,6 +64,10 @@
 		021F93B4171DDDA600C7583F /* ABIpodTrackTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021F93B3171DDDA600C7583F /* ABIpodTrackTableViewController.xib */; };
 		021F93B6171DEFDB00C7583F /* ABTimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021F93B5171DEFDB00C7583F /* ABTimerViewController.xib */; };
 		021FCD33171F429500441D9D /* ABBookmarkTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 021FCD32171F429500441D9D /* ABBookmarkTableViewController.xib */; };
+		024B1D7F1741CEC600DFF421 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 024B1D7E1741CEC600DFF421 /* BaseViewController.m */; };
+		024B1D851741D07200DFF421 /* MainTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 024B1D841741D07200DFF421 /* MainTabBarViewController.m */; };
+		024B1D881741D41300DFF421 /* cameraTabBarItem.png in Resources */ = {isa = PBXBuildFile; fileRef = 024B1D861741D41300DFF421 /* cameraTabBarItem.png */; };
+		024B1D891741D41300DFF421 /* cameraTabBarItem@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 024B1D871741D41300DFF421 /* cameraTabBarItem@2x.png */; };
 		02720E9C15CAF10F00268E1A /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02720E9B15CAF10F00268E1A /* CoreDataTableViewController.m */; };
 		02720EA215CB0A9D00268E1A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02720EA115CB0A9D00268E1A /* CoreData.framework */; };
 		02720EAB15CB14CF00268E1A /* Bookmarks+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 02720EAA15CB14CF00268E1A /* Bookmarks+Create.m */; };
@@ -209,6 +213,12 @@
 		021F93B3171DDDA600C7583F /* ABIpodTrackTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ABIpodTrackTableViewController.xib; sourceTree = "<group>"; };
 		021F93B5171DEFDB00C7583F /* ABTimerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ABTimerViewController.xib; sourceTree = "<group>"; };
 		021FCD32171F429500441D9D /* ABBookmarkTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ABBookmarkTableViewController.xib; sourceTree = "<group>"; };
+		024B1D7D1741CEC600DFF421 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = RaisedTabBarController/BaseViewController.h; sourceTree = "<group>"; };
+		024B1D7E1741CEC600DFF421 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = RaisedTabBarController/BaseViewController.m; sourceTree = "<group>"; };
+		024B1D831741D07200DFF421 /* MainTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTabBarViewController.h; path = RaisedTabBarController/MainTabBarViewController.h; sourceTree = "<group>"; };
+		024B1D841741D07200DFF421 /* MainTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabBarViewController.m; path = RaisedTabBarController/MainTabBarViewController.m; sourceTree = "<group>"; };
+		024B1D861741D41300DFF421 /* cameraTabBarItem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cameraTabBarItem.png; path = RaisedTabBarController/cameraTabBarItem.png; sourceTree = "<group>"; };
+		024B1D871741D41300DFF421 /* cameraTabBarItem@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cameraTabBarItem@2x.png"; path = "RaisedTabBarController/cameraTabBarItem@2x.png"; sourceTree = "<group>"; };
 		02720E9A15CAF10F00268E1A /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		02720E9B15CAF10F00268E1A /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		02720EA115CB0A9D00268E1A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -703,6 +713,19 @@
 			name = "Data Model";
 			sourceTree = "<group>";
 		};
+		024B1D7C1741CDFB00DFF421 /* RaisedTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				024B1D861741D41300DFF421 /* cameraTabBarItem.png */,
+				024B1D871741D41300DFF421 /* cameraTabBarItem@2x.png */,
+				024B1D831741D07200DFF421 /* MainTabBarViewController.h */,
+				024B1D841741D07200DFF421 /* MainTabBarViewController.m */,
+				024B1D7D1741CEC600DFF421 /* BaseViewController.h */,
+				024B1D7E1741CEC600DFF421 /* BaseViewController.m */,
+			);
+			name = RaisedTabBarController;
+			sourceTree = "<group>";
+		};
 		0284D389173ED41500E712C1 /* ShareThis */ = {
 			isa = PBXGroup;
 			children = (
@@ -843,6 +866,7 @@
 				02AC7C8415B702E5007B574D /* ABAppDelegate.m */,
 				02AC7CAF15B9E4CE007B574D /* ABAudioPlayer.h */,
 				02AC7CB015B9E4CE007B574D /* ABAudioPlayer.m */,
+				024B1D7C1741CDFB00DFF421 /* RaisedTabBarController */,
 				021F93AE171CF21400C7583F /* Library */,
 				02FBB68D1725BFCC00495C11 /* Settings */,
 				021F93A5171CA56D00C7583F /* Containers */,
@@ -1034,6 +1058,8 @@
 				0284D3DC173EF34E00E712C1 /* Readability-Icon.png in Resources */,
 				0284D3DD173EF34E00E712C1 /* Readability-Icon@2x.png in Resources */,
 				0284D3FC173EF83400E712C1 /* REComposeViewController.bundle in Resources */,
+				024B1D881741D41300DFF421 /* cameraTabBarItem.png in Resources */,
+				024B1D891741D41300DFF421 /* cameraTabBarItem@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1112,6 +1138,8 @@
 				0284D3FD173EF83400E712C1 /* REComposeViewController.m in Sources */,
 				0284D404173EF8C000E712C1 /* GCOAuth.m in Sources */,
 				0284D405173EF8C000E712C1 /* NSData+Base64.m in Sources */,
+				024B1D7F1741CEC600DFF421 /* BaseViewController.m in Sources */,
+				024B1D851741D07200DFF421 /* MainTabBarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

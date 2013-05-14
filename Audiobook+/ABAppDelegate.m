@@ -13,6 +13,10 @@
 #import "Appirater.h"
 #import "AnalyticsManager.h"
 #import "ShareThis.h"
+#import "ABIpodAlbumTableViewController.h"
+#import "SettingsViewController.h"
+#import "ABAudioPlayerViewController.h"
+#import "MainTabBarViewController.h"
 @implementation ABAppDelegate
 
 @synthesize window = _window;
@@ -26,6 +30,21 @@
     // Override point for customization after application launch.
     
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    // use tab bar view controller
+    
+    ABIpodAlbumTableViewController *iatvc = [[ABIpodAlbumTableViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:iatvc];
+    //ABAudioPlayerViewController *apvc = [ABAudioPlayerViewController sharedController];
+    UIViewController *centerController = [[UIViewController alloc] init];
+    SettingsViewController *svc = [[SettingsViewController alloc] init];
+    NSArray *viewControllersArray = [[NSArray alloc] initWithObjects:nav, centerController,svc, nil];
+    MainTabBarViewController *tabController = [[MainTabBarViewController alloc] init];
+    [tabController setViewControllers:viewControllersArray animated:YES];
+    
+    self.window.rootViewController = tabController;
+    
+    /* use side panel controller instead, uncomment to use it
     JASidePanelController *panelController = [JASidePanelController sharedController];
     panelController.shouldDelegateAutorotateToVisiblePanel = NO;
     CenterPanelViewController *centerPanelController = [CenterPanelViewController sharedController];
@@ -35,6 +54,8 @@
     sidePanelController.delegate = centerPanelController;
     panelController.leftPanel = sidePanelController;
     self.window.rootViewController = panelController;
+    */
+    
     [self.window makeKeyAndVisible];
 
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];

@@ -48,6 +48,8 @@
 - (IBAction)progressBarTouchDown:(OBSlider *)sender;
 - (IBAction)progressBarTouchUpInside:(OBSlider *)sender;
 - (IBAction)progressBarTouchUpOutside:(OBSlider *)sender;
+- (IBAction)showChaptersAndBookmarks: (id) sender;
+- (IBAction)back:(id)sender;
 - (void) startLastPlayedTimer:(NSTimeInterval) seconds;
 - (void) stopLastPlayedTimer;
 
