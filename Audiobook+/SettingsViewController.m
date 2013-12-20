@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.trackedViewName = @"SettingsView";
+    self.screenName = @"SettingsView";
     // Do any additional setup after loading the view from its nib.
 }
 

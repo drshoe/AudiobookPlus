@@ -64,7 +64,7 @@ static ABAudioPlayerViewController *sharedController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.trackedViewName = @"PlayerView";
+    self.screenName = @"PlayerView";
     [self addPeriodicTimeObserverToUpdateProgressBar];
     
     // set navigation controller tab bar item

@@ -41,7 +41,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.trackedViewName = @"TracksView";
+    self.screenName = @"TracksView";
     
 
     // Uncomment the following line to preserve selection between presentations.

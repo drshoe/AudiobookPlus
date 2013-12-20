@@ -49,7 +49,7 @@ static ChapterAndBookmarkViewController *sharedController;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.trackedViewName = @"ChapterAndBookmarkView";
+    self.screenName = @"ChapterAndBookmarkView";
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

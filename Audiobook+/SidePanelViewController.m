@@ -37,7 +37,7 @@ static SidePanelViewController *sharedController;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.trackedViewName = @"SidePanelView";
+    self.screenName = @"SidePanelView";
     // Do any additional setup after loading the view from its nib.
 }
 

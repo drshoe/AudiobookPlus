@@ -42,7 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.trackedViewName = @"AlbumView";
+    self.screenName = @"AlbumView";
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
