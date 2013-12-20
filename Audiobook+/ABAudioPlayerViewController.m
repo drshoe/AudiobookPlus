@@ -199,7 +199,7 @@ static ABAudioPlayerViewController *sharedController;
 - (void) addPeriodicTimeObserverToUpdateProgressBar {
     // we add a playback observer to the player and make our UISlider to act like a progress bar
     CMTime interval = CMTimeMake(50, 100);// 3fps
-    self.playbackObserver = [self.appDelegate.audioPlayer addPeriodicTimeObserverForInterval:interval queue:dispatch_get_current_queue() usingBlock: ^(CMTime time) {
+    self.playbackObserver = [self.appDelegate.audioPlayer addPeriodicTimeObserverForInterval:interval queue:dispatch_get_main_queue() usingBlock: ^(CMTime time) {
         // playbackDuration is an NSNumber object representing time in seconds
         if ([self.appDelegate.audioPlayer.playbackDuration intValue]>0) {
             // CMtime is just a struct that contains value, timescale and other variables

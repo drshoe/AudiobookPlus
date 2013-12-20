@@ -30,7 +30,8 @@ static EmailService *_manager;
         
         NSString *emailBody = [[params objectForKey:@"url"] absoluteString];
         [mailer setMessageBody:emailBody isHTML:NO];
-        [viewController presentModalViewController:mailer animated:YES];
+        //[viewController presentModalViewController:mailer animated:YES];
+        [viewController presentViewController:mailer animated:YES completion:nil];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure"
                                                         message:@"Email composition failure. Please try again."
@@ -45,7 +46,8 @@ static EmailService *_manager;
           didFinishWithResult:(MFMailComposeResult)result
                         error:(NSError *)error
 {
-    [[controller presentingViewController] dismissModalViewControllerAnimated:YES];
+    //[[controller presentingViewController] dismissModalViewControllerAnimated:YES];
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

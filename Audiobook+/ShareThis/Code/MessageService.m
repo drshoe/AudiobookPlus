@@ -21,7 +21,8 @@ static MessageService *_manager;
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
-    [[controller presentingViewController] dismissModalViewControllerAnimated:YES];
+    //[[controller presentingViewController] dismissModalViewControllerAnimated:YES];
+    [[controller presentingViewController] dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)shareWithParams:(NSDictionary *)params onViewController:(UIViewController *)viewController
@@ -30,7 +31,8 @@ static MessageService *_manager;
         MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
         controller.body = [[params objectForKey:@"title"] stringByAppendingFormat:@"\n%@",[[params objectForKey:@"url"] absoluteString]];
         controller.messageComposeDelegate = self;
-        [viewController presentModalViewController:controller animated:YES];
+        //[viewController presentModalViewController:controller animated:YES];
+        [viewController presentViewController:controller animated:YES completion:nil];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure"
                                                         message:@"Messaging Failed."

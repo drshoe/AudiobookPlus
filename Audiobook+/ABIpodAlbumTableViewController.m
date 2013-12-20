@@ -26,6 +26,10 @@
     }
     return _albums;
 }
+
+- (void) refreshAlbums {
+    self.albums = nil;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -56,6 +60,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self refreshAlbums];
     [self.theTableView reloadData];
     [self startReloadTimer:kTimer5s];
     [DataManager sharedManager].delegate = self;
@@ -255,6 +260,7 @@
 }
 
 - (void) reloadTableView {
+    [self refreshAlbums];
     [self.theTableView reloadData];
 }
 

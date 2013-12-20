@@ -18,8 +18,8 @@
     if (self) {
         // Initialization code
         self.noteButton.titleLabel.numberOfLines = 0;
-        self.noteButton.titleLabel.lineBreakMode = UILineBreakModeWordWrap | UILineBreakModeTailTruncation;
-        self.noteButton.titleLabel.textAlignment = UITextAlignmentLeft;
+        self.noteButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping |  NSLineBreakByTruncatingTail;
+        self.noteButton.titleLabel.textAlignment = NSTextAlignmentLeft;
     }
     return self;
 }
@@ -42,7 +42,15 @@
     [super layoutSubviews];
     [self.noteButton setTitle:self.note forState:UIControlStateNormal];
     CGSize constraintSize = CGSizeMake(self.noteButton.frame.size.width, MAX_BUTTON_HEIGHT);
-    CGSize size = [self.note sizeWithFont:self.noteButton.titleLabel.font constrainedToSize:constraintSize lineBreakMode:self.noteButton.titleLabel.lineBreakMode];
+    //CGSize size = [self.note sizeWithFont:self.noteButton.titleLabel.font constrainedToSize:constraintSize lineBreakMode:self.noteButton.titleLabel.lineBreakMode];
+    // new in ios7, use nsattributed string to replace the line above
+    
+    NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:self.note attributes:@{NSFontAttributeName:self.noteButton.titleLabel.font}];
+    CGRect rect = [attributedText boundingRectWithSize:constraintSize
+                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                               context:nil];
+    CGSize size = rect.size;
+    
     CGRect frame = self.noteButton.frame;
     frame.size.height = size.height;
     self.noteButton.frame = frame;
@@ -50,7 +58,13 @@
 
 + (CGFloat) cellHeightForNote:(NSString *)note andButton:(UIButton *)button{
     CGSize constraintSize = CGSizeMake(button.frame.size.width, MAX_BUTTON_HEIGHT);
-    CGSize size = [note sizeWithFont:button.titleLabel.font constrainedToSize:constraintSize lineBreakMode:button.titleLabel.lineBreakMode];
+    //CGSize size = [note sizeWithFont:button.titleLabel.font constrainedToSize:constraintSize lineBreakMode:button.titleLabel.lineBreakMode]
+    NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:note attributes:@{NSFontAttributeName:button.titleLabel.font}];
+    CGRect rect = [attributedText boundingRectWithSize:constraintSize
+                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                               context:nil];
+    CGSize size = rect.size;
+    
     return CELL_DEFAULT_HEIGHT + CELL_BUTTON_PADDING + size.height;
 }
 
