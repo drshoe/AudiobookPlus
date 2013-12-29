@@ -120,7 +120,16 @@ static ChapterAndBookmarkViewController *sharedController;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (self.selectedIndex == ChapterAndBookmarkTableBookmarkSelected) {
-        return [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
+        NSInteger rows = [[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects];
+        // make sure we dont show editing button when there is no bookmarks
+        if (rows == 0) {
+            [self.editButton setHidden:YES];
+            [self.theTableView setEditing:NO animated:YES];
+        }
+        else {
+            [self.editButton setHidden:NO];
+        }
+        return rows;
         NSLog(@"%i",[[[self.fetchedResultsController sections] objectAtIndex:section] numberOfObjects]);
     }
     else {
@@ -198,11 +207,24 @@ static ChapterAndBookmarkViewController *sharedController;
         MPMediaItem *track = [self.tracks objectAtIndex:indexPath.row];
         NSString *trackTitle = [track valueForProperty:MPMediaItemPropertyTitle];
         NSString *trackNumber = [[track valueForProperty:MPMediaItemPropertyAlbumTrackNumber] stringValue];
+        NSString *trackCount = [[track valueForProperty:MPMediaItemPropertyAlbumTrackCount] stringValue];
         NSString *discNumber = [[track valueForProperty:MPMediaItemPropertyDiscNumber] stringValue];
         NSString *discCount = [[track valueForProperty:MPMediaItemPropertyDiscCount] stringValue];
         cell.titleLabel.text = trackTitle;
-        NSString *trackText = [[@"Track " stringByAppendingString:trackNumber] stringByAppendingString:@" of "];
-        NSString *discText = [[[@"Disc " stringByAppendingString:discNumber] stringByAppendingString:@" of "] stringByAppendingString:discCount];
+        NSString *discText = @"";
+        NSString *trackText = @"";
+        if (trackNumber) {
+            trackText = [[@"Track " stringByAppendingString:trackNumber] stringByAppendingString:@" of "];
+        }
+        if (trackNumber && trackCount) {
+            trackText = [[trackText stringByAppendingString:@" of "] stringByAppendingString:trackCount];
+        }
+        if (discNumber) {
+            discText = [@"Disc " stringByAppendingString:discNumber];
+        }
+        if (discNumber && discCount) {
+            discText = [[discText stringByAppendingString:@" of "] stringByAppendingString:discCount];
+        }
         // we must add 1 because indexpath.row starts with 0
         NSString *partText = [[[@"Part " stringByAppendingString:[[NSNumber numberWithInt:indexPath.row+1] stringValue]] stringByAppendingString:@" of "] stringByAppendingString:[[NSNumber numberWithInt:self.tracks.count] stringValue]];
         cell.detailTextLabel.text = [[partText stringByAppendingString:trackText] stringByAppendingString:discText];

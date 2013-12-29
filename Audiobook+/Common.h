@@ -25,10 +25,24 @@ typedef enum {
     SidePanelButtonTypeSettings,
 } SidePanelButtonType;
 
-typedef enum {
-    SettingsSectionManageSettings, 
-    SettingsSectionHelp
-} SettingsSection;
+typedef NS_ENUM(NSInteger, SettingGroup) {
+    SettingGroupHelp,
+    SettingGroupFeedback,
+    SettingGroupCount
+};
+
+typedef NS_ENUM(NSInteger, SettingGroupHelpCell) {
+    SettingGroupHelpCellQuickStart,
+    SettingGroupHelpCellFullGuide,
+    SettingGroupHelpCellAppVersion,
+    SettingGroupHelpCellCount
+};
+
+typedef NS_ENUM(NSInteger, SettingGroupFeedbackCell) {
+    SettingGroupFeedbackCellTellFriends,
+    SettingGroupFeedbackCellSendFeedback,
+    SettingGroupFeedbackCellCount
+};
 
 typedef enum {
     ChapterAndBookmarkTableBookmarkSelected,

@@ -184,13 +184,28 @@
     else {
         track = [self.tracks objectAtIndex:indexPath.row];
     }
+    
     NSString *trackTitle = [track valueForProperty:MPMediaItemPropertyTitle];
     NSString *trackNumber = [[track valueForProperty:MPMediaItemPropertyAlbumTrackNumber] stringValue];
+    NSString *trackCount = [[track valueForProperty:MPMediaItemPropertyAlbumTrackCount] stringValue];
     NSString *discNumber = [[track valueForProperty:MPMediaItemPropertyDiscNumber] stringValue];
     NSString *discCount = [[track valueForProperty:MPMediaItemPropertyDiscCount] stringValue];
+    NSString *trackText = [NSString string];
+    NSString *discText = [NSString string];
+    if (trackNumber) {
+        trackText = [@"Track " stringByAppendingString:trackNumber];
+    }
     
-    NSString *trackText = [[@"Track " stringByAppendingString:trackNumber] stringByAppendingString:@" of "];
-    NSString *discText = [[[@"Disc " stringByAppendingString:discNumber] stringByAppendingString:@" of "] stringByAppendingString:discCount];
+    if (trackNumber && trackCount) {
+        trackText = [[trackText stringByAppendingString:@" of "] stringByAppendingString:trackCount];
+    }
+                     
+    if (discNumber) {
+        discText = [@"Disc " stringByAppendingString:discNumber];
+    }
+    if (discNumber && discCount) {
+        discText = [[discText stringByAppendingString:@" of "] stringByAppendingString:discCount];
+    }
     MPMediaItemArtwork *artwork = [track valueForProperty:MPMediaItemPropertyArtwork];
     UIImage *artworkImage = [artwork imageWithSize:cell.albumArt.bounds.size];
     // we must add 1 because indexpath.row starts with 0

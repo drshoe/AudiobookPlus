@@ -8,6 +8,7 @@
 
 #import "SettingsViewController.h"
 
+
 @interface SettingsViewController ()
 
 @end
@@ -28,6 +29,10 @@
     [super viewDidLoad];
     self.screenName = @"SettingsView";
     // Do any additional setup after loading the view from its nib.
+    self.title = @"Settings";
+    
+    // reduce the top margin of the tableview so it is visually consistent
+    self.theTableView.contentInset = UIEdgeInsetsMake(-15, 0, -15, 0);
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,7 +46,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 2;
+    return SettingGroupCount;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -49,11 +54,11 @@
     
     // Return the number of rows in the section.
     switch (section) {
-        case SettingsSectionManageSettings:
-            return 2;
+        case SettingGroupHelp:
+            return SettingGroupHelpCellCount;
             break;
-        case SettingsSectionHelp:
-            return 6;
+        case SettingGroupFeedback:
+            return SettingGroupFeedbackCellCount;
             break;
         default:
             return 0;
@@ -70,44 +75,35 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     switch (indexPath.section) {
-        // manage connections
-        case SettingsSectionManageSettings:
-            switch (indexPath.row) {
-                case 0:
-                    cell.textLabel.text = @"Sync Bookmarks with iCloud";
-                    break;
-                case 1:
-                    cell.textLabel.text = @"Disable Auto-lock";
-                    break;
-                default:
-                    break;
-            }
-            break;
         // help
-        case SettingsSectionHelp:
+        case SettingGroupHelp:
             switch (indexPath.row) {
-                case 0:
-                    cell.textLabel.text = @"How to Sync with iTunes";
+                case SettingGroupHelpCellQuickStart:
+                    cell.textLabel.text = @"Quick Start Guide";
                     break;
-                case 1:
-                    cell.textLabel.text = @"FAQ";
+                case SettingGroupHelpCellFullGuide:
+                    cell.textLabel.text = @"Help";
                     break;
                 case 2:
-                    cell.textLabel.text = @"User Guide";
-                    break;
-                case 3:
-                    cell.textLabel.text = @"Contact Us";
-                    break;
-                case 4:
-                    cell.textLabel.text = @"About Us";
-                    break;
-                case 5:
-                    cell.textLabel.text = @"Share";
+                    cell.textLabel.text = @"App Version";
                     break;
                 default:
                     break;
             }
             break;
+        case SettingGroupFeedback:
+            switch (indexPath.row) {
+                case SettingGroupFeedbackCellTellFriends:
+                    cell.textLabel.text = @"Quick Start Guide";
+                    break;
+                case SettingGroupFeedbackCellSendFeedback:
+                    cell.textLabel.text = @"Send Feedback";
+                    break;
+                default:
+                    break;
+            }
+            break;
+
         default:
             break;
     }

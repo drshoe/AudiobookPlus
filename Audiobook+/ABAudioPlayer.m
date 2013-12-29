@@ -24,6 +24,7 @@
 @synthesize artist = _artist;
 @synthesize doubleSpeed = _doubleSpeed;
 @synthesize onePointFiveSpeed = _onePointFiveSpeed;
+@synthesize normalSpeed = _normalSpeed;
 @synthesize timer=_timer;
 @synthesize artwork = _artwork;
 
@@ -42,6 +43,9 @@
                                                  selector:@selector(playerItemDidReachEndAndPrepareToAdvance:)
                                                      name:AVPlayerItemDidPlayToEndTimeNotification
                                                    object:[self currentItem]];
+        self.normalSpeed = YES;
+        self.doubleSpeed = NO;
+        self.onePointFiveSpeed = NO;
     }
     return self;
 }
@@ -94,7 +98,13 @@
     NSNumber *persistentID = [track valueForProperty:MPMediaItemPropertyPersistentID];
     NSNumber *playbackDuration = [track valueForProperty:MPMediaItemPropertyPlaybackDuration];
     NSString *title = [track valueForProperty:MPMediaItemPropertyTitle];
-
+    self.trackTitle = title;
+    self.albumTitle = albumTitle;
+    self.artist = artist;
+    self.trackNumber = albumTrackNumber;
+    self.playbackDuration = playbackDuration;
+    self.discNumber = discNumber;
+    //if (title) {
     self.trackTitle = title;
     self.albumTitle = albumTitle;
     self.artist = artist;
@@ -110,11 +120,12 @@
     if (albumTitle) {
         [nowPlayingInfo setObject:albumTitle forKey:MPMediaItemPropertyAlbumTitle];
     }
-    if (albumTrackCount) {
-        [nowPlayingInfo setObject:albumTrackCount forKey:MPMediaItemPropertyAlbumTrackCount];
-    }
-    if (albumTrackNumber) {
+    
+    if (albumTrackNumber && [albumTrackNumber integerValue] !=-1) {
         [nowPlayingInfo setObject:albumTrackNumber forKey:MPMediaItemPropertyAlbumTrackNumber];
+    }
+    if (albumTrackCount && [albumTrackCount integerValue] !=-1) {
+        [nowPlayingInfo setObject:albumTrackCount forKey:MPMediaItemPropertyAlbumTrackCount];
     }
     if (artist) {
         [nowPlayingInfo setObject:artist forKey:MPMediaItemPropertyArtist];
@@ -125,10 +136,10 @@
     if (composer) {
         [nowPlayingInfo setObject:composer forKey:MPMediaItemPropertyComposer];
     }
-    if (discCount) {
+    if (discCount && [discCount integerValue] !=-1) {
         [nowPlayingInfo setObject:discCount forKey:MPMediaItemPropertyDiscCount];
     }
-    if (discNumber) {
+    if (discNumber && [discNumber integerValue] != -1) {
         [nowPlayingInfo setObject:discNumber forKey:MPMediaItemPropertyDiscNumber];
     }
     if (genre) {
@@ -142,6 +153,16 @@
     }
     if (title) {
         [nowPlayingInfo setObject:title forKey:MPMediaItemPropertyTitle];
+    }
+    
+    if (self.normalSpeed) {
+        [nowPlayingInfo setObject:[NSNumber numberWithFloat:1.0f] forKey:MPNowPlayingInfoPropertyPlaybackRate];
+    }
+    else if (self.doubleSpeed) {
+        [nowPlayingInfo setObject:[NSNumber numberWithFloat:2.0f] forKey:MPNowPlayingInfoPropertyPlaybackRate];
+    }
+    else if (self.onePointFiveSpeed) {
+        [nowPlayingInfo setObject:[NSNumber numberWithFloat:1.5f] forKey:MPNowPlayingInfoPropertyPlaybackRate];
     }
     nowPlayingInfoCentre.nowPlayingInfo = nowPlayingInfo;
     
@@ -241,41 +262,44 @@
 
 - (NSDictionary *) getTrackInfo {
     NSMutableDictionary *trackInfo = [[NSMutableDictionary alloc] init];
-    // trackTitle, albumTitle, playbackDuration, trackNumber, discNumber, artist;
-    [trackInfo setObject:self.albumTitle forKey:@"albumTitle"];
-    [trackInfo setObject:self.trackTitle forKey:@"trackTitle"];
-    [trackInfo setObject:self.playbackDuration forKey:@"playbackDuration"];
-    [trackInfo setObject:self.trackNumber forKey:@"trackNumber"];
-    [trackInfo setObject:self.discNumber forKey:@"discNumber"];
-    [trackInfo setObject:self.artist forKey:@"artist"];
-    [trackInfo setObject:[NSDate date] forKey:@"bookmarkTime"];
-    // we use the progress bar value to record the point on the particular track. it can later
-    // be easily converted to CMTime and then use seekToTime to move to the correct instant.
-    double currentTime = (double)(self.currentTime.value/self.currentTime.timescale);
-    double normalizedTime =  currentTime / [self.playbackDuration doubleValue];
-    [trackInfo setObject: [NSNumber numberWithFloat:normalizedTime] forKey:@"bookmarkTrackTime"];
+    trackInfo = [self setGeneralTrackInfo:trackInfo];
     [trackInfo setObject:[NSNumber numberWithBool:NO] forKey:@"completed"];
-    NSLog (@"trackInfo has been constructed");
-    //NSLog (@"the trackInfo contains %@",trackInfo);
     return trackInfo;
 }
 
 - (NSDictionary *)getTrackInfoWithCompletedFlag {
     NSMutableDictionary *trackInfo = [[NSMutableDictionary alloc] init];
+    trackInfo = [self setGeneralTrackInfo:trackInfo];
+    [trackInfo setObject:[NSNumber numberWithBool:YES] forKey:@"completed"];
+    return trackInfo;
+}
+
+- (NSMutableDictionary *)setGeneralTrackInfo: (NSMutableDictionary *)trackInfo {
     // trackTitle, albumTitle, playbackDuration, trackNumber, discNumber, artist;
-    [trackInfo setObject:self.albumTitle forKey:@"albumTitle"];
-    [trackInfo setObject:self.trackTitle forKey:@"trackTitle"];
-    [trackInfo setObject:self.playbackDuration forKey:@"playbackDuration"];
-    [trackInfo setObject:self.trackNumber forKey:@"trackNumber"];
-    [trackInfo setObject:self.discNumber forKey:@"discNumber"];
-    [trackInfo setObject:self.artist forKey:@"artist"];
+    if (self.albumTitle) {
+        [trackInfo setObject:self.albumTitle forKey:@"albumTitle"];
+    }
+    if (self.trackTitle) {
+        [trackInfo setObject:self.trackTitle forKey:@"trackTitle"];
+    }
+    if (self.playbackDuration) {
+        [trackInfo setObject:self.playbackDuration forKey:@"playbackDuration"];
+    }
+    if (self.trackNumber) {
+        [trackInfo setObject:self.trackNumber forKey:@"trackNumber"];
+    }
+    if (self.discNumber) {
+        [trackInfo setObject:self.discNumber forKey:@"discNumber"];
+    }
+    if (self.artist) {
+        [trackInfo setObject:self.artist forKey:@"artist"];
+    }
     [trackInfo setObject:[NSDate date] forKey:@"bookmarkTime"];
     // we use the progress bar value to record the point on the particular track. it can later
     // be easily converted to CMTime and then use seekToTime to move to the correct instant.
     double currentTime = (double)(self.currentTime.value/self.currentTime.timescale);
     double normalizedTime =  currentTime / [self.playbackDuration doubleValue];
     [trackInfo setObject: [NSNumber numberWithFloat:normalizedTime] forKey:@"bookmarkTrackTime"];
-    [trackInfo setObject:[NSNumber numberWithBool:YES] forKey:@"completed"];
     NSLog (@"trackInfo has been constructed");
     //NSLog (@"the trackInfo contains %@",trackInfo);
     return trackInfo;
@@ -304,5 +328,6 @@
         [self pauseTrack];
     }
 }
+
 
 @end

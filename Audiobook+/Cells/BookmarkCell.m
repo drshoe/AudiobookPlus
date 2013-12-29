@@ -44,16 +44,17 @@
     CGSize constraintSize = CGSizeMake(self.noteButton.frame.size.width, MAX_BUTTON_HEIGHT);
     //CGSize size = [self.note sizeWithFont:self.noteButton.titleLabel.font constrainedToSize:constraintSize lineBreakMode:self.noteButton.titleLabel.lineBreakMode];
     // new in ios7, use nsattributed string to replace the line above
-    
-    NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:self.note attributes:@{NSFontAttributeName:self.noteButton.titleLabel.font}];
-    CGRect rect = [attributedText boundingRectWithSize:constraintSize
-                                               options:NSStringDrawingUsesLineFragmentOrigin
-                                               context:nil];
-    CGSize size = rect.size;
-    
-    CGRect frame = self.noteButton.frame;
-    frame.size.height = size.height;
-    self.noteButton.frame = frame;
+    if (self.note) {
+        NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:self.note attributes:@{NSFontAttributeName:self.noteButton.titleLabel.font}];
+        CGRect rect = [attributedText boundingRectWithSize:constraintSize
+                                                   options:NSStringDrawingUsesLineFragmentOrigin
+                                                   context:nil];
+        CGSize size = rect.size;
+        
+        CGRect frame = self.noteButton.frame;
+        frame.size.height = size.height;
+        self.noteButton.frame = frame;
+    }
 }
 
 + (CGFloat) cellHeightForNote:(NSString *)note andButton:(UIButton *)button{

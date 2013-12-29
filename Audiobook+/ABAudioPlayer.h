@@ -28,6 +28,7 @@
 
 @property (assign, nonatomic) BOOL doubleSpeed;
 @property (assign, nonatomic) BOOL onePointFiveSpeed;
+@property (assign, nonatomic) BOOL normalSpeed;
 @property (nonatomic, strong) NSTimer *timer;
 
 

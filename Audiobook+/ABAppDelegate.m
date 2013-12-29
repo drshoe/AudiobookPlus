@@ -38,7 +38,8 @@
     //ABAudioPlayerViewController *apvc = [ABAudioPlayerViewController sharedController];
     UIViewController *centerController = [[UIViewController alloc] init];
     SettingsViewController *svc = [[SettingsViewController alloc] init];
-    NSArray *viewControllersArray = [[NSArray alloc] initWithObjects:nav, centerController,svc, nil];
+    UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:svc];
+    NSArray *viewControllersArray = [[NSArray alloc] initWithObjects:nav, centerController,nav2, nil];
     MainTabBarViewController *tabController = [[MainTabBarViewController alloc] init];
     [tabController setViewControllers:viewControllersArray animated:YES];
     

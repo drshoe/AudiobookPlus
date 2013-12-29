@@ -160,6 +160,7 @@ static ABAudioPlayerViewController *sharedController;
 
 
 
+#pragma mark - sleep timer
 - (IBAction)sleepTimer {
     //self.modalPresentationStyle = UIModalPresentationCurrentContext;
     //[self presentModalViewController:timer animated:YES];
@@ -169,27 +170,40 @@ static ABAudioPlayerViewController *sharedController;
 	 }];
 }
 
+#pragma mark - speed control
 - (IBAction)fasterTimes {
+    // update the playback rate in the MPNowPlayingInfoCenter so that the audioprogressbar in the lock screen is working properly
+    NSMutableDictionary *nowPlayingInfo = [[MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo mutableCopy];
+
     if (!self.appDelegate.audioPlayer.onePointFiveSpeed && !self.appDelegate.audioPlayer.doubleSpeed) {
         self.appDelegate.audioPlayer.onePointFiveSpeed = YES;
+        self.appDelegate.audioPlayer.doubleSpeed = NO;
+        self.appDelegate.audioPlayer.normalSpeed = NO;
         self.appDelegate.audioPlayer.rate = 1.5;
+        [nowPlayingInfo setObject:[NSNumber numberWithFloat:1.5f] forKey:MPNowPlayingInfoPropertyPlaybackRate];
     }
     else if (!self.appDelegate.audioPlayer.doubleSpeed && self.appDelegate.audioPlayer.onePointFiveSpeed){
         self.appDelegate.audioPlayer.onePointFiveSpeed = NO;
         self.appDelegate.audioPlayer.doubleSpeed = YES;
+        self.appDelegate.audioPlayer.normalSpeed = NO;
         self.appDelegate.audioPlayer.rate = 2.0;
+        [nowPlayingInfo setObject:[NSNumber numberWithFloat:2.0f] forKey:MPNowPlayingInfoPropertyPlaybackRate];
     }
     else {
         self.appDelegate.audioPlayer.onePointFiveSpeed = NO;
         self.appDelegate.audioPlayer.doubleSpeed = NO;
+        self.appDelegate.audioPlayer.normalSpeed = YES;
         self.appDelegate.audioPlayer.rate = 1.0;
+        [nowPlayingInfo setObject:[NSNumber numberWithFloat:1.0f] forKey:MPNowPlayingInfoPropertyPlaybackRate];
+        
     }
+    [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = nowPlayingInfo;
 }
 
 
 
 
-
+#pragma mark - bookmark
 - (IBAction)bookmark {
     NSDictionary *trackInfo = [self.appDelegate.audioPlayer getTrackInfo];
     
