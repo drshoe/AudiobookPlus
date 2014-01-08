@@ -94,10 +94,12 @@
         case SettingGroupFeedback:
             switch (indexPath.row) {
                 case SettingGroupFeedbackCellTellFriends:
-                    cell.textLabel.text = @"Quick Start Guide";
+                    cell.textLabel.text = @"Tell Friends About Audiobook+";
+                    cell.textLabel.textAlignment = NSTextAlignmentCenter;
                     break;
                 case SettingGroupFeedbackCellSendFeedback:
                     cell.textLabel.text = @"Send Feedback";
+                    cell.textLabel.textAlignment = NSTextAlignmentCenter;
                     break;
                 default:
                     break;

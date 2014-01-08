@@ -10,6 +10,7 @@
                 <outlet property="albumArt" destination="12" id="155"/>
                 <outlet property="albumTitle" destination="7" id="163"/>
                 <outlet property="progressBar" destination="8" id="159"/>
+                <outlet property="scrubbingLabel" destination="hqZ-zE-Gzt" id="724-qj-nv2"/>
                 <outlet property="timePlayed" destination="306" id="316"/>
                 <outlet property="timeRemaining" destination="311" id="317"/>
                 <outlet property="view" destination="3" id="154"/>
@@ -172,6 +173,12 @@
                         <action selector="back:" destination="-1" eventType="touchUpInside" id="345"/>
                     </connections>
                 </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Scrubbing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqZ-zE-Gzt">
+                    <rect key="frame" x="117" y="78" width="80" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>

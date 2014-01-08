@@ -49,6 +49,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.title = self.albumTitle;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -219,7 +220,8 @@
         cell.albumArt.image = nil;
     }
     cell.titleLabel.text = trackTitle;
-    cell.detailedLabel.text = [[partText stringByAppendingString:trackText] stringByAppendingString:discText];
+    //cell.detailedLabel.text = [[partText stringByAppendingString:trackText] stringByAppendingString:discText];
+    cell.detailedLabel.text = partText;
     
     // chapter could be nil if it was never initialized
     Chapters *chapter = [[DataManager sharedManager] getChapterWithTrack:track];
@@ -256,7 +258,7 @@
             cell.timeLeftLabel.text = @"Completed";
         }
         else {
-            cell.timeLeftLabel.text = [self stringFromTimeInterval:timeRemain];
+            cell.timeLeftLabel.text = [[self stringFromTimeInterval:timeRemain] stringByAppendingString:@" left"];
         }
     }
     else {

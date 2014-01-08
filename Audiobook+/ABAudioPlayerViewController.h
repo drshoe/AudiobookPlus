@@ -37,6 +37,8 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *timePlayed;
 @property (nonatomic, strong) IBOutlet UILabel *timeRemaining;
+
+@property (nonatomic, strong) IBOutlet UILabel *scrubbingLabel;
 + (ABAudioPlayerViewController *) sharedController;
 - (IBAction)playOrPause;
 - (IBAction)next;

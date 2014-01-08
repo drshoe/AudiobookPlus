@@ -49,6 +49,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.title = @"Library";
 }
 
 - (void)viewDidUnload
@@ -109,6 +110,11 @@
     
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 88;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -129,6 +135,17 @@
     NSString *albumName = [representativeItem valueForProperty: MPMediaItemPropertyAlbumTitle];
     // get the album artwork
     MPMediaItemArtwork *artwork = [representativeItem valueForProperty:MPMediaItemPropertyArtwork];
+    
+    NSString *artist = [representativeItem valueForProperty:MPMediaItemPropertyArtist];
+    if (!artist) {
+        artist = [representativeItem valueForProperty:MPMediaItemPropertyAlbumArtist];
+    }
+    if (artist) {
+        cell.detailedLabel.text = [@"By " stringByAppendingString:artist];
+    }
+    else {
+        cell.detailedLabel.text = @"";
+    }
     UIImage *artworkImage = [artwork imageWithSize:cell.albumArt.bounds.size];
     if (artworkImage) {
         // set the artwork image on the cell
@@ -156,7 +173,12 @@
     
     // set time played and time remain
     NSTimeInterval timeRemain = [albumProgress[@"totalPlaybackDuration"] doubleValue]-[albumProgress[@"totalTimePlayed"] doubleValue];
-    cell.timeLeftLabel.text = [self stringFromTimeInterval:timeRemain];
+    if ([albumProgress[@"allCompleted"] boolValue]) {
+        cell.timeLeftLabel.text = @"Completed";
+    }
+    else {
+        cell.timeLeftLabel.text = [[self stringFromTimeInterval:timeRemain] stringByAppendingString:@" left"];
+    }
     
     return cell;
 }
@@ -285,6 +307,7 @@
     Chapters *chapter = nil;
     NSTimeInterval totalPlaybackDuration = 0;
     NSTimeInterval totalTimePlayed = 0;
+    NSInteger numberOfCompletedChapters = 0;
     for (MPMediaItem *track in tracks) {
         NSNumber *playbackDuration = [track valueForProperty:MPMediaItemPropertyPlaybackDuration];
         totalPlaybackDuration += [playbackDuration doubleValue];
@@ -292,9 +315,20 @@
         // get already played time
         chapter = [[DataManager sharedManager]getChapterWithTrack:track];
         totalTimePlayed += [chapter.lastPlayedTrackTime doubleValue]*[chapter.playbackDuration doubleValue];
+        if ([chapter.completed boolValue]) {
+            numberOfCompletedChapters ++;
+        }
+    }
+    NSNumber *completed = nil;
+    if (numberOfCompletedChapters == tracks.count) {
+        // meaning all tracks are done playing
+        completed = [NSNumber numberWithBool:YES];
+    }
+    else {
+        completed = [NSNumber numberWithBool:NO];
     }
     double percent = totalTimePlayed/totalPlaybackDuration;
-    NSDictionary *result = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:totalTimePlayed],@"totalTimePlayed",[NSNumber numberWithDouble:totalPlaybackDuration],@"totalPlaybackDuration", [NSNumber numberWithDouble:percent],@"percentCompleted",nil];
+    NSDictionary *result = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:totalTimePlayed],@"totalTimePlayed",[NSNumber numberWithDouble:totalPlaybackDuration],@"totalPlaybackDuration", [NSNumber numberWithDouble:percent],@"percentCompleted", completed ,@"allCompleted",nil];
     return result;
 }
 

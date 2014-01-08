@@ -327,6 +327,13 @@
     else {
         [self pauseTrack];
     }
+    
+    // bug in ios 7, must readd the observer. for some reason, it got removed after one call
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playerItemDidReachEndAndPrepareToAdvance:)
+                                                 name:AVPlayerItemDidPlayToEndTimeNotification
+                                               object:[self currentItem]];
 }
 
 
