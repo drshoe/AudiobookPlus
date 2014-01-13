@@ -17,6 +17,7 @@
 
 #define kAudioBookDidChangeNotification @"AudiobookPlayerDidChangeChapterNotification"
 #define kAudioBookWillFinishNotification @"AudiobookPlayerWillFinishChapterNotification"
+
 typedef enum {
     SidePanelButtonTypeNowPlaying,
     SidePanelButtonTypeLibrary,

@@ -58,7 +58,7 @@
     [self updateLastPlayedAndNowPlayingStatus];
     [DataManager sharedManager].delegate = self;
     // reload the data every 10s to update the database
-    [self.theTableView reloadData];
+    [self reloadTableViewAndUpdateStatus];
     [self startReloadTimer:kTimer5s];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewAndUpdateStatus) name:kAudioBookDidChangeNotification object:nil];
 }
@@ -210,7 +210,22 @@
     MPMediaItemArtwork *artwork = [track valueForProperty:MPMediaItemPropertyArtwork];
     UIImage *artworkImage = [artwork imageWithSize:cell.albumArt.bounds.size];
     // we must add 1 because indexpath.row starts with 0
-    NSString *partText = [[[@"Part " stringByAppendingString:[[NSNumber numberWithInt:indexPath.row+1] stringValue]] stringByAppendingString:@" of "] stringByAppendingString:[[NSNumber numberWithInt:self.tracks.count] stringValue]];
+    
+    int partTextIndexPath = indexPath.row+1;
+    
+    if (indexPath.section == 0 && (self.nowPlayingIndexPath || self.lastPlayedIndexPath)) {
+        if (self.nowPlayingIndexPath) {
+            track = [self.tracks objectAtIndex:self.nowPlayingIndexPath.row];
+            partTextIndexPath = self.nowPlayingIndexPath.row +1;
+            
+        }
+        else {
+            track = [self.tracks objectAtIndex:self.lastPlayedIndexPath.row];
+            partTextIndexPath = self.lastPlayedIndexPath.row +1;
+        }
+    }
+    NSString *partText = [[[@"Part " stringByAppendingString:[[NSNumber numberWithInt:partTextIndexPath] stringValue]] stringByAppendingString:@" of "] stringByAppendingString:[[NSNumber numberWithInt:self.tracks.count] stringValue]];
+    
     if (artworkImage) {
         // set the artwork image on the cell
         cell.albumArt.image = artworkImage;
@@ -219,9 +234,9 @@
         // there is no artwork image
         cell.albumArt.image = nil;
     }
-    cell.titleLabel.text = trackTitle;
+    cell.titleLabel.text = partText;
     //cell.detailedLabel.text = [[partText stringByAppendingString:trackText] stringByAppendingString:discText];
-    cell.detailedLabel.text = partText;
+    cell.detailedLabel.text = trackTitle;
     
     // chapter could be nil if it was never initialized
     Chapters *chapter = [[DataManager sharedManager] getChapterWithTrack:track];
@@ -254,7 +269,7 @@
     // set time played and time remain
     if (chapter) {
         NSTimeInterval timeRemain = [chapter.playbackDuration doubleValue]* (1.0-progress);
-        if (progress == 1.0) {
+        if ([chapter.completed boolValue]) {
             cell.timeLeftLabel.text = @"Completed";
         }
         else {
@@ -386,11 +401,6 @@
     //audioPlayerViewController.navigationItem.hidesBackButton = NO;
     //[self.navigationController pushViewController:audioPlayerViewController animated:YES];
     
-    // for the case using uitabbarviewcontroller
-    UIViewController *presentingController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    audioPlayerViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [presentingController presentViewController:audioPlayerViewController animated:YES completion:nil];
-    
     // resume from last played time
     if (chapter && ![chapter.completed boolValue]) {
         // tell appirator that the user just resumed playing a track, which is a significant event
@@ -399,7 +409,14 @@
         double newTime = [chapter.lastPlayedTrackTime doubleValue] * [self.appDelegate.audioPlayer.playbackDuration doubleValue];
         CMTime newCMTime = CMTimeMake(newTime*self.appDelegate.audioPlayer.currentTime.timescale, self.appDelegate.audioPlayer.currentTime.timescale);
         [self.appDelegate.audioPlayer seekToTime:newCMTime];
+        
     }
+    // playtrack immediately
+    [self.appDelegate.audioPlayer playTrack];
+    // for the case using uitabbarviewcontroller
+    UIViewController *presentingController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    //audioPlayerViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [presentingController presentViewController:audioPlayerViewController animated:YES completion:nil];
 }
 
 #pragma mark - datamanager delegate

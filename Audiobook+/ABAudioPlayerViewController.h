@@ -35,10 +35,14 @@
 
 @property (nonatomic, strong) NSTimer *lastPlayedTimer;
 
-@property (nonatomic, strong) IBOutlet UILabel *timePlayed;
-@property (nonatomic, strong) IBOutlet UILabel *timeRemaining;
+@property (nonatomic, weak) IBOutlet UILabel *timePlayed;
+@property (nonatomic, weak) IBOutlet UILabel *timeRemaining;
 
-@property (nonatomic, strong) IBOutlet UILabel *scrubbingLabel;
+@property (nonatomic, weak) IBOutlet UILabel *scrubbingLabel;
+
+@property (nonatomic, weak) IBOutlet UINavigationBar *customNavigationBar;
+@property (nonatomic, weak) IBOutlet UINavigationItem *customNavigationBarItem;
+
 + (ABAudioPlayerViewController *) sharedController;
 - (IBAction)playOrPause;
 - (IBAction)next;

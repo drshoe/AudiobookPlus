@@ -67,7 +67,7 @@
 
 - (void) centerButtonPressed: (UIButton *)sender {
    ABAudioPlayerViewController *playerViewController = [ABAudioPlayerViewController sharedController];
-    playerViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    //playerViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     //UIViewController *presentingController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
     [self presentViewController:playerViewController animated:YES completion:nil];
 }

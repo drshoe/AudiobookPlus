@@ -57,6 +57,10 @@ static ChapterAndBookmarkViewController *sharedController;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.sampleBookmarkCell = [[BookmarkCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    
+    self.customNavigationBar.topItem.title = @"Bookmarks";
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
+    self.customNavigationBar.topItem.leftBarButtonItem = backButton;
 }
 
 

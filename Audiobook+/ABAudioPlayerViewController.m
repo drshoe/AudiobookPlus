@@ -68,9 +68,20 @@ static ABAudioPlayerViewController *sharedController;
     [self addPeriodicTimeObserverToUpdateProgressBar];
     
     // set navigation controller tab bar item
-    UIBarButtonItem *chapterAndBookmarkButton = [[UIBarButtonItem alloc] initWithTitle:@"Show" style:UIBarButtonItemStylePlain target:self action:@selector(showChaptersAndBookmarks:)];
-    self.navigationItem.rightBarButtonItem = chapterAndBookmarkButton;
+    UIBarButtonItem *chapterAndBookmarkButton = [[UIBarButtonItem alloc] initWithTitle:@"Bookmarks" style:UIBarButtonItemStylePlain target:self action:@selector(showChaptersAndBookmarks:)];
+    self.customNavigationBarItem.rightBarButtonItem = chapterAndBookmarkButton;
+    
+    self.customNavigationBarItem.LeftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
+    
+    
+    
     self.shouldResumePlaying = YES;
+    
+    
+    
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audiobookDidChange) name:kAudioBookDidChangeNotification object:nil];
 }
 
 
@@ -98,6 +109,8 @@ static ABAudioPlayerViewController *sharedController;
     }
     
     [self addPeriodicTimeObserverToUpdateProgressBar];
+    
+    [self updatePartLabel];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -148,6 +161,7 @@ static ABAudioPlayerViewController *sharedController;
         UIImage *artworkImage = [self.appDelegate.audioPlayer.artwork imageWithSize: CGSizeMake (120, 120)];
         [self.albumArt setImage:artworkImage];
     }
+    [self updatePartLabel];
 }
 
 - (IBAction)previous {
@@ -156,6 +170,8 @@ static ABAudioPlayerViewController *sharedController;
         UIImage *artworkImage = [self.appDelegate.audioPlayer.artwork imageWithSize: CGSizeMake (120, 120)];
         [self.albumArt setImage:artworkImage];
     }
+    
+    [self updatePartLabel];
 }
 
 
@@ -349,5 +365,16 @@ static ABAudioPlayerViewController *sharedController;
 
 - (IBAction)back:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - update labels
+- (void) audiobookDidChange {
+    [self updatePartLabel];
+}
+
+- (void) updatePartLabel {
+    NSNumber *currentPartNumber = [NSNumber numberWithInteger:[self.appDelegate.audioPlayer.currentTrackNumber integerValue]+1];
+    NSNumber *totalNumber = [NSNumber numberWithInteger:self.appDelegate.audioPlayer.allMPMediaPlayerItems.count];
+    self.customNavigationBarItem.title = [[[currentPartNumber stringValue] stringByAppendingString:@" of "]stringByAppendingString:[totalNumber stringValue]];
 }
 @end

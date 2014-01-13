@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChapterAndBookmarkViewController">
             <connections>
+                <outlet property="customNavigationBar" destination="5C2-fc-42b" id="ZNc-iv-RWc"/>
                 <outlet property="editButton" destination="34" id="48"/>
                 <outlet property="theTableView" destination="4" id="20"/>
                 <outlet property="view" destination="1" id="3"/>
@@ -37,19 +38,13 @@
                         <action selector="segmentedControlPressed:" destination="-1" eventType="valueChanged" id="21"/>
                     </connections>
                 </segmentedControl>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="22">
-                    <rect key="frame" x="0.0" y="33" width="36" height="28"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="36" id="28"/>
-                    </constraints>
-                    <state key="normal" title="X">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="back:" destination="-1" eventType="touchUpInside" id="30"/>
-                    </connections>
-                </button>
+                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5C2-fc-42b">
+                    <rect key="frame" x="0.0" y="25" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <navigationItem title="Title" id="FKD-ey-Tdh"/>
+                    </items>
+                </navigationBar>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34">
                     <rect key="frame" x="272" y="34" width="48" height="28"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -73,14 +68,10 @@
                 <constraint firstItem="9" firstAttribute="top" secondItem="1" secondAttribute="top" constant="34" id="10"/>
                 <constraint firstItem="9" firstAttribute="centerX" secondItem="4" secondAttribute="centerX" id="11"/>
                 <constraint firstItem="4" firstAttribute="bottom" secondItem="1" secondAttribute="bottom" id="19"/>
-                <constraint firstItem="22" firstAttribute="top" secondItem="1" secondAttribute="top" constant="33" id="24"/>
-                <constraint firstItem="22" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="25"/>
                 <constraint firstItem="4" firstAttribute="top" secondItem="1" secondAttribute="top" constant="70" id="33"/>
                 <constraint firstItem="34" firstAttribute="top" secondItem="1" secondAttribute="top" constant="34" id="38"/>
                 <constraint firstItem="34" firstAttribute="trailing" secondItem="1" secondAttribute="trailing" id="39"/>
-                <constraint firstItem="34" firstAttribute="baseline" secondItem="22" secondAttribute="baseline" id="41"/>
                 <constraint firstItem="34" firstAttribute="centerY" secondItem="9" secondAttribute="centerY" id="42"/>
-                <constraint firstItem="9" firstAttribute="bottom" secondItem="22" secondAttribute="bottom" constant="1" id="43"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

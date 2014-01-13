@@ -26,6 +26,8 @@
 
 @property (nonatomic, strong) BookmarkCell *sampleBookmarkCell;
 
-@property (nonatomic, strong) IBOutlet UIButton *editButton;
+@property (nonatomic, weak) IBOutlet UIButton *editButton;
+
+@property (nonatomic, weak) IBOutlet UINavigationBar *customNavigationBar;
 +(ChapterAndBookmarkViewController *)sharedController;
 @end
