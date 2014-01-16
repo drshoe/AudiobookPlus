@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
@@ -8,13 +8,15 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ABAudioPlayerViewController">
             <connections>
                 <outlet property="albumArt" destination="12" id="155"/>
-                <outlet property="albumTitle" destination="7" id="163"/>
                 <outlet property="customNavigationBar" destination="AIa-Mr-3EQ" id="5H6-vr-9Bm"/>
                 <outlet property="customNavigationBarItem" destination="AIZ-v8-Los" id="UIz-Dd-1iC"/>
+                <outlet property="playPauseButton" destination="9" id="RjD-KL-748"/>
                 <outlet property="progressBar" destination="8" id="159"/>
-                <outlet property="scrubbingLabel" destination="hqZ-zE-Gzt" id="724-qj-nv2"/>
+                <outlet property="speedButton" destination="5" id="nCN-Gb-4Zy"/>
                 <outlet property="timePlayed" destination="306" id="316"/>
                 <outlet property="timeRemaining" destination="311" id="317"/>
+                <outlet property="timerLabel" destination="6m8-AV-CmA" id="YWC-MY-P1Z"/>
+                <outlet property="trackTitleAndScrubbingLabel" destination="hqZ-zE-Gzt" id="f6l-uM-40D"/>
                 <outlet property="view" destination="3" id="154"/>
             </connections>
         </placeholder>
@@ -23,49 +25,45 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="12">
-                    <rect key="frame" x="0.0" y="144" width="320" height="228"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="12">
+                    <rect key="frame" x="0.0" y="138" width="320" height="341"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11">
-                    <rect key="frame" x="17" y="422" width="59" height="36"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="59" id="jCI-Mj-EXd"/>
-                    </constraints>
-                    <state key="normal" title="Previous">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="11">
+                    <rect key="frame" x="20" y="437" width="35" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                    <state key="normal" image="backward_button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="previous" destination="-1" eventType="touchUpInside" id="156"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10">
-                    <rect key="frame" x="240" y="422" width="87" height="36"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Next">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="10">
+                    <rect key="frame" x="260" y="437" width="35" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" image="forward_button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="next" destination="-1" eventType="touchUpInside" id="157"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9">
-                    <rect key="frame" x="98" y="368" width="105" height="36"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="36" id="alj-bj-wtZ"/>
-                    </constraints>
-                    <state key="normal" title="Play">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9">
+                    <rect key="frame" x="122" y="321" width="76" height="87"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" image="play_button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="selected" image="pause_button"/>
                     <connections>
                         <action selector="playOrPause" destination="-1" eventType="touchUpInside" id="158"/>
                     </connections>
                 </button>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="8" customClass="OBSlider">
-                    <rect key="frame" x="55" y="98" width="206" height="34"/>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="8" customClass="OBSlider">
+                    <rect key="frame" x="57" y="88" width="206" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <connections>
                         <action selector="progressBar:" destination="-1" eventType="valueChanged" id="274"/>
@@ -74,146 +72,104 @@
                         <action selector="progressBarTouchUpOutside:" destination="-1" eventType="touchUpOutside" id="273"/>
                     </connections>
                 </slider>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                    <rect key="frame" x="17" y="268" width="280" height="0.0"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6">
-                    <rect key="frame" x="131" y="422" width="72" height="36"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Sleep">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6">
+                    <rect key="frame" x="132" y="426" width="39" height="43"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" image="timer">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="sleepTimer" destination="-1" eventType="touchUpInside" id="164"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5">
-                    <rect key="frame" x="69" y="422" width="72" height="36"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="2X">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5">
+                    <rect key="frame" x="87" y="433" width="30" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                    <state key="normal" title="1x">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="fasterTimes" destination="-1" eventType="touchUpInside" id="165"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                    <rect key="frame" x="211" y="368" width="99" height="36"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Bookmark">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4">
+                    <rect key="frame" x="254" y="340" width="26" height="52"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" image="bookmark_button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="bookmark" destination="-1" eventType="touchUpInside" id="166"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="306">
-                    <rect key="frame" x="6" y="103" width="42" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="306">
+                    <rect key="frame" x="2" y="94" width="51" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="42" id="MZF-ks-YeR"/>
-                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                     <color key="textColor" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="311">
-                    <rect key="frame" x="269" y="103" width="42" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="311">
+                    <rect key="frame" x="264" y="94" width="53" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="42" id="fBF-xg-ACF"/>
-                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                     <color key="textColor" red="0.57647058819999997" green="0.58431372550000005" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="332">
-                    <rect key="frame" x="204" y="425" width="38" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="38" id="m3H-Vg-vJz"/>
-                    </constraints>
-                    <state key="normal" title="share">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="332">
+                    <rect key="frame" x="211" y="431" width="28" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="     " image="share_button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="shareButtonPressed:" destination="-1" eventType="touchUpInside" id="335"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scrubbing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqZ-zE-Gzt">
-                    <rect key="frame" x="117" y="78" width="80" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hqZ-zE-Gzt" userLabel="title or scrubbing label">
+                    <rect key="frame" x="40" y="70" width="240" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIa-Mr-3EQ">
+                <navigationBar contentMode="scaleToFill" translucent="NO" id="AIa-Mr-3EQ">
                     <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <items>
                         <navigationItem title="Title" id="AIZ-v8-Los"/>
                     </items>
                 </navigationBar>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8Jv-YF-drK">
+                    <rect key="frame" x="32" y="340" width="46" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                    <state key="normal" image="back_30_button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Off" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6m8-AV-CmA">
+                    <rect key="frame" x="165" y="439" width="35" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                    <color key="textColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="8" firstAttribute="top" secondItem="AIa-Mr-3EQ" secondAttribute="bottom" constant="34" id="0HJ-95-q2l"/>
-                <constraint firstItem="4" firstAttribute="bottom" secondItem="9" secondAttribute="bottom" id="0fh-8a-Ec8"/>
-                <constraint firstItem="6" firstAttribute="centerY" secondItem="332" secondAttribute="centerY" id="3ay-ky-Dwz"/>
-                <constraint firstItem="306" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="6" id="6DP-CR-RQK"/>
-                <constraint firstItem="11" firstAttribute="top" secondItem="5" secondAttribute="top" id="6DR-4G-Od8"/>
-                <constraint firstAttribute="trailing" secondItem="332" secondAttribute="trailing" constant="78" id="7Pz-Vv-BTD"/>
-                <constraint firstItem="4" firstAttribute="leading" secondItem="9" secondAttribute="trailing" constant="8" symbolic="YES" id="83U-md-Ccw"/>
-                <constraint firstItem="hqZ-zE-Gzt" firstAttribute="top" secondItem="AIa-Mr-3EQ" secondAttribute="bottom" constant="14" id="AXI-fo-Tej"/>
-                <constraint firstItem="9" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="98" id="Ano-RA-psG"/>
-                <constraint firstItem="10" firstAttribute="top" secondItem="6" secondAttribute="top" id="BAh-8A-nYV"/>
-                <constraint firstItem="10" firstAttribute="bottom" secondItem="6" secondAttribute="bottom" id="BEL-bX-jr6"/>
-                <constraint firstItem="11" firstAttribute="top" secondItem="12" secondAttribute="bottom" constant="50" id="Bzb-Ae-801"/>
-                <constraint firstItem="10" firstAttribute="leading" secondItem="6" secondAttribute="trailing" constant="37" id="C4e-6c-qla"/>
-                <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" constant="10" id="CUd-Wv-Uku"/>
-                <constraint firstItem="311" firstAttribute="top" secondItem="306" secondAttribute="top" id="CVc-4m-P2x"/>
-                <constraint firstAttribute="bottom" secondItem="7" secondAttribute="bottom" constant="212" id="E7e-a8-R29"/>
-                <constraint firstItem="9" firstAttribute="top" secondItem="4" secondAttribute="top" id="Er4-Oj-a3z"/>
-                <constraint firstItem="7" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="17" id="Fht-MG-obX"/>
-                <constraint firstItem="5" firstAttribute="bottom" secondItem="11" secondAttribute="bottom" id="Gt1-OH-chM"/>
-                <constraint firstItem="6" firstAttribute="top" secondItem="5" secondAttribute="top" id="HCX-BA-ELh"/>
-                <constraint firstItem="332" firstAttribute="leading" secondItem="5" secondAttribute="trailing" constant="63" id="IrF-08-kx0"/>
-                <constraint firstItem="6" firstAttribute="trailing" secondItem="9" secondAttribute="trailing" id="MIH-Bj-CWi"/>
-                <constraint firstItem="5" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="69" id="N2N-Rz-HNy"/>
-                <constraint firstAttribute="bottom" secondItem="11" secondAttribute="bottom" constant="22" id="QSg-mw-qZH"/>
-                <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" id="RmK-cw-nEe"/>
-                <constraint firstItem="6" firstAttribute="leading" secondItem="11" secondAttribute="trailing" constant="55" id="Rx7-xe-wrP"/>
-                <constraint firstItem="306" firstAttribute="baseline" secondItem="311" secondAttribute="baseline" id="SMq-Vy-m27"/>
-                <constraint firstItem="AIa-Mr-3EQ" firstAttribute="leading" secondItem="12" secondAttribute="leading" id="SQH-v6-y1M"/>
-                <constraint firstItem="8" firstAttribute="leading" secondItem="306" secondAttribute="trailing" constant="9" id="V5Y-nz-y1O"/>
-                <constraint firstItem="306" firstAttribute="top" secondItem="AIa-Mr-3EQ" secondAttribute="bottom" constant="39" id="XfD-v5-HKq"/>
-                <constraint firstItem="5" firstAttribute="bottom" secondItem="6" secondAttribute="bottom" id="XqD-wH-Dj1"/>
-                <constraint firstItem="12" firstAttribute="trailing" secondItem="AIa-Mr-3EQ" secondAttribute="trailing" id="af4-rK-j5x"/>
-                <constraint firstItem="7" firstAttribute="centerX" secondItem="hqZ-zE-Gzt" secondAttribute="centerX" id="esE-dr-en8"/>
-                <constraint firstAttribute="trailing" secondItem="10" secondAttribute="trailing" constant="-7" id="g8p-9e-obs"/>
-                <constraint firstItem="AIa-Mr-3EQ" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" id="hR3-0H-Sav"/>
-                <constraint firstAttribute="trailing" secondItem="7" secondAttribute="trailing" constant="23" id="iAg-85-kM0"/>
-                <constraint firstItem="12" firstAttribute="top" secondItem="8" secondAttribute="bottom" constant="13" id="k3f-Nt-rFe"/>
-                <constraint firstItem="332" firstAttribute="leading" secondItem="6" secondAttribute="trailing" constant="1" id="lPV-Mq-TjU"/>
-                <constraint firstAttribute="trailing" secondItem="311" secondAttribute="trailing" constant="9" id="ncM-H3-f84"/>
-                <constraint firstItem="5" firstAttribute="top" secondItem="9" secondAttribute="bottom" constant="18" id="ric-Od-lpR"/>
-                <constraint firstItem="12" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="szD-Tm-hP5"/>
-                <constraint firstItem="332" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="21" id="uYq-DA-o6U"/>
-                <constraint firstItem="12" firstAttribute="top" secondItem="306" secondAttribute="bottom" constant="20" id="vkx-oq-bKv"/>
-                <constraint firstItem="311" firstAttribute="leading" secondItem="8" secondAttribute="trailing" constant="10" id="wp6-0Z-cMb"/>
-                <constraint firstItem="7" firstAttribute="leading" secondItem="11" secondAttribute="leading" id="yDt-Wr-Kft"/>
-            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
         </view>
-        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0KW-Bh-jzi">
-            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-            <nil key="highlightedColor"/>
-        </label>
     </objects>
+    <resources>
+        <image name="back_30_button" width="47" height="50"/>
+        <image name="backward_button" width="36" height="21"/>
+        <image name="bookmark_button" width="26" height="51"/>
+        <image name="forward_button" width="36" height="21"/>
+        <image name="pause_button" width="76" height="87"/>
+        <image name="play_button" width="76" height="87"/>
+        <image name="share_button" width="14" height="20"/>
+        <image name="timer" width="21" height="24"/>
+    </resources>
 </document>

@@ -38,9 +38,11 @@ extern const struct KNSemiModalOptionKeys {
 	__unsafe_unretained NSString *pushParentBack;		   // boxed BOOL. default is YES.
 	__unsafe_unretained NSString *animationDuration; // boxed double, in seconds. default is 0.5.
 	__unsafe_unretained NSString *parentAlpha;       // boxed float. lower is darker. default is 0.5.
+    __unsafe_unretained NSString *parentScale;       // boxed double default is 0.8
 	__unsafe_unretained NSString *shadowOpacity;     // default is 0.8
 	__unsafe_unretained NSString *transitionStyle;	 // boxed NSNumber - one of the KNSemiModalTransitionStyle values.
     __unsafe_unretained NSString *disableCancel;     // boxed BOOL. default is NO.
+    __unsafe_unretained NSString *backgroundView;     // UIView, custom background.
 } KNSemiModalOptionKeys;
 
 NS_ENUM(NSUInteger, KNSemiModalTransitionStyle) {
@@ -76,6 +78,8 @@ typedef void (^KNTransitionCompletionBlock)(void);
 -(void)presentSemiView:(UIView*)vc;
 -(void)presentSemiView:(UIView*)view withOptions:(NSDictionary*)options;
 
+// Update (refresh) backgroundView
+-(void)updateBackground;
 // Dismiss & resize
 -(void)resizeSemiView:(CGSize)newSize;
 -(void)dismissSemiModalView;

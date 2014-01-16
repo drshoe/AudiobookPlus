@@ -5,7 +5,7 @@
 //  Created by Sheng Xu on 12-07-18.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-
+#import <QuartzCore/QuartzCore.h>
 #import "ABAudioPlayerViewController.h"
 #import "Bookmarks.h"
 #import "Book.h"
@@ -25,7 +25,6 @@ static ABAudioPlayerViewController *sharedController;
 @implementation ABAudioPlayerViewController
 //@synthesize trackCollection = _trackCollection;
 @synthesize progressBar = _progressBar;
-@synthesize albumTitle = _albumTitle;
 @synthesize albumArt = _albumArt;
 @synthesize appDelegate = _appDelegate;
 @synthesize playbackObserver = _playbackObserver;
@@ -71,17 +70,30 @@ static ABAudioPlayerViewController *sharedController;
     UIBarButtonItem *chapterAndBookmarkButton = [[UIBarButtonItem alloc] initWithTitle:@"Bookmarks" style:UIBarButtonItemStylePlain target:self action:@selector(showChaptersAndBookmarks:)];
     self.customNavigationBarItem.rightBarButtonItem = chapterAndBookmarkButton;
     
-    self.customNavigationBarItem.LeftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
-    
+    // setup custom uinavbar back button
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60.0f, 30.0f)];
+    [backButton setImageEdgeInsets:UIEdgeInsetsMake(0, -60.0, 0, 0)];
+    [backButton setImage:[UIImage imageNamed:@"back_button"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    self.customNavigationBarItem.LeftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     
     
     self.shouldResumePlaying = YES;
     
-    
-    
-    
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audiobookDidChange) name:kAudioBookDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timerWillBegin) name:kAudioBookTimerWillBeginNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timerWillEnd) name:kAudioBookTimerWillEndNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerPausePlaying) name:kAudioBookWillPauseNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerResumePlaying) name:kAudioBookWillResumeNotification object:nil];
+    
+    if (self.appDelegate.audioPlayer.playing) {
+        [self playerResumePlaying];
+    }
+    else {
+        [self playerPausePlaying];
+    }
+    
+    [self setupTopAndBottomLabels];
 }
 
 
@@ -89,6 +101,8 @@ static ABAudioPlayerViewController *sharedController;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [MarqueeLabel controllerViewWillAppear:self];
     
     [DataManager sharedManager].delegate = self;
 
@@ -99,18 +113,17 @@ static ABAudioPlayerViewController *sharedController;
         [self saveLastPlayedProgressForCurrentTrack];
     }
     self.shouldResumePlaying = NO;
-    // we set the current label to the title of the album
-    self.albumTitle.text = self.appDelegate.audioPlayer.albumTitle;
     
+    [self updateAuthorAlbumTrackLabels];
     // show album art
-    if (self.appDelegate.audioPlayer.artwork) {
-        UIImage *artworkImage = [self.appDelegate.audioPlayer.artwork imageWithSize: CGSizeMake (120, 120)];
-        [self.albumArt setImage:artworkImage];
-    }
+    [self updateArtwork];
     
     [self addPeriodicTimeObserverToUpdateProgressBar];
     
     [self updatePartLabel];
+    
+    
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -123,6 +136,25 @@ static ABAudioPlayerViewController *sharedController;
 // are loading more info
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    // init marquee label animation, must be put under viewdidappear
+    [MarqueeLabel controllerViewDidAppear:self];
+}
+
+- (void) viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    // add fading effect to the album art
+    
+     CAGradientLayer *l = [CAGradientLayer layer];
+     l.frame = self.albumArt.bounds;
+     l.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:0 green:0 blue:0 alpha:1] CGColor], (id)[[UIColor colorWithRed:0 green:0 blue:0 alpha:0] CGColor], nil];
+     
+     l.startPoint = CGPointMake(0.0, 0.0f);
+     l.endPoint = CGPointMake(1.0f, 1.0f);
+     
+     //you can change the direction, obviously, this would be top to bottom fade
+     self.albumArt.layer.mask = l;
+
 }
 
 
@@ -130,7 +162,6 @@ static ABAudioPlayerViewController *sharedController;
 {
     [self setProgressBar:nil];
     //[self setSleepTimerPicker:nil];
-    [self setAlbumTitle:nil];
     [self setAlbumArt:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -157,20 +188,13 @@ static ABAudioPlayerViewController *sharedController;
 
 - (IBAction)next {
     [self.appDelegate.audioPlayer nextTrack];
-    if (self.appDelegate.audioPlayer.artwork) {
-        UIImage *artworkImage = [self.appDelegate.audioPlayer.artwork imageWithSize: CGSizeMake (120, 120)];
-        [self.albumArt setImage:artworkImage];
-    }
+    [self updateArtwork];
     [self updatePartLabel];
 }
 
 - (IBAction)previous {
     [self.appDelegate.audioPlayer previousTrack];
-    if (self.appDelegate.audioPlayer.artwork) {
-        UIImage *artworkImage = [self.appDelegate.audioPlayer.artwork imageWithSize: CGSizeMake (120, 120)];
-        [self.albumArt setImage:artworkImage];
-    }
-    
+    [self updateArtwork];
     [self updatePartLabel];
 }
 
@@ -186,6 +210,13 @@ static ABAudioPlayerViewController *sharedController;
 	 }];
 }
 
+- (void)timerWillBegin {
+    self.timerLabel.text = @"On";
+}
+
+- (void) timerWillEnd {
+    self.timerLabel.text = @"Off";
+}
 #pragma mark - speed control
 - (IBAction)fasterTimes {
     // update the playback rate in the MPNowPlayingInfoCenter so that the audioprogressbar in the lock screen is working properly
@@ -196,6 +227,7 @@ static ABAudioPlayerViewController *sharedController;
         self.appDelegate.audioPlayer.doubleSpeed = NO;
         self.appDelegate.audioPlayer.normalSpeed = NO;
         self.appDelegate.audioPlayer.rate = 1.5;
+        [self.speedButton setTitle:@"1.5x" forState:UIControlStateNormal];
         [nowPlayingInfo setObject:[NSNumber numberWithFloat:1.5f] forKey:MPNowPlayingInfoPropertyPlaybackRate];
     }
     else if (!self.appDelegate.audioPlayer.doubleSpeed && self.appDelegate.audioPlayer.onePointFiveSpeed){
@@ -203,6 +235,7 @@ static ABAudioPlayerViewController *sharedController;
         self.appDelegate.audioPlayer.doubleSpeed = YES;
         self.appDelegate.audioPlayer.normalSpeed = NO;
         self.appDelegate.audioPlayer.rate = 2.0;
+        [self.speedButton setTitle:@"2.0x" forState:UIControlStateNormal];
         [nowPlayingInfo setObject:[NSNumber numberWithFloat:2.0f] forKey:MPNowPlayingInfoPropertyPlaybackRate];
     }
     else {
@@ -210,6 +243,7 @@ static ABAudioPlayerViewController *sharedController;
         self.appDelegate.audioPlayer.doubleSpeed = NO;
         self.appDelegate.audioPlayer.normalSpeed = YES;
         self.appDelegate.audioPlayer.rate = 1.0;
+        [self.speedButton setTitle:@"1.0x" forState:UIControlStateNormal];
         [nowPlayingInfo setObject:[NSNumber numberWithFloat:1.0f] forKey:MPNowPlayingInfoPropertyPlaybackRate];
         
     }
@@ -370,11 +404,64 @@ static ABAudioPlayerViewController *sharedController;
 #pragma mark - update labels
 - (void) audiobookDidChange {
     [self updatePartLabel];
+    [self updateArtwork];
+}
+
+- (void) updateAuthorAlbumTrackLabels {
+    self.trackTitleAndScrubbingLabel.text = self.appDelegate.audioPlayer.trackTitle;
+    NSString *artistAndAlbumTitle = @"";
+    if (self.appDelegate.audioPlayer.artist && self.appDelegate.audioPlayer.artist.length > 0) {
+        artistAndAlbumTitle = self.appDelegate.audioPlayer.artist;
+        if (self.appDelegate.audioPlayer.albumTitle && self.appDelegate.audioPlayer.albumTitle.length > 0) {
+            artistAndAlbumTitle = [artistAndAlbumTitle stringByAppendingString:@" - "];
+            artistAndAlbumTitle = [artistAndAlbumTitle stringByAppendingString:self.appDelegate.audioPlayer.albumTitle];
+        }
+    }
+    else {
+        if (self.appDelegate.audioPlayer.albumTitle && self.appDelegate.audioPlayer.albumTitle.length > 0) {
+            artistAndAlbumTitle = [artistAndAlbumTitle stringByAppendingString:self.appDelegate.audioPlayer.albumTitle];
+        }
+    }
+    self.authorAndAlbumTitleLabel.text = artistAndAlbumTitle;
+    //[MarqueeLabel restartLabelsOfController:self];
+  
+}
+- (void) updateArtwork {
+    if (self.appDelegate.audioPlayer.artwork) {
+        UIImage *artworkImage = [self.appDelegate.audioPlayer.artwork imageWithSize: CGSizeMake (self.appDelegate.audioPlayer.artwork.imageCropRect.size.width, self.appDelegate.audioPlayer.artwork.imageCropRect.size.height)];
+        [self.albumArt setImage:artworkImage];
+    }
+}
+
+- (void)playerPausePlaying {
+    [self.playPauseButton setSelected:NO];
+}
+
+- (void)playerResumePlaying {
+    [self.playPauseButton setSelected:YES];
 }
 
 - (void) updatePartLabel {
     NSNumber *currentPartNumber = [NSNumber numberWithInteger:[self.appDelegate.audioPlayer.currentTrackNumber integerValue]+1];
     NSNumber *totalNumber = [NSNumber numberWithInteger:self.appDelegate.audioPlayer.allMPMediaPlayerItems.count];
     self.customNavigationBarItem.title = [[[currentPartNumber stringValue] stringByAppendingString:@" of "]stringByAppendingString:[totalNumber stringValue]];
+}
+
+- (void) setupTopAndBottomLabels {
+    _authorAndAlbumTitleLabel = [[MarqueeLabel alloc] initWithFrame:CGRectMake(40 , 114, 240, 21) duration:8.0 andFadeLength:10.0f];
+    self.authorAndAlbumTitleLabel.tag = 101;
+    self.authorAndAlbumTitleLabel.numberOfLines = 1;
+    self.authorAndAlbumTitleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
+    self.authorAndAlbumTitleLabel.textAlignment = NSTextAlignmentCenter;
+    self.authorAndAlbumTitleLabel.textColor = [UIColor blackColor];
+    self.authorAndAlbumTitleLabel.backgroundColor = [UIColor clearColor];
+    self.authorAndAlbumTitleLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:12.0f];
+    //self.authorAndAlbumTitleLabel.text = @"This is a test of the label.              view!";
+    [self.view addSubview:self.authorAndAlbumTitleLabel];
+    
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

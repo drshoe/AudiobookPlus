@@ -16,7 +16,10 @@
 #define kTimer5s 5
 
 #define kAudioBookDidChangeNotification @"AudiobookPlayerDidChangeChapterNotification"
-#define kAudioBookWillFinishNotification @"AudiobookPlayerWillFinishChapterNotification"
+#define kAudioBookTimerWillBeginNotification @"AudiobookPlayerTimerWillBeginNotification"
+#define kAudioBookTimerWillEndNotification @"AudiobookPlayerTimerWillEndNotification"
+#define kAudioBookWillPauseNotification @"AudiobookPlayerWillPauseNotification"
+#define kAudioBookWillResumeNotification @"AudiobookPlayerWillResumeNotification"
 
 typedef enum {
     SidePanelButtonTypeNowPlaying,

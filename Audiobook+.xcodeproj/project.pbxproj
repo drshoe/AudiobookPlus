@@ -90,6 +90,7 @@
 		02AC7CAA15B799FB007B574D /* ABAudioPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AC7CA915B799FB007B574D /* ABAudioPlayerViewController.m */; };
 		02AC7CAC15B85FE8007B574D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AC7CAB15B85FE8007B574D /* AVFoundation.framework */; };
 		02AC7CB115B9E4CE007B574D /* ABAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 02AC7CB015B9E4CE007B574D /* ABAudioPlayer.m */; };
+		02ADD8C51887337700D9D469 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02ADD8C41887337700D9D469 /* Media.xcassets */; };
 		02C2AFF1172ADABF003EE7AD /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C2AFF0172ADABF003EE7AD /* UIViewController+KNSemiModal.m */; };
 		02C332A71864A52800B0ACB2 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C332A61864A52800B0ACB2 /* FacebookSDK.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		02C332A91864AA6100B0ACB2 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C332A81864AA6100B0ACB2 /* libz.dylib */; };
@@ -132,6 +133,7 @@
 		02C3333C1864B42000B0ACB2 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C3333B1864B42000B0ACB2 /* StoreKit.framework */; };
 		02CEACB215C78275001BC80A /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 02CEACB115C78275001BC80A /* OBSlider.m */; };
 		02CEACD615C84B8B001BC80A /* ABTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02CEACD515C84B8B001BC80A /* ABTimerViewController.m */; };
+		02D76C301887A2B500CDFD77 /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D76C2F1887A2B500CDFD77 /* MarqueeLabel.m */; };
 		02E3774715C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02E3774515C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld */; };
 		02E3774B15C33A6F0019BB77 /* ABBookmarkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E3774A15C33A6F0019BB77 /* ABBookmarkTableViewController.m */; };
 		02FBB6881725B07200495C11 /* AlbumTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02FBB6871725B07200495C11 /* AlbumTableCell.m */; };
@@ -274,6 +276,7 @@
 		02AC7CAD15B85FEF007B574D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		02AC7CAF15B9E4CE007B574D /* ABAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABAudioPlayer.h; sourceTree = "<group>"; };
 		02AC7CB015B9E4CE007B574D /* ABAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABAudioPlayer.m; sourceTree = "<group>"; };
+		02ADD8C41887337700D9D469 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../Media.xcassets; sourceTree = "<group>"; };
 		02C2AFEF172ADABF003EE7AD /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+KNSemiModal.h"; path = "ModalManager/UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
 		02C2AFF0172ADABF003EE7AD /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+KNSemiModal.m"; path = "ModalManager/UIViewController+KNSemiModal.m"; sourceTree = "<group>"; };
 		02C332A61864A52800B0ACB2 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
@@ -328,6 +331,8 @@
 		02CEACB115C78275001BC80A /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
 		02CEACD415C84B8A001BC80A /* ABTimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABTimerViewController.h; sourceTree = "<group>"; };
 		02CEACD515C84B8B001BC80A /* ABTimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABTimerViewController.m; sourceTree = "<group>"; };
+		02D76C2E1887A2B500CDFD77 /* MarqueeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarqueeLabel.h; path = MarqueeLabel/MarqueeLabel.h; sourceTree = "<group>"; };
+		02D76C2F1887A2B500CDFD77 /* MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarqueeLabel.m; path = MarqueeLabel/MarqueeLabel.m; sourceTree = "<group>"; };
 		02E3774615C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ABBookmarkDataModel.xcdatamodel; sourceTree = "<group>"; };
 		02E3774915C33A6F0019BB77 /* ABBookmarkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABBookmarkTableViewController.h; sourceTree = "<group>"; };
 		02E3774A15C33A6F0019BB77 /* ABBookmarkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABBookmarkTableViewController.m; sourceTree = "<group>"; };
@@ -617,10 +622,12 @@
 		02AC7C7A15B702E5007B574D /* Audiobook+ */ = {
 			isa = PBXGroup;
 			children = (
+				02ADD8C41887337700D9D469 /* Media.xcassets */,
 				02AC7C8315B702E5007B574D /* ABAppDelegate.h */,
 				02AC7C8415B702E5007B574D /* ABAppDelegate.m */,
 				02AC7CAF15B9E4CE007B574D /* ABAudioPlayer.h */,
 				02AC7CB015B9E4CE007B574D /* ABAudioPlayer.m */,
+				02D76C2D1887A28300CDFD77 /* MarqueeLabel */,
 				024B1D7C1741CDFB00DFF421 /* RaisedTabBarController */,
 				021F93AE171CF21400C7583F /* Library */,
 				02FBB68D1725BFCC00495C11 /* Settings */,
@@ -984,6 +991,15 @@
 			path = "appirater-master/zh-Hant.lproj";
 			sourceTree = "<group>";
 		};
+		02D76C2D1887A28300CDFD77 /* MarqueeLabel */ = {
+			isa = PBXGroup;
+			children = (
+				02D76C2E1887A2B500CDFD77 /* MarqueeLabel.h */,
+				02D76C2F1887A2B500CDFD77 /* MarqueeLabel.m */,
+			);
+			name = MarqueeLabel;
+			sourceTree = "<group>";
+		};
 		02FBB6851725B03C00495C11 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1020,7 +1036,6 @@
 				02AC7C6C15B702E5007B574D /* Sources */,
 				02AC7C6D15B702E5007B574D /* Frameworks */,
 				02AC7C6E15B702E5007B574D /* Resources */,
-				50524F424C454D533F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1120,6 +1135,7 @@
 				02C3331E1864B38C00B0ACB2 /* AppiraterLocalizable.strings in Resources */,
 				021F93B2171DDBC400C7583F /* ABIpodAlbumTableViewController.xib in Resources */,
 				02C333301864B38C00B0ACB2 /* AppiraterLocalizable.strings in Resources */,
+				02ADD8C51887337700D9D469 /* Media.xcassets in Resources */,
 				02C3332A1864B38C00B0ACB2 /* AppiraterLocalizable.strings in Resources */,
 				021F93B4171DDDA600C7583F /* ABIpodTrackTableViewController.xib in Resources */,
 				02C333311864B38C00B0ACB2 /* README.md in Resources */,
@@ -1164,8 +1180,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-
-
 /* Begin PBXSourcesBuildPhase section */
 		02AC7C6C15B702E5007B574D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1186,6 +1200,7 @@
 				02720EAB15CB14CF00268E1A /* Bookmarks+Create.m in Sources */,
 				02720EB415CB240300268E1A /* Book+Create.m in Sources */,
 				021F9398171CA4F400C7583F /* JADebugViewController.m in Sources */,
+				02D76C301887A2B500CDFD77 /* MarqueeLabel.m in Sources */,
 				021F9399171CA4F400C7583F /* JASidePanelController.m in Sources */,
 				021F939A171CA4F400C7583F /* UIViewController+JASidePanel.m in Sources */,
 				021F93A1171CA56500C7583F /* CenterPanelViewController.m in Sources */,

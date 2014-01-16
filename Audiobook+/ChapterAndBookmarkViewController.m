@@ -59,8 +59,13 @@ static ChapterAndBookmarkViewController *sharedController;
     self.sampleBookmarkCell = [[BookmarkCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
     self.customNavigationBar.topItem.title = @"Bookmarks";
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(back:)];
-    self.customNavigationBar.topItem.leftBarButtonItem = backButton;
+    
+    // setup custom uinavbar back button
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60.0f, 30.0f)];
+    [backButton setImageEdgeInsets:UIEdgeInsetsMake(0, -60.0, 0, 0)];
+    [backButton setImage:[UIImage imageNamed:@"back_button"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
+    self.customNavigationBar.topItem.LeftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
 }
 
 

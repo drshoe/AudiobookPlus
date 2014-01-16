@@ -198,15 +198,19 @@
     }
     // start timer to save the last played time to database
     [[ABAudioPlayerViewController sharedController] startLastPlayedTimer:kTimer10s];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAudioBookWillResumeNotification object:nil];
 }
 
 - (void)pauseTrack {
     [self pause];
     self.playing = NO;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAudioBookWillPauseNotification object:nil];
     NSLog(@"paused");
     NSError *setActiveError = nil;
     [[AVAudioSession sharedInstance] setActive:NO error:&setActiveError];
     [[ABAudioPlayerViewController sharedController] stopLastPlayedTimer];
+    
 }
 
 - (void)previousTrack {
@@ -249,15 +253,23 @@
 
 #pragma mark - timers
 - (void) startTimer:(NSTimeInterval) seconds{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAudioBookTimerWillBeginNotification object:nil];
     NSLog(@"stop timer is called");
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(pauseTrack) userInfo:nil
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(stopTimerAndTrack) userInfo:nil
                                                          repeats:NO];
 }
 
 - (void) stopTimer {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAudioBookTimerWillEndNotification object:nil];
     if (self.timer != nil){
         [self.timer invalidate];
     }
+}
+
+- (void) stopTimerAndTrack {
+    [self pauseTrack];
+    [self stopTimer];
 }
 
 - (NSDictionary *) getTrackInfo {

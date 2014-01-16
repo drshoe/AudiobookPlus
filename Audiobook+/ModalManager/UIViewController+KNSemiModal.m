@@ -15,9 +15,11 @@ const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
 	.pushParentBack          = @"KNSemiModalOptionPushParentBack",
 	.animationDuration       = @"KNSemiModalOptionAnimationDuration",
 	.parentAlpha             = @"KNSemiModalOptionParentAlpha",
+    .parentScale              = @"KNSemiModalOptionParentScale",
 	.shadowOpacity           = @"KNSemiModalOptionShadowOpacity",
 	.transitionStyle         = @"KNSemiModalTransitionStyle",
     .disableCancel           = @"KNSemiModalOptionDisableCancel",
+    .backgroundView          = @"KNSemiModelOptionBackgroundView",
 };
 
 #define kSemiModalViewController           @"PaPQC93kjgzUanz"
@@ -57,6 +59,7 @@ const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
      KNSemiModalOptionKeys.pushParentBack : @(YES),
      KNSemiModalOptionKeys.animationDuration : @(0.5),
      KNSemiModalOptionKeys.parentAlpha : @(0.5),
+     KNSemiModalOptionKeys.parentScale : @(0.8),     
      KNSemiModalOptionKeys.shadowOpacity : @(0.8),
      KNSemiModalOptionKeys.transitionStyle : @(KNSemiModalTransitionStyleSlideUp),
      KNSemiModalOptionKeys.disableCancel : @(NO),
@@ -70,12 +73,24 @@ const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
     CATransform3D t1 = CATransform3DIdentity;
     t1.m34 = 1.0/-900;
     t1 = CATransform3DScale(t1, 0.95, 0.95, 1);
-    t1 = CATransform3DRotate(t1, 15.0f*M_PI/180.0f, 1, 0, 0);
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+        // The rotation angle is minor as the view is nearer
+        t1 = CATransform3DRotate(t1, 7.5f*M_PI/180.0f, 1, 0, 0);
+    } else {
+        t1 = CATransform3DRotate(t1, 15.0f*M_PI/180.0f, 1, 0, 0);
+    }
     
     CATransform3D t2 = CATransform3DIdentity;
     t2.m34 = t1.m34;
-    t2 = CATransform3DTranslate(t2, 0, [self parentTarget].frame.size.height*-0.08, 0);
-    t2 = CATransform3DScale(t2, 0.8, 0.8, 1);
+    double scale = [[self ym_optionOrDefaultForKey:KNSemiModalOptionKeys.parentScale] doubleValue];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+        // Minor shift to mantai perspective
+        t2 = CATransform3DTranslate(t2, 0, [self parentTarget].frame.size.height*-0.04, 0);
+        t2 = CATransform3DScale(t2, scale, scale, 1);
+    } else {
+        t2 = CATransform3DTranslate(t2, 0, [self parentTarget].frame.size.height*-0.08, 0);
+        t2 = CATransform3DScale(t2, scale, scale, 1);
+    }
     
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform"];
     animation.toValue = [NSValue valueWithCATransform3D:t1];
@@ -194,17 +209,28 @@ const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
         // Calulate all frames
         CGFloat semiViewHeight = view.frame.size.height;
         CGRect vf = target.bounds;
-        CGRect semiViewFrame = CGRectMake(0, vf.size.height-semiViewHeight, vf.size.width, semiViewHeight);
+        CGRect semiViewFrame;
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+            // We center the view and mantain aspect ration
+            semiViewFrame = CGRectMake((vf.size.width - view.frame.size.width) / 2.0, vf.size.height-semiViewHeight, view.frame.size.width, semiViewHeight);
+        } else {
+            semiViewFrame = CGRectMake(0, vf.size.height-semiViewHeight, vf.size.width, semiViewHeight);
+        }
+        
         CGRect overlayFrame = CGRectMake(0, 0, vf.size.width, vf.size.height-semiViewHeight);
         
         // Add semi overlay
-        UIView * overlay = [[UIView alloc] initWithFrame:target.bounds];
-        if ([[options objectForKey:KNSemiModalOptionKeys.pushParentBack] isEqual: @NO]) {
-            overlay.backgroundColor = [UIColor blackColor];
+        UIView *overlay;
+        UIView *backgroundView = [self ym_optionOrDefaultForKey:KNSemiModalOptionKeys.backgroundView];
+        if (backgroundView) {
+            overlay = backgroundView;
+        } else {
+            overlay = [[UIView alloc] init];
         }
-        else {
-            overlay.backgroundColor = [UIColor blackColor];
-        }
+        
+        overlay.frame = target.bounds;
+        overlay.backgroundColor = [UIColor blackColor];
+        overlay.userInteractionEnabled = YES;
         overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         overlay.tag = kSemiModalOverlayTag;
         
@@ -241,7 +267,13 @@ const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
             view.alpha = 0.0;
         }
         
-        view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+            // Don't resize the view width on rotating
+            view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        } else {
+            view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+        }
+        
         view.tag = kSemiModalModalViewTag;
         [target addSubview:view];
         view.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -267,7 +299,11 @@ const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
         }];
     }
 }
-
+-(void)updateBackground{
+    UIView * target = [self parentTarget];
+    UIView * overlay = [target viewWithTag:kSemiModalOverlayTag];
+    [self kn_addOrUpdateParentScreenshotInView:overlay];
+}
 -(void)dismissSemiModalView {
 	[self dismissSemiModalViewWithCompletion:nil];
 }
@@ -288,8 +324,8 @@ const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
 
     // Correct target for dismissal
     UIView * target = [self parentTarget];
-    UIView * modal = [target.subviews objectAtIndex:target.subviews.count-1];
-    UIView * overlay = [target.subviews objectAtIndex:target.subviews.count-2];
+    UIView * modal = [target viewWithTag:kSemiModalModalViewTag];
+    UIView * overlay = [target viewWithTag:kSemiModalOverlayTag];
 	NSUInteger transitionStyle = [[self ym_optionOrDefaultForKey:KNSemiModalOptionKeys.transitionStyle] unsignedIntegerValue];
 	NSTimeInterval duration = [[self ym_optionOrDefaultForKey:KNSemiModalOptionKeys.animationDuration] doubleValue];
 	UIViewController *vc = objc_getAssociatedObject(self, kSemiModalViewController);
@@ -303,7 +339,12 @@ const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
 	
     [UIView animateWithDuration:duration animations:^{
         if (transitionStyle == KNSemiModalTransitionStyleSlideUp) {
-            modal.frame = CGRectMake(0, target.bounds.size.height, modal.frame.size.width, modal.frame.size.height);
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+                // As the view is centered, we perform a vertical translation
+                modal.frame = CGRectMake((target.bounds.size.width - modal.frame.size.width) / 2.0, target.bounds.size.height, modal.frame.size.width, modal.frame.size.height);
+            } else {
+                modal.frame = CGRectMake(0, target.bounds.size.height, modal.frame.size.width, modal.frame.size.height);
+            }
         } else if (transitionStyle == KNSemiModalTransitionStyleFadeOut || transitionStyle == KNSemiModalTransitionStyleFadeInOut) {
             modal.alpha = 0.0;
         }
@@ -347,12 +388,12 @@ const struct KNSemiModalOptionKeys KNSemiModalOptionKeys = {
 
 - (void)resizeSemiView:(CGSize)newSize {
     UIView * target = [self parentTarget];
-    UIView * modal = [target.subviews objectAtIndex:target.subviews.count-1];
+    UIView * modal = [target viewWithTag:kSemiModalModalViewTag];
     CGRect mf = modal.frame;
     mf.size.width = newSize.width;
     mf.size.height = newSize.height;
     mf.origin.y = target.frame.size.height - mf.size.height;
-    UIView * overlay = [target.subviews objectAtIndex:target.subviews.count-2];
+    UIView * overlay = [target viewWithTag:kSemiModalOverlayTag];
     UIButton * button = (UIButton*)[overlay viewWithTag:kSemiModalDismissButtonTag];
     CGRect bf = button.frame;
     bf.size.height = overlay.frame.size.height - newSize.height;

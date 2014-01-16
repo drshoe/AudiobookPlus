@@ -16,11 +16,11 @@
 #import "ABTimerViewController.h"
 #import "DataManager.h"
 #import "GAITrackedViewController.h"
+#import "MarqueeLabel.h"
 @interface ABAudioPlayerViewController : GAITrackedViewController <DataManagerDelegate>
 //@property (nonatomic, strong) MPMediaItemCollection *trackCollection;
 @property (nonatomic, weak) ABAppDelegate *appDelegate;
 @property (weak, nonatomic) IBOutlet OBSlider *progressBar;
-@property (weak, nonatomic) IBOutlet UILabel *albumTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *albumArt;
 
 @property (nonatomic, strong) id playbackObserver;
@@ -38,10 +38,18 @@
 @property (nonatomic, weak) IBOutlet UILabel *timePlayed;
 @property (nonatomic, weak) IBOutlet UILabel *timeRemaining;
 
-@property (nonatomic, weak) IBOutlet UILabel *scrubbingLabel;
+@property (nonatomic, weak) IBOutlet UILabel *trackTitleAndScrubbingLabel;
 
 @property (nonatomic, weak) IBOutlet UINavigationBar *customNavigationBar;
 @property (nonatomic, weak) IBOutlet UINavigationItem *customNavigationBarItem;
+
+@property (nonatomic, weak) IBOutlet UILabel *timerLabel;
+
+@property (nonatomic, weak) IBOutlet UIButton *speedButton;
+
+@property (nonatomic, weak) IBOutlet UIButton *playPauseButton;
+
+@property (nonatomic, strong) MarqueeLabel *authorAndAlbumTitleLabel;
 
 + (ABAudioPlayerViewController *) sharedController;
 - (IBAction)playOrPause;
