@@ -35,10 +35,25 @@
     
     ABIpodAlbumTableViewController *iatvc = [[ABIpodAlbumTableViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:iatvc];
+    UIImage *audiobookDeselectedImage = [UIImage imageNamed:@"audiobook_deselected"];
+    UIImage *audiobookSelectedImage = [UIImage imageNamed:@"audiobook_selected"];
+    nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Library" image:audiobookDeselectedImage tag:0];
+    nav.tabBarItem.selectedImage = audiobookSelectedImage;
+    nav.tabBarItem.imageInsets = UIEdgeInsetsMake(0,0,0,3);
+    
     //ABAudioPlayerViewController *apvc = [ABAudioPlayerViewController sharedController];
     UIViewController *centerController = [[UIViewController alloc] init];
+    centerController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Now Playing" image:nil tag:1];
+    
     SettingsViewController *svc = [[SettingsViewController alloc] init];
     UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:svc];
+    UIImage *settingsDeselectedImage = [UIImage imageNamed:@"settings_deselected"];
+    UIImage *settingsSelectedImage = [UIImage imageNamed:@"settings_selected"];
+    nav2.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Settings" image:settingsDeselectedImage tag:2];
+    nav2.tabBarItem.selectedImage = settingsSelectedImage;
+    nav2.tabBarItem.imageInsets = UIEdgeInsetsMake(0,0,0,3);
+    
+    
     NSArray *viewControllersArray = [[NSArray alloc] initWithObjects:nav, centerController,nav2, nil];
     MainTabBarViewController *tabController = [[MainTabBarViewController alloc] init];
     [tabController setViewControllers:viewControllersArray animated:YES];

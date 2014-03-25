@@ -20,7 +20,6 @@
 		020F9225173C1EF800151F4C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 020F9224173C1EF700151F4C /* SystemConfiguration.framework */; };
 		020F9231173C26A200151F4C /* AnalyticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 020F9230173C26A200151F4C /* AnalyticsManager.m */; };
 		021F938D171C9C8500C7583F /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02CEACAD15C7424E001BC80A /* CoreMedia.framework */; };
-		021F9390171CA3D800C7583F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 021F938F171CA3D800C7583F /* Default-568h@2x.png */; };
 		021F9398171CA4F400C7583F /* JADebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021F9393171CA4F400C7583F /* JADebugViewController.m */; };
 		021F9399171CA4F400C7583F /* JASidePanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 021F9395171CA4F400C7583F /* JASidePanelController.m */; };
 		021F939A171CA4F400C7583F /* UIViewController+JASidePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 021F9397171CA4F400C7583F /* UIViewController+JASidePanel.m */; };
@@ -165,7 +164,6 @@
 		020F9224173C1EF700151F4C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		020F922F173C26A200151F4C /* AnalyticsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnalyticsManager.h; path = GoogleAnalytics/AnalyticsManager.h; sourceTree = "<group>"; };
 		020F9230173C26A200151F4C /* AnalyticsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnalyticsManager.m; path = GoogleAnalytics/AnalyticsManager.m; sourceTree = "<group>"; };
-		021F938F171CA3D800C7583F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		021F9392171CA4F400C7583F /* JADebugViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JADebugViewController.h; path = JASidePanel/JADebugViewController.h; sourceTree = "<group>"; };
 		021F9393171CA4F400C7583F /* JADebugViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JADebugViewController.m; path = JASidePanel/JADebugViewController.m; sourceTree = "<group>"; };
 		021F9394171CA4F400C7583F /* JASidePanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JASidePanelController.h; path = JASidePanel/JASidePanelController.h; sourceTree = "<group>"; };
@@ -430,21 +428,21 @@
 				02AC7C9415B7033D007B574D /* ABIpodAlbumTableViewController.h */,
 				02AC7C9515B7033D007B574D /* ABIpodAlbumTableViewController.m */,
 				021F93B1171DDBC300C7583F /* ABIpodAlbumTableViewController.xib */,
+				02AC7CA115B744EF007B574D /* ABIpodTrackTableViewController.h */,
+				02AC7CA215B744EF007B574D /* ABIpodTrackTableViewController.m */,
+				021F93B3171DDDA600C7583F /* ABIpodTrackTableViewController.xib */,
 				02AC7CA815B799FB007B574D /* ABAudioPlayerViewController.h */,
 				02AC7CA915B799FB007B574D /* ABAudioPlayerViewController.m */,
 				021F93AF171CF40800C7583F /* ABAudioPlayerViewController.xib */,
 				02CEACD415C84B8A001BC80A /* ABTimerViewController.h */,
 				02CEACD515C84B8B001BC80A /* ABTimerViewController.m */,
 				021F93B5171DEFDB00C7583F /* ABTimerViewController.xib */,
-				02AC7CA115B744EF007B574D /* ABIpodTrackTableViewController.h */,
-				02AC7CA215B744EF007B574D /* ABIpodTrackTableViewController.m */,
-				021F93B3171DDDA600C7583F /* ABIpodTrackTableViewController.xib */,
-				02E3774915C33A6F0019BB77 /* ABBookmarkTableViewController.h */,
-				02E3774A15C33A6F0019BB77 /* ABBookmarkTableViewController.m */,
-				021FCD32171F429500441D9D /* ABBookmarkTableViewController.xib */,
 				02FBB6941727191200495C11 /* ChapterAndBookmarkViewController.h */,
 				02FBB6951727191200495C11 /* ChapterAndBookmarkViewController.m */,
 				02FBB6961727191200495C11 /* ChapterAndBookmarkViewController.xib */,
+				02E3774915C33A6F0019BB77 /* ABBookmarkTableViewController.h */,
+				02E3774A15C33A6F0019BB77 /* ABBookmarkTableViewController.m */,
+				021FCD32171F429500441D9D /* ABBookmarkTableViewController.xib */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -576,7 +574,6 @@
 		02AC7C6515B702E5007B574D = {
 			isa = PBXGroup;
 			children = (
-				021F938F171CA3D800C7583F /* Default-568h@2x.png */,
 				02AC7C7A15B702E5007B574D /* Audiobook+ */,
 				02AC7C7315B702E5007B574D /* Frameworks */,
 				02AC7C7115B702E5007B574D /* Products */,
@@ -1056,6 +1053,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					02AC7C6F15B702E5007B574D = {
+						DevelopmentTeam = NXMJL8YFP9;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 1;
@@ -1120,7 +1118,6 @@
 				02AC7C7F15B702E5007B574D /* InfoPlist.strings in Resources */,
 				02C333361864B38C00B0ACB2 /* AppiraterLocalizable.strings in Resources */,
 				02C333341864B38C00B0ACB2 /* AppiraterLocalizable.strings in Resources */,
-				021F9390171CA3D800C7583F /* Default-568h@2x.png in Resources */,
 				02C333271864B38C00B0ACB2 /* AppiraterLocalizable.strings in Resources */,
 				02C333241864B38C00B0ACB2 /* AppiraterLocalizable.strings in Resources */,
 				02C3331B1864B38C00B0ACB2 /* AppiraterLocalizable.strings in Resources */,
@@ -1574,11 +1571,12 @@
 		02AC7C9215B702E5007B574D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sheng Xu (M54AN5XF9F)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../Documents/FacebookSDK\\\"",
 					/Users/DrShoe/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1587,7 +1585,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/Audiobook+/GoogleAnalytics\\\"",
+					"$(SRCROOT)/Audiobook+/GoogleAnalytics",
 					"/Users/DrShoe/Development/Audiobook+/Audiobook+",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1600,11 +1598,12 @@
 		02AC7C9315B702E5007B574D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sheng Xu (M54AN5XF9F)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/../Documents/FacebookSDK\\\"",
 					/Users/DrShoe/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1613,7 +1612,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/Audiobook+/GoogleAnalytics\\\"",
+					"$(SRCROOT)/Audiobook+/GoogleAnalytics",
 					"/Users/DrShoe/Development/Audiobook+/Audiobook+",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";

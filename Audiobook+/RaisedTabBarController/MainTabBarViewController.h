@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface MainTabBarViewController : BaseViewController
-
+@property (nonatomic, strong) UIButton *centerButton;
 @end

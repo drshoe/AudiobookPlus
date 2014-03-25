@@ -9,6 +9,8 @@
 #import "ABAudioPlayer.h"
 #import "ABAudioPlayerViewController.h"
 #import "Appirater.h"
+#import "ABAppDelegate.h"
+#import "MainTabBarViewController.h"
 
 @implementation ABAudioPlayer
 @synthesize currentTrackNumber = _currentTrackNumber;
@@ -113,6 +115,13 @@
     self.discNumber = discNumber;
     self.artwork = artwork;
     
+    if (artwork) {
+        // update center button artwork
+        MainTabBarViewController *mtbc = (MainTabBarViewController *)((ABAppDelegate *)  [[UIApplication sharedApplication] delegate]).window.rootViewController;
+        UIImage *artworkImage = [artwork imageWithSize:CGSizeMake(50, 50)];
+        [mtbc.centerButton setImage:artworkImage forState:UIControlStateNormal];
+    }
+    
     /////////////////////// additional metadata needs to be filled, see documentation
     
     // save all the info
@@ -181,8 +190,24 @@
     //NSMutableArray *playerItems = [NSMutableArray arrayWithObject:playerItem];
     // initialize the audioplayer
     // we use the audioplayer instance from the app delegate so that our audio remains playing even when the user goes back
-    [self play];
+    
+
     [self setNowPlayingInfo:track];
+    
+    // make sure speed is correct
+    NSMutableDictionary *nowPlayingInfo = [[MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo mutableCopy];
+    if (!self.onePointFiveSpeed && !self.doubleSpeed) {
+        [self play];
+    }
+    else if (!self.doubleSpeed && self.onePointFiveSpeed){
+        self.rate = 1.5;
+        [nowPlayingInfo setObject:[NSNumber numberWithFloat:1.5f] forKey:MPNowPlayingInfoPropertyPlaybackRate];
+    }
+    else {
+        self.rate = 2.0;
+        [nowPlayingInfo setObject:[NSNumber numberWithFloat:2.0f] forKey:MPNowPlayingInfoPropertyPlaybackRate];
+    }
+    [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = nowPlayingInfo;
     self.playing = YES;
 
     // ensures that our audio does not play along side with any other audio sources from other apps

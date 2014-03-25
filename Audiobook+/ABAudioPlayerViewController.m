@@ -217,16 +217,19 @@ static ABAudioPlayerViewController *sharedController;
 - (void) timerWillEnd {
     self.timerLabel.text = @"Off";
 }
-#pragma mark - speed control
+#pragma mark - speed control and fast backwards
 - (IBAction)fasterTimes {
     // update the playback rate in the MPNowPlayingInfoCenter so that the audioprogressbar in the lock screen is working properly
     NSMutableDictionary *nowPlayingInfo = [[MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo mutableCopy];
-
+    
+    double rate = 1;
+    
     if (!self.appDelegate.audioPlayer.onePointFiveSpeed && !self.appDelegate.audioPlayer.doubleSpeed) {
         self.appDelegate.audioPlayer.onePointFiveSpeed = YES;
         self.appDelegate.audioPlayer.doubleSpeed = NO;
         self.appDelegate.audioPlayer.normalSpeed = NO;
-        self.appDelegate.audioPlayer.rate = 1.5;
+        //self.appDelegate.audioPlayer.rate = 1.5;
+        rate = 1.5;
         [self.speedButton setTitle:@"1.5x" forState:UIControlStateNormal];
         [nowPlayingInfo setObject:[NSNumber numberWithFloat:1.5f] forKey:MPNowPlayingInfoPropertyPlaybackRate];
     }
@@ -234,7 +237,8 @@ static ABAudioPlayerViewController *sharedController;
         self.appDelegate.audioPlayer.onePointFiveSpeed = NO;
         self.appDelegate.audioPlayer.doubleSpeed = YES;
         self.appDelegate.audioPlayer.normalSpeed = NO;
-        self.appDelegate.audioPlayer.rate = 2.0;
+        //self.appDelegate.audioPlayer.rate = 2.0;
+        rate = 2.0;
         [self.speedButton setTitle:@"2.0x" forState:UIControlStateNormal];
         [nowPlayingInfo setObject:[NSNumber numberWithFloat:2.0f] forKey:MPNowPlayingInfoPropertyPlaybackRate];
     }
@@ -242,12 +246,35 @@ static ABAudioPlayerViewController *sharedController;
         self.appDelegate.audioPlayer.onePointFiveSpeed = NO;
         self.appDelegate.audioPlayer.doubleSpeed = NO;
         self.appDelegate.audioPlayer.normalSpeed = YES;
-        self.appDelegate.audioPlayer.rate = 1.0;
+        //self.appDelegate.audioPlayer.rate = 1.0;
+        rate = 1.0;
         [self.speedButton setTitle:@"1.0x" forState:UIControlStateNormal];
         [nowPlayingInfo setObject:[NSNumber numberWithFloat:1.0f] forKey:MPNowPlayingInfoPropertyPlaybackRate];
         
     }
     [MPNowPlayingInfoCenter defaultCenter].nowPlayingInfo = nowPlayingInfo;
+    
+    if (self.appDelegate.audioPlayer.playing) {
+        self.appDelegate.audioPlayer.rate = rate;
+    }
+}
+
+- (IBAction)goBackward30s:(id)sender{
+    //double newTime = sender.value * [self.appDelegate.audioPlayer.playbackDuration doubleValue];
+    //CMTime newCMTime = CMTimeMake(newTime*self.appDelegate.audioPlayer.currentTime.timescale, self.appDelegate.audioPlayer.currentTime.timescale);
+    //[self.appDelegate.audioPlayer seekToTime:newCMTime];
+    //[self saveLastPlayedProgressForCurrentTrack];
+    
+    double currentTime = (double)(self.appDelegate.audioPlayer.currentTime.value/self.appDelegate.audioPlayer.currentTime.timescale);
+    if (currentTime > 30.0f) {
+        NSLog(@"current time is %f", currentTime);
+    }
+    else {
+        currentTime = 0.0f;
+    }
+    CMTime newCMTime = CMTimeMake(currentTime*self.appDelegate.audioPlayer.currentTime.timescale, self.appDelegate.audioPlayer.currentTime.timescale);
+    [self.appDelegate.audioPlayer seekToTime:newCMTime];
+    [self saveLastPlayedProgressForCurrentTrack];
 }
 
 
@@ -302,10 +329,10 @@ static ABAudioPlayerViewController *sharedController;
     NSInteger minutes = (ti / 60) % 60;
     NSInteger hours = (ti / 3600);
     if (hours < 1) {
-        return [NSString stringWithFormat:@"%02i:%02i", minutes, seconds];
+        return [NSString stringWithFormat:@"%02i:%02i", (int)minutes, (int)seconds];
     }
     else {
-        return [NSString stringWithFormat:@"%02i:%02i:%02i", hours, minutes, seconds];
+        return [NSString stringWithFormat:@"%02i:%02i:%02i", (int)hours, (int)minutes, (int)seconds];
     }
 }
 
@@ -348,6 +375,8 @@ static ABAudioPlayerViewController *sharedController;
     self.timePlayed.text = [self stringFromTimeInterval:timePlayed];
     self.timeRemaining.text = [self stringFromTimeInterval:timeRemain];
 }
+
+
 
 #pragma mark - chapter and bookmarks
 - (IBAction)showChaptersAndBookmarks: (id) sender {
@@ -394,7 +423,9 @@ static ABAudioPlayerViewController *sharedController;
 
 #pragma mark - sharing
 - (IBAction)shareButtonPressed:(id)sender {
-    [ShareThis showShareOptionsToShareUrl:[NSURL URLWithString:@"www.google.com"] title:@"check this out" image:nil onViewController:self];
+    NSString *currentlyPlayingTitle = self.appDelegate.audioPlayer.albumTitle;
+    NSString *title = [NSString stringWithFormat:@"I'm listening to \"%@\" with Audiobook+ app on iOS!", currentlyPlayingTitle];
+    [ShareThis showShareOptionsToShareUrl:[NSURL URLWithString:@"www.google.com"] title:title image:nil onViewController:self];
 }
 
 - (IBAction)back:(id)sender {
