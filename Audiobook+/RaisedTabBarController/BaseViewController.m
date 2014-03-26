@@ -27,6 +27,7 @@
 
 #import "BaseViewController.h"
 #import "ABAudioPlayerViewController.h"
+#import "ABAppDelegate.h"
 @implementation BaseViewController
 
 // Create a view controller and setup it's tab bar item with a title and image
@@ -68,9 +69,13 @@
 }
 
 - (void) centerButtonPressed: (UIButton *)sender {
-   ABAudioPlayerViewController *playerViewController = [ABAudioPlayerViewController sharedController];
-    //playerViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    //UIViewController *presentingController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-    [self presentViewController:playerViewController animated:YES completion:nil];
+    ABAppDelegate *delegate = (ABAppDelegate *)[[UIApplication sharedApplication] delegate];
+    // only show player if something is being played, avoid empty player
+    if (delegate.audioPlayer.playingStarted) {
+        ABAudioPlayerViewController *playerViewController = [ABAudioPlayerViewController sharedController];
+        //playerViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        //UIViewController *presentingController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+        [self presentViewController:playerViewController animated:YES completion:nil];
+    }
 }
 @end

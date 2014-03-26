@@ -424,8 +424,8 @@ static ABAudioPlayerViewController *sharedController;
 #pragma mark - sharing
 - (IBAction)shareButtonPressed:(id)sender {
     NSString *currentlyPlayingTitle = self.appDelegate.audioPlayer.albumTitle;
-    NSString *title = [NSString stringWithFormat:@"I'm listening to \"%@\" with Audiobook+ app on iOS!", currentlyPlayingTitle];
-    [ShareThis showShareOptionsToShareUrl:[NSURL URLWithString:@"www.google.com"] title:title image:nil onViewController:self];
+    NSString *title = [NSString stringWithFormat:@"I'm listening to \"%@\" with Audiobook+ app on iOS! http://www.audiobookplusapp.com", currentlyPlayingTitle];
+    [ShareThis showShareOptionsToShareUrl:[NSURL URLWithString:@"www.audiobookplusapp.com"] title:title image:[UIImage imageNamed:@"centerButton@2x"] onViewController:self];
 }
 
 - (IBAction)back:(id)sender {

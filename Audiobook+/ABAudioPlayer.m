@@ -86,6 +86,7 @@
 }
 
 - (void)setNowPlayingInfo:(MPMediaItem *)track{
+    self.playingStarted = YES;
     MPNowPlayingInfoCenter *nowPlayingInfoCentre = [MPNowPlayingInfoCenter defaultCenter];
     // lets get the info for the current track
     NSString *albumTitle = [track valueForProperty:MPMediaItemPropertyAlbumTitle];

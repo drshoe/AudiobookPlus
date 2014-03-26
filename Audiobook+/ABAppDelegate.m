@@ -39,11 +39,13 @@
     UIImage *audiobookSelectedImage = [UIImage imageNamed:@"audiobook_selected"];
     nav.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Library" image:audiobookDeselectedImage tag:0];
     nav.tabBarItem.selectedImage = audiobookSelectedImage;
-    nav.tabBarItem.imageInsets = UIEdgeInsetsMake(0,0,0,3);
+    // top left bottom right
+    nav.tabBarItem.imageInsets = UIEdgeInsetsMake(3,0,-1,2);
     
     //ABAudioPlayerViewController *apvc = [ABAudioPlayerViewController sharedController];
     UIViewController *centerController = [[UIViewController alloc] init];
     centerController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Now Playing" image:nil tag:1];
+    //centerController.tabBarItem.enabled = NO;
     
     SettingsViewController *svc = [[SettingsViewController alloc] init];
     UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:svc];
@@ -51,13 +53,13 @@
     UIImage *settingsSelectedImage = [UIImage imageNamed:@"settings_selected"];
     nav2.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Settings" image:settingsDeselectedImage tag:2];
     nav2.tabBarItem.selectedImage = settingsSelectedImage;
-    nav2.tabBarItem.imageInsets = UIEdgeInsetsMake(0,0,0,3);
+    nav2.tabBarItem.imageInsets = UIEdgeInsetsMake(3,0,-1,2);
     
     
     NSArray *viewControllersArray = [[NSArray alloc] initWithObjects:nav, centerController,nav2, nil];
     MainTabBarViewController *tabController = [[MainTabBarViewController alloc] init];
     [tabController setViewControllers:viewControllersArray animated:YES];
-    
+    tabController.delegate = self;
     self.window.rootViewController = tabController;
     
     /* use side panel controller instead, uncomment to use it
@@ -96,6 +98,16 @@
     [ShareThis startSessionWithFacebookURLSchemeSuffix:nil pocketAPI:nil readabilityKey:nil readabilitySecret:nil];
     
     return YES;
+}
+
+// disable center tab bar button
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    if (viewController.tabBarItem.tag == 1) {
+        return NO;
+    }
+    else {
+        return YES;
+    }
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -7,8 +7,9 @@
 //
 
 #import "SettingsViewController.h"
-
-
+#import "CTFeedbackViewController.h"
+#import "ShareThis.h"
+#import "QuickStartControllerViewController.h"
 @interface SettingsViewController ()
 
 @end
@@ -55,7 +56,7 @@
     // Return the number of rows in the section.
     switch (section) {
         case SettingGroupHelp:
-            return SettingGroupHelpCellCount;
+            return SettingGroupHelpCellCount-1;
             break;
         case SettingGroupFeedback:
             return SettingGroupFeedbackCellCount;
@@ -81,11 +82,14 @@
                 case SettingGroupHelpCellQuickStart:
                     cell.textLabel.text = @"Quick Start Guide";
                     break;
+                    /*
                 case SettingGroupHelpCellFullGuide:
                     cell.textLabel.text = @"Help";
-                    break;
-                case 2:
-                    cell.textLabel.text = @"App Version";
+                    break;*/
+                case 1:
+                    cell.textLabel.text = @"App Version                                 1.0";
+                    //cell.detailTextLabel.text = @"1.0";
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     break;
                 default:
                     break;
@@ -111,6 +115,45 @@
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.section) {
+        case SettingGroupHelp:
+            switch (indexPath.row) {
+                case SettingGroupHelpCellQuickStart: {
+                    QuickStartControllerViewController *quickStartController = [[QuickStartControllerViewController alloc] init];
+                    [self.navigationController pushViewController:quickStartController animated:YES];
+                    break;
+                }
+                case SettingGroupHelpCellAppVersion:
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case SettingGroupFeedback:
+            switch (indexPath.row) {
+                case SettingGroupFeedbackCellTellFriends: {
+                    NSString *title = @"Get Audiobook+ for iOS, never lose your audiobook progress again. http://www.audiobookplusapp.com";
+                    [ShareThis showShareOptionsToShareUrl:[NSURL URLWithString:@"www.audiobookplusapp.com"] title:title image:[UIImage imageNamed:@"centerButton@2x"] onViewController:self];
+                    break;
+                }
+                case SettingGroupFeedbackCellSendFeedback: {
+                    CTFeedbackViewController *feedbackViewController = [CTFeedbackViewController controllerWithTopics:CTFeedbackViewController.defaultTopics localizedTopics:CTFeedbackViewController.defaultLocalizedTopics];
+                    feedbackViewController.toRecipients = @[@"audiobookplus@apprena.com"];
+                    feedbackViewController.useHTML = NO;
+                    [self.navigationController pushViewController:feedbackViewController animated:YES];
+                
+                    break;
+                }
+                default:
+                    break;
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 @end

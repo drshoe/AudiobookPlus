@@ -133,6 +133,13 @@
 		02CEACB215C78275001BC80A /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 02CEACB115C78275001BC80A /* OBSlider.m */; };
 		02CEACD615C84B8B001BC80A /* ABTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02CEACD515C84B8B001BC80A /* ABTimerViewController.m */; };
 		02D76C301887A2B500CDFD77 /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D76C2F1887A2B500CDFD77 /* MarqueeLabel.m */; };
+		02DD19D518E1E31200A2DAE7 /* CTFeedbackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02DD19CC18E1E31200A2DAE7 /* CTFeedbackCell.m */; };
+		02DD19D618E1E31200A2DAE7 /* CTFeedbackCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 02DD19CE18E1E31200A2DAE7 /* CTFeedbackCellItem.m */; };
+		02DD19D718E1E31200A2DAE7 /* CTFeedbackTopicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02DD19D018E1E31200A2DAE7 /* CTFeedbackTopicsViewController.m */; };
+		02DD19D818E1E31200A2DAE7 /* CTFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02DD19D218E1E31200A2DAE7 /* CTFeedbackViewController.m */; };
+		02DD19D918E1E31200A2DAE7 /* NSBundle+CTFeedback.m in Sources */ = {isa = PBXBuildFile; fileRef = 02DD19D418E1E31200A2DAE7 /* NSBundle+CTFeedback.m */; };
+		02DD19DD18E218DA00A2DAE7 /* QuickStartControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02DD19DB18E218DA00A2DAE7 /* QuickStartControllerViewController.m */; };
+		02DD19DE18E218DA00A2DAE7 /* QuickStartControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02DD19DC18E218DA00A2DAE7 /* QuickStartControllerViewController.xib */; };
 		02E3774715C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02E3774515C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodeld */; };
 		02E3774B15C33A6F0019BB77 /* ABBookmarkTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E3774A15C33A6F0019BB77 /* ABBookmarkTableViewController.m */; };
 		02FBB6881725B07200495C11 /* AlbumTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 02FBB6871725B07200495C11 /* AlbumTableCell.m */; };
@@ -331,6 +338,19 @@
 		02CEACD515C84B8B001BC80A /* ABTimerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABTimerViewController.m; sourceTree = "<group>"; };
 		02D76C2E1887A2B500CDFD77 /* MarqueeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MarqueeLabel.h; path = MarqueeLabel/MarqueeLabel.h; sourceTree = "<group>"; };
 		02D76C2F1887A2B500CDFD77 /* MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MarqueeLabel.m; path = MarqueeLabel/MarqueeLabel.m; sourceTree = "<group>"; };
+		02DD19CB18E1E31200A2DAE7 /* CTFeedbackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTFeedbackCell.h; sourceTree = "<group>"; };
+		02DD19CC18E1E31200A2DAE7 /* CTFeedbackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTFeedbackCell.m; sourceTree = "<group>"; };
+		02DD19CD18E1E31200A2DAE7 /* CTFeedbackCellItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTFeedbackCellItem.h; sourceTree = "<group>"; };
+		02DD19CE18E1E31200A2DAE7 /* CTFeedbackCellItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTFeedbackCellItem.m; sourceTree = "<group>"; };
+		02DD19CF18E1E31200A2DAE7 /* CTFeedbackTopicsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTFeedbackTopicsViewController.h; sourceTree = "<group>"; };
+		02DD19D018E1E31200A2DAE7 /* CTFeedbackTopicsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTFeedbackTopicsViewController.m; sourceTree = "<group>"; };
+		02DD19D118E1E31200A2DAE7 /* CTFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTFeedbackViewController.h; sourceTree = "<group>"; };
+		02DD19D218E1E31200A2DAE7 /* CTFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTFeedbackViewController.m; sourceTree = "<group>"; };
+		02DD19D318E1E31200A2DAE7 /* NSBundle+CTFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+CTFeedback.h"; sourceTree = "<group>"; };
+		02DD19D418E1E31200A2DAE7 /* NSBundle+CTFeedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+CTFeedback.m"; sourceTree = "<group>"; };
+		02DD19DA18E218DA00A2DAE7 /* QuickStartControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickStartControllerViewController.h; sourceTree = "<group>"; };
+		02DD19DB18E218DA00A2DAE7 /* QuickStartControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickStartControllerViewController.m; sourceTree = "<group>"; };
+		02DD19DC18E218DA00A2DAE7 /* QuickStartControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickStartControllerViewController.xib; sourceTree = "<group>"; };
 		02E3774615C1FA4C0019BB77 /* ABBookmarkDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ABBookmarkDataModel.xcdatamodel; sourceTree = "<group>"; };
 		02E3774915C33A6F0019BB77 /* ABBookmarkTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABBookmarkTableViewController.h; sourceTree = "<group>"; };
 		02E3774A15C33A6F0019BB77 /* ABBookmarkTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABBookmarkTableViewController.m; sourceTree = "<group>"; };
@@ -633,6 +653,7 @@
 				02C2AFEE172ADA77003EE7AD /* ModalManager */,
 				021F9391171CA4E100C7583F /* SidePanelController */,
 				0234020F15C3432A0094C77C /* Data Model */,
+				02DD19CA18E1E31200A2DAE7 /* CTFeedback */,
 				02C332B41864B34E00B0ACB2 /* Appirater */,
 				0284D389173ED41500E712C1 /* ShareThis */,
 				0284D3EC173EF83400E712C1 /* REComposeViewController */,
@@ -997,6 +1018,23 @@
 			name = MarqueeLabel;
 			sourceTree = "<group>";
 		};
+		02DD19CA18E1E31200A2DAE7 /* CTFeedback */ = {
+			isa = PBXGroup;
+			children = (
+				02DD19CB18E1E31200A2DAE7 /* CTFeedbackCell.h */,
+				02DD19CC18E1E31200A2DAE7 /* CTFeedbackCell.m */,
+				02DD19CD18E1E31200A2DAE7 /* CTFeedbackCellItem.h */,
+				02DD19CE18E1E31200A2DAE7 /* CTFeedbackCellItem.m */,
+				02DD19CF18E1E31200A2DAE7 /* CTFeedbackTopicsViewController.h */,
+				02DD19D018E1E31200A2DAE7 /* CTFeedbackTopicsViewController.m */,
+				02DD19D118E1E31200A2DAE7 /* CTFeedbackViewController.h */,
+				02DD19D218E1E31200A2DAE7 /* CTFeedbackViewController.m */,
+				02DD19D318E1E31200A2DAE7 /* NSBundle+CTFeedback.h */,
+				02DD19D418E1E31200A2DAE7 /* NSBundle+CTFeedback.m */,
+			);
+			path = CTFeedback;
+			sourceTree = "<group>";
+		};
 		02FBB6851725B03C00495C11 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1019,6 +1057,9 @@
 				02FBB68E1725BFFA00495C11 /* SettingsViewController.h */,
 				02FBB68F1725BFFA00495C11 /* SettingsViewController.m */,
 				02FBB6901725BFFA00495C11 /* SettingsViewController.xib */,
+				02DD19DA18E218DA00A2DAE7 /* QuickStartControllerViewController.h */,
+				02DD19DB18E218DA00A2DAE7 /* QuickStartControllerViewController.m */,
+				02DD19DC18E218DA00A2DAE7 /* QuickStartControllerViewController.xib */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1124,6 +1165,7 @@
 				02C3331D1864B38C00B0ACB2 /* AppiraterLocalizable.strings in Resources */,
 				02C3331A1864B38C00B0ACB2 /* AppiraterLocalizable.strings in Resources */,
 				021F93A2171CA56500C7583F /* CenterPanelViewController.xib in Resources */,
+				02DD19DE18E218DA00A2DAE7 /* QuickStartControllerViewController.xib in Resources */,
 				021F93A4171CA56500C7583F /* SidePanelViewController.xib in Resources */,
 				02C3331F1864B38C00B0ACB2 /* AppiraterLocalizable.strings in Resources */,
 				021F93B0171CF40800C7583F /* ABAudioPlayerViewController.xib in Resources */,
@@ -1199,7 +1241,9 @@
 				021F9398171CA4F400C7583F /* JADebugViewController.m in Sources */,
 				02D76C301887A2B500CDFD77 /* MarqueeLabel.m in Sources */,
 				021F9399171CA4F400C7583F /* JASidePanelController.m in Sources */,
+				02DD19DD18E218DA00A2DAE7 /* QuickStartControllerViewController.m in Sources */,
 				021F939A171CA4F400C7583F /* UIViewController+JASidePanel.m in Sources */,
+				02DD19D918E1E31200A2DAE7 /* NSBundle+CTFeedback.m in Sources */,
 				021F93A1171CA56500C7583F /* CenterPanelViewController.m in Sources */,
 				021F93A3171CA56500C7583F /* SidePanelViewController.m in Sources */,
 				02AAD3F01720851C00ADA002 /* TVNavigationController.m in Sources */,
@@ -1208,11 +1252,13 @@
 				02FBB6971727191200495C11 /* ChapterAndBookmarkViewController.m in Sources */,
 				02C2AFF1172ADABF003EE7AD /* UIViewController+KNSemiModal.m in Sources */,
 				020F918E17303BB400151F4C /* Chapters+Create.m in Sources */,
+				02DD19D718E1E31200A2DAE7 /* CTFeedbackTopicsViewController.m in Sources */,
 				020F919A1731B25500151F4C /* DataManager.m in Sources */,
 				020F919D1731EF6700151F4C /* Book.m in Sources */,
 				020F91A31731EF6A00151F4C /* Bookmarks.m in Sources */,
 				020F91A91734BC4200151F4C /* ChapterCell.m in Sources */,
 				020F91AE1739663400151F4C /* BookmarkCell.m in Sources */,
+				02DD19D518E1E31200A2DAE7 /* CTFeedbackCell.m in Sources */,
 				020F91B3173AD75200151F4C /* Chapters.m in Sources */,
 				020F9231173C26A200151F4C /* AnalyticsManager.m in Sources */,
 				0284D3DE173EF34E00E712C1 /* EmailService.m in Sources */,
@@ -1231,10 +1277,12 @@
 				0284D3F8173EF83400E712C1 /* DEComposeRuledView.m in Sources */,
 				0284D3F9173EF83400E712C1 /* DEComposeTextView.m in Sources */,
 				0284D3FA173EF83400E712C1 /* REComposeBackgroundView.m in Sources */,
+				02DD19D818E1E31200A2DAE7 /* CTFeedbackViewController.m in Sources */,
 				0284D3FB173EF83400E712C1 /* REComposeSheetView.m in Sources */,
 				0284D3FD173EF83400E712C1 /* REComposeViewController.m in Sources */,
 				0284D404173EF8C000E712C1 /* GCOAuth.m in Sources */,
 				0284D405173EF8C000E712C1 /* NSData+Base64.m in Sources */,
+				02DD19D618E1E31200A2DAE7 /* CTFeedbackCellItem.m in Sources */,
 				024B1D7F1741CEC600DFF421 /* BaseViewController.m in Sources */,
 				024B1D851741D07200DFF421 /* MainTabBarViewController.m in Sources */,
 			);

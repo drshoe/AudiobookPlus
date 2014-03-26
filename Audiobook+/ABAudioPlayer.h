@@ -31,6 +31,8 @@
 @property (assign, nonatomic) BOOL normalSpeed;
 @property (nonatomic, strong) NSTimer *timer;
 
+@property (nonatomic, assign) BOOL playingStarted;
+
 
 
 - (id)initWithItems: (NSArray *)avPlayerItems withCurrentTrackNumber: (NSNumber *)currentTrackNumber;
