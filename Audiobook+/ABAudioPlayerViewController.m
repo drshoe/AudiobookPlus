@@ -63,6 +63,7 @@ static ABAudioPlayerViewController *sharedController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.bookmarkAlertView.alpha = 0.0;
     self.screenName = @"PlayerView";
     [self addPeriodicTimeObserverToUpdateProgressBar];
     
@@ -150,7 +151,7 @@ static ABAudioPlayerViewController *sharedController;
      l.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:0 green:0 blue:0 alpha:1] CGColor], (id)[[UIColor colorWithRed:0 green:0 blue:0 alpha:0] CGColor], nil];
      
      l.startPoint = CGPointMake(0.0, 0.0f);
-     l.endPoint = CGPointMake(1.0f, 1.0f);
+     l.endPoint = CGPointMake(0.0f, 1.0f);
      
      //you can change the direction, obviously, this would be top to bottom fade
      self.albumArt.layer.mask = l;
@@ -285,6 +286,14 @@ static ABAudioPlayerViewController *sharedController;
     NSDictionary *trackInfo = [self.appDelegate.audioPlayer getTrackInfo];
     
     [[DataManager sharedManager] bookmarkWithTrackInfo:trackInfo];
+    [self showBookmarkAlert];
+}
+     
+- (void) showBookmarkAlert {
+    self.bookmarkAlertView.alpha = 1.0;
+    [UIView animateWithDuration:1.5
+                     animations:^{self.bookmarkAlertView.alpha = 0.0;}
+                     completion:nil];
 }
 #pragma mark - add periodic time observer to update progressbar
 - (void) addPeriodicTimeObserverToUpdateProgressBar {

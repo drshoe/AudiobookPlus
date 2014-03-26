@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ABAudioPlayerViewController">
             <connections>
                 <outlet property="albumArt" destination="12" id="155"/>
+                <outlet property="bookmarkAlertView" destination="fKm-Kq-WUx" id="hTE-Ly-RF4"/>
                 <outlet property="customNavigationBar" destination="AIa-Mr-3EQ" id="5H6-vr-9Bm"/>
                 <outlet property="customNavigationBarItem" destination="AIZ-v8-Los" id="UIz-Dd-1iC"/>
                 <outlet property="playPauseButton" destination="9" id="RjD-KL-748"/>
@@ -160,6 +161,17 @@
                     <color key="textColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" id="rkI-t0-G0J">
+                    <rect key="frame" x="105" y="264" width="110" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmark" id="fKm-Kq-WUx">
+                            <rect key="frame" x="0.0" y="0.0" width="110" height="31"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </imageView>
+                    </subviews>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -168,6 +180,7 @@
     <resources>
         <image name="back_30_button" width="47" height="50"/>
         <image name="backward_button" width="36" height="21"/>
+        <image name="bookmark" width="110" height="31"/>
         <image name="bookmark_button" width="26" height="51"/>
         <image name="forward_button" width="36" height="21"/>
         <image name="pause_button" width="76" height="87"/>

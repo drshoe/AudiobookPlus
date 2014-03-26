@@ -51,6 +51,8 @@
 
 @property (nonatomic, strong) MarqueeLabel *authorAndAlbumTitleLabel;
 
+@property (nonatomic, weak) IBOutlet UIView *bookmarkAlertView;
+
 + (ABAudioPlayerViewController *) sharedController;
 - (IBAction)playOrPause;
 - (IBAction)next;
