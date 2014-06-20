@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "02AC7C6F15B702E5007B574D"
-               BuildableName = "Audiobook+.app"
+               BuildableName = "Audiobook.app"
                BlueprintName = "Audiobook+"
                ReferencedContainer = "container:Audiobook+.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "02AC7C6F15B702E5007B574D"
-            BuildableName = "Audiobook+.app"
+            BuildableName = "Audiobook.app"
             BlueprintName = "Audiobook+"
             ReferencedContainer = "container:Audiobook+.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "02AC7C6F15B702E5007B574D"
-            BuildableName = "Audiobook+.app"
+            BuildableName = "Audiobook.app"
             BlueprintName = "Audiobook+"
             ReferencedContainer = "container:Audiobook+.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "02AC7C6F15B702E5007B574D"
-            BuildableName = "Audiobook+.app"
+            BuildableName = "Audiobook.app"
             BlueprintName = "Audiobook+"
             ReferencedContainer = "container:Audiobook+.xcodeproj">
          </BuildableReference>
@@ -81,6 +81,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "AudiobookPlus"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

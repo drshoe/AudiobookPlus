@@ -1619,6 +1619,7 @@
 		02AC7C9215B702E5007B574D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1629,6 +1630,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Audiobook+/Audiobook+-Prefix.pch";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "Audiobook+/Audiobook+-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1636,8 +1638,9 @@
 					"$(SRCROOT)/Audiobook+/GoogleAnalytics",
 					"/Users/DrShoe/Development/Audiobook+/Audiobook+",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EC98E15F-3EFE-4A6D-A838-24F3B21303B8";
+				PRODUCT_NAME = Audiobook;
+				PROVISIONING_PROFILE = "27D93340-76C8-4C54-83C3-9832A3C9534F";
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1649,13 +1652,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sheng Xu (M54AN5XF9F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sheng Xu (NXMJL8YFP9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/DrShoe/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Audiobook+/Audiobook+-Prefix.pch";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "Audiobook+/Audiobook+-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1663,8 +1667,9 @@
 					"$(SRCROOT)/Audiobook+/GoogleAnalytics",
 					"/Users/DrShoe/Development/Audiobook+/Audiobook+",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EC98E15F-3EFE-4A6D-A838-24F3B21303B8";
+				PRODUCT_NAME = Audiobook;
+				PROVISIONING_PROFILE = "6EE5B88E-A1AC-4037-9D36-C14DC499E307";
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
